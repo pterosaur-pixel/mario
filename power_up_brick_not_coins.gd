@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 func _ready() -> void:
-	$AnimationPlayer.play("brick-questiion-mark")
 	set_physics_process(false)
+	$AnimationPlayer.play("brick-questiion-mark")
 var powerup = preload("res://power_up_object.tscn")
 var Powerup
 var direction = 1
@@ -11,8 +11,25 @@ func _on_area_2d_mushroom_hit() -> void:
 	set_process(false)
 	$AnimationPlayer.stop()
 	$Sprite2D.hide()
-	$AnimationPlayer2.play("question-brick-bounce")
+	$Sprite2D2.show()
+	$AnimationPlayer2.play("new_animation")
 	
+	
+
+func _physics_process(delta: float) -> void:
+	$AnimationPlayer.play("brick-questiion-mark")
+	
+	if Powerup.current_powerup == 0:
+		if not Powerup.is_on_floor():
+			Powerup.velocity.y += 1250 * delta
+		elif Powerup.velocity.x == 0:
+			direction = -direction
+			Powerup.velocity.x = direction * 35
+	
+		Powerup.move_and_slide()
+
+
+func _on_animation_player_2_animation_finished(anim_name: StringName) -> void:
 	set_z_index(1)
 	Powerup = powerup.instantiate()
 	add_child(Powerup)
@@ -26,14 +43,4 @@ func _on_area_2d_mushroom_hit() -> void:
 	print(Powerup.get_z_index(), get_z_index())
 	print(global_position)
 	set_physics_process(true)
-
-func _physics_process(delta: float) -> void:
-	$AnimationPlayer.play("brick-questiion-mark")
-	if Powerup.current_powerup == 0:
-		if not Powerup.is_on_floor():
-			Powerup.velocity.y += 1250 * delta
-		elif Powerup.velocity.x == 0:
-			direction = -direction
-			Powerup.velocity.x = direction * 35
 	
-		Powerup.move_and_slide()
