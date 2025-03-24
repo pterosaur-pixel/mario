@@ -173,7 +173,7 @@ separation = Vector2i(1, 1)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_foyw7"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
 sources/0 = SubResource("TileSetAtlasSource_bo08i")
 sources/1 = SubResource("TileSetAtlasSource_0l1we")
 sources/5 = SubResource("TileSetAtlasSource_6t2mo")

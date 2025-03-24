@@ -111,6 +111,7 @@ region = Rect2(360, 128, 16, 16)
 
 [sub_resource type="Animation" id="Animation_j730v"]
 resource_name = "new_animation"
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

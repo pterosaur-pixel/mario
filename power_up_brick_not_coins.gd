@@ -3,12 +3,12 @@ extends CharacterBody2D
 func _ready() -> void:
 	set_physics_process(false)
 	$AnimationPlayer.play("brick-questiion-mark")
-var powerup = preload("res://power_up_object.tscn")
-var Powerup
+var powerup_scene = preload("res://power_up_object.tscn")
+var powerup
 var direction = 1
 
 func _on_area_2d_mushroom_hit() -> void:
-	set_process(false)
+	set_physics_process(false)
 	$AnimationPlayer.stop()
 	$Sprite2D.hide()
 	$Sprite2D2.show()
@@ -17,30 +17,26 @@ func _on_area_2d_mushroom_hit() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	$AnimationPlayer.play("brick-questiion-mark")
+	#$AnimationPlayer.play("brick-questiion-mark")
+	pass
 	
-	if Powerup.current_powerup == 0:
-		if not Powerup.is_on_floor():
-			Powerup.velocity.y += 1250 * delta
-		elif Powerup.velocity.x == 0:
-			direction = -direction
-			Powerup.velocity.x = direction * 35
 	
-		Powerup.move_and_slide()
 
 
 func _on_animation_player_2_animation_finished(anim_name: StringName) -> void:
-	set_z_index(1)
-	Powerup = powerup.instantiate()
-	add_child(Powerup)
 	
-	Powerup.global_position = global_position
-	for i in range(0, 8):
-		Powerup.global_position.y = Powerup.global_position.y - 1.5
-		await get_tree().create_timer(0.06).timeout
-	Powerup.velocity.x = 35
-	Powerup.set_z_index(0)
-	print(Powerup.get_z_index(), get_z_index())
-	print(global_position)
+	set_z_index(1)
+	powerup = powerup_scene.instantiate()
+	powerup.global_position.x = global_position.x
+	powerup.global_position.y = global_position.y - 12
+	add_sibling(powerup)
+	
+	
+	
+	
+
+	powerup.velocity.x = 35
+	
+	
 	set_physics_process(true)
 	
