@@ -65,7 +65,7 @@ func _on_level_one_mushroom_killed_mario_l_1() -> void:
 	$AnimationPlayer.play("mario-dead")
 	print('playing animation?')
 	velocity.y = -200
-	$CollisionShape2D.set_disabled(true)
+	#$CollisionShape2D.call_deferred("set_disabled", true)
 	for i in range(0, 10):
 		move_and_slide()
 		await get_tree().create_timer(0.06).timeout

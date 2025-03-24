@@ -103,7 +103,8 @@ separation = Vector2i(1, 1)
 8:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.34212, -8, 6.24303, -8, 6.14393, 8, -6.54032, 8)
 
 [sub_resource type="TileSet" id="TileSet_xsnk2"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
 physics_layer_1/collision_layer = 2
 physics_layer_1/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_eck3n")

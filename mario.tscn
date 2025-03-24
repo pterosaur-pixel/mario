@@ -381,8 +381,8 @@ atlas = ExtResource("1_w74su")
 region = Rect2(296, 1, 51, 32)
 
 [node name="Mario" type="CharacterBody2D"]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 15
+collision_mask = 15
 platform_on_leave = 2
 script = ExtResource("1_wrvex")
 

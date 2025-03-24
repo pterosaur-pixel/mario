@@ -1,15 +1,17 @@
 extends CharacterBody2D
-var current_powerup = 0
+var current_powerup = PowerupStatus.powerup_status
 var direction = 1
 func _ready() -> void:
 	set_process(false)
-	$AnimationPlayer.play("growing-mushroom")
-	await get_tree().create_timer(0.75).timeout
+	if current_powerup == 0:
+		$AnimationPlayer.play("growing-mushroom")
+		await get_tree().create_timer(0.75).timeout
 	set_process(true)
 	
 	
 func _process(delta: float) -> void:	
-	pass
+	
+	
 	set_z_index(0)
 	if current_powerup == 0:
 		if not is_on_floor():
@@ -18,6 +20,17 @@ func _process(delta: float) -> void:
 			direction = -direction
 		velocity.x = direction * 35
 		$AnimationPlayer.play("mushroom")
-	elif current_powerup == 1:
+	elif current_powerup >= 1:
+		velocity = Vector2(0, 0)
+		
 		$AnimationPlayer.play("flower")
 	move_and_slide() 
+
+
+func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	print('Mario got mushroom powerup!')
+	PowerupStatus.powerup_status += 1
+	current_powerup = PowerupStatus.powerup_status
+	print(current_powerup, 'cur_pow')
+	set_process(false)
+	queue_free()
