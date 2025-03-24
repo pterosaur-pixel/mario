@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://biuqagt7vi4n6"
+path="res://.godot/imported/font.png-062c3597b68463316da4bb296970215a.fontdata"
+
+[deps]
+
+source_file="res://assets/font.png"
+dest_files=["res://.godot/imported/font.png-062c3597b68463316da4bb296970215a.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-57", "65-90", "45-45", "120-120", "33-33", "46-46", "64-64", "32-32")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=3
+image_margin=Rect2i(-1, -1, 0, 0)
+character_margin=Rect2i(1, 1, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

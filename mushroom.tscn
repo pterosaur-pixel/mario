@@ -1,0 +1,252 @@
+[gd_scene load_steps=16 format=3 uid="uid://c7jlmxfmf6nx7"]
+
+[ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_gvsd5"]
+[ext_resource type="Script" uid="uid://bnlow6fbnmf02" path="res://mushroom.gd" id="1_ke5i0"]
+[ext_resource type="Script" uid="uid://ce71cq81s68om" path="res://area_2d_danger_zone.gd" id="3_pl5ep"]
+[ext_resource type="FontFile" uid="uid://biuqagt7vi4n6" path="res://assets/font.png" id="4_4gvq0"]
+[ext_resource type="Script" uid="uid://bt4cjhqt1xgtp" path="res://mushroom_killed_score_label.gd" id="4_jg55k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gvq0"]
+resource_local_to_scene = true
+atlas = ExtResource("1_gvsd5")
+region = Rect2(277, 195, 16, 8)
+
+[sub_resource type="Animation" id="Animation_pl5ep"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(277, 195, 16, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ke5i0"]
+resource_name = "evil-mushroom"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(296, 187, 34.4993, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_jg55k"]
+resource_name = "evil-mushroom-squashed"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(277, 195, 16, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4gvq0"]
+resource_name = "turtle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(296, 205.389, 35.1669, 24.6109)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jg55k"]
+_data = {
+&"RESET": SubResource("Animation_pl5ep"),
+&"evil-mushroom": SubResource("Animation_ke5i0"),
+&"evil-mushroom-squashed": SubResource("Animation_jg55k"),
+&"turtle": SubResource("Animation_4gvq0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke5i0"]
+size = Vector2(10.5, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg55k"]
+size = Vector2(12, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl5ep"]
+size = Vector2(250, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gvq0"]
+size = Vector2(17, 11)
+
+[node name="Mushroom" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_ke5i0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_4gvq0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_jg55k")
+}
+autoplay = "evil-mushroom"
+
+[node name="WallCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-1.25, 0.5)
+shape = SubResource("RectangleShape2D_ke5i0")
+
+[node name="Area2DKill" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="MarioKillCollider" type="CollisionShape2D" parent="Area2DKill"]
+position = Vector2(-1, -5.75)
+shape = SubResource("RectangleShape2D_jg55k")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(-59, 0)
+shape = SubResource("RectangleShape2D_pl5ep")
+
+[node name="Area2DDangerZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_pl5ep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DDangerZone"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_4gvq0")
+
+[node name="MushroomKilledScoreLabel" type="Label" parent="."]
+offset_top = -15.0
+offset_right = 24.0
+offset_bottom = -7.0
+theme_override_fonts/font = ExtResource("4_4gvq0")
+theme_override_font_sizes/font_size = 8
+text = "100"
+script = ExtResource("4_jg55k")
+
+[connection signal="body_entered" from="Area2DKill" to="." method="_on_area_2d_kill_body_entered"]
+[connection signal="body_entered" from="Area2DKill" to="MushroomKilledScoreLabel" method="_on_area_2d_kill_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2DDangerZone" to="." method="_on_area_2d_danger_zone_body_entered"]
+[connection signal="done_displaying" from="MushroomKilledScoreLabel" to="." method="_on_mushroom_killed_score_label_done_displaying"]

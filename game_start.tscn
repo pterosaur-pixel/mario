@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhoh1cp1shtpd"]
+
+[ext_resource type="Script" uid="uid://cduj8pxgbfhpx" path="res://game_start.gd" id="1_dpf5s"]
+[ext_resource type="Texture2D" uid="uid://cyo3al57x15tg" path="res://assets/title-blank.png" id="1_sn725"]
+[ext_resource type="FontFile" uid="uid://biuqagt7vi4n6" path="res://assets/font.png" id="3_26ewq"]
+
+[node name="GameStart" type="CharacterBody2D"]
+script = ExtResource("1_dpf5s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sn725")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -121.0
+offset_top = 7.0
+offset_right = 119.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_26ewq")
+text = "@!ME
+PRESS START    "
+horizontal_alignment = 2
+vertical_alignment = 1

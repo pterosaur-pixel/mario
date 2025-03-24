@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://b73gmeflwcday"]
+
+[ext_resource type="Script" uid="uid://wobjpwkcckga" path="res://node_2d.gd" id="1_0hol4"]
+[ext_resource type="PackedScene" uid="uid://dr7c27a40my32" path="res://level_one.tscn" id="2_0e48y"]
+[ext_resource type="PackedScene" uid="uid://d1tngnw551ucx" path="res://fall_collider.tscn" id="3_epypp"]
+[ext_resource type="Script" uid="uid://dt5ucp7saaxv2" path="res://sub_viewport_container.gd" id="4_kdubu"]
+[ext_resource type="Script" uid="uid://3scap547yn6d" path="res://camera_2d.gd" id="5_ir8iy"]
+[ext_resource type="PackedScene" uid="uid://bhoh1cp1shtpd" path="res://game_start.tscn" id="5_q6r6c"]
+[ext_resource type="Script" uid="uid://brxnh87d1yebt" path="res://hud.gd" id="6_4d7sh"]
+[ext_resource type="FontFile" uid="uid://biuqagt7vi4n6" path="res://assets/font.png" id="6_d21ai"]
+[ext_resource type="Script" uid="uid://cb6bbsgfpsde8" path="res://game_time.gd" id="6_kdubu"]
+[ext_resource type="Theme" uid="uid://bky0bmqfgxurt" path="res://font_theme.tres" id="6_rj586"]
+[ext_resource type="Script" uid="uid://dua2sovrhpsu4" path="res://score_count.gd" id="11_hqns4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0hol4")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 255.0
+offset_bottom = 240.0
+script = ExtResource("4_kdubu")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(255, 240)
+render_target_update_mode = 4
+
+[node name="LevelOne" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_0e48y")]
+
+[node name="FallCollider" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_epypp")]
+position = Vector2(0, 5)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(0, 104)
+script = ExtResource("5_ir8iy")
+
+[node name="GameStart" parent="." instance=ExtResource("5_q6r6c")]
+position = Vector2(127, 119)
+
+[node name="HUD" type="Node2D" parent="."]
+script = ExtResource("6_4d7sh")
+
+[node name="GameTime" type="Label" parent="HUD"]
+offset_left = 208.0
+offset_top = 18.0
+offset_right = 238.0
+offset_bottom = 30.0
+theme = ExtResource("6_rj586")
+theme_override_fonts/font = ExtResource("6_d21ai")
+text = "300"
+script = ExtResource("6_kdubu")
+
+[node name="Timer" type="Timer" parent="HUD/GameTime"]
+wait_time = 0.5
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+offset_left = 199.0
+offset_top = 6.0
+offset_right = 239.0
+offset_bottom = 17.0
+theme = ExtResource("6_rj586")
+text = "TIME"
+
+[node name="ScoreCount" type="Label" parent="HUD"]
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 73.0
+offset_bottom = 25.0
+theme = ExtResource("6_rj586")
+text = "000000"
+script = ExtResource("11_hqns4")
+
+[node name="MarioLabel" type="Label" parent="HUD"]
+offset_left = 13.0
+offset_top = 3.0
+offset_right = 63.0
+offset_bottom = 26.0
+theme = ExtResource("6_rj586")
+text = "MARIO"
+
+[connection signal="game_over_l1" from="SubViewportContainer/SubViewport/LevelOne" to="GameStart" method="_on_level_one_game_over_l_1"]
+[connection signal="grow_mushroom1" from="SubViewportContainer/SubViewport/LevelOne" to="." method="_on_level_one_grow_mushroom_1"]
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/FallCollider" to="SubViewportContainer/SubViewport/LevelOne" method="_on_fall_collider_body_entered"]
+[connection signal="start_game" from="GameStart" to="SubViewportContainer/SubViewport/LevelOne" method="_on_game_start_start_game"]
+[connection signal="start_game" from="GameStart" to="HUD" method="_on_game_start_start_game"]
+[connection signal="start_game" from="GameStart" to="HUD/GameTime" method="_on_game_start_start_game"]
+[connection signal="timeout" from="HUD/GameTime/Timer" to="HUD/GameTime" method="_on_timer_timeout"]
