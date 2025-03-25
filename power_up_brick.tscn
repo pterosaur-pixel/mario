@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cg6ggbbgmk468"]
+[gd_scene load_steps=22 format=3 uid="uid://cg6ggbbgmk468"]
 
 [ext_resource type="Script" uid="uid://k06g61gh062v" path="res://power_up_brick.gd" id="1_4se21"]
 [ext_resource type="Texture2D" uid="uid://capes54fyhh2" path="res://assets/overworld -coins.png" id="2_j730v"]
@@ -306,6 +306,9 @@ _data = {
 &"coin": SubResource("Animation_pcjeq")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xly1"]
+size = Vector2(16, 9)
+
 [node name="PowerUpBrick" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
@@ -366,6 +369,14 @@ text = "200"
 libraries = {
 &"": SubResource("AnimationLibrary_j7mdy")
 }
+
+[node name="MushroomArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomArea"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_5xly1")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="mushroom_hit" from="Area2D" to="." method="_on_area_2d_mushroom_hit"]

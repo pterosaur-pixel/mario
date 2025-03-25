@@ -241,7 +241,7 @@ position = Vector2(-739, 176)
 position = Vector2(-414, 178)
 
 [node name="Mushroom1-1-8" parent="." instance=ExtResource("6_l6eyr")]
-position = Vector2(-85, 100)
+position = Vector2(-73, 48)
 
 [node name="PowerUpBrick" parent="." instance=ExtResource("7_c00e3")]
 position = Vector2(104, 132)
@@ -256,7 +256,7 @@ position = Vector2(-824, 116)
 position = Vector2(-1055, 120)
 
 [node name="Mario" parent="." instance=ExtResource("12_xq862")]
-position = Vector2(-1059, 122)
+position = Vector2(-105, 164)
 
 [node name="PowerUpBrick2" parent="." instance=ExtResource("13_rnwmu")]
 position = Vector2(248, 132)

@@ -103,7 +103,7 @@ func _on_mushroom_killed_score_label_done_displaying() -> void:
 	hide()
 	queue_free()
 
-func _on_mushroom_collider_area_entered(area: Area2D) -> void:
+func _on_mushroom_collider_area_entered(_area: Area2D) -> void:
 	print('dead mushroom by the means of a brick up the rear')
 	set_physics_process(false)
 	can_kill_mario = false
@@ -113,6 +113,7 @@ func _on_mushroom_collider_area_entered(area: Area2D) -> void:
 	$WallCollider.call_deferred("set_disabled", true)
 	$MushroomCollider/CollisionShape2D.call_deferred("set_disabled", true)
 	velocity.y = -150
+	set_z_index(5)
 	for i in range(0, 10):
 		rotation += 18
 		move_and_slide()
@@ -121,6 +122,7 @@ func _on_mushroom_collider_area_entered(area: Area2D) -> void:
 	for i in range(0, 20):
 		move_and_slide()
 		await get_tree().create_timer(0.05).timeout
+	Score.score += 100
 	queue_free()
 		
 		
