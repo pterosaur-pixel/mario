@@ -76,10 +76,10 @@ func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
 		$Area2DKill/MarioKillCollider.call_deferred("set_disabled", true)
 		$Area2DDangerZone/CollisionShape2D.call_deferred("set_disabled", true)
 		
-		MarioLifeLeft.lifeleft -= 1
+		#MarioLifeLeft.lifeleft -= 1
 		PowerupStatus.powerup_status -= 1
-		print(MarioLifeLeft.lifeleft)
-		if MarioLifeLeft.lifeleft == 0:
+		#print(MarioLifeLeft.lifeleft)
+		if PowerupStatus.powerup_status == -1:
 			print('dead mario')
 			$Area2DKill.queue_free()
 			$Area2DDangerZone.queue_free()
@@ -99,9 +99,30 @@ func _on_level_one_game_over_l_1() -> void:
 	print('gmovr')
 
 
-	
-
-
 func _on_mushroom_killed_score_label_done_displaying() -> void:
 	hide()
 	queue_free()
+
+func _on_mushroom_collider_area_entered(area: Area2D) -> void:
+	print('dead mushroom by the means of a brick up the rear')
+	set_physics_process(false)
+	can_kill_mario = false
+	mario_can_kill = false
+	$Area2DKill/MarioKillCollider.call_deferred("set_disabled", true)
+	$Area2DDangerZone/CollisionShape2D.call_deferred("set_disabled", true)
+	$WallCollider.call_deferred("set_disabled", true)
+	$MushroomCollider/CollisionShape2D.call_deferred("set_disabled", true)
+	velocity.y = -150
+	for i in range(0, 10):
+		rotation += 18
+		move_and_slide()
+		await get_tree().create_timer(0.05).timeout
+	velocity.y = 400
+	for i in range(0, 20):
+		move_and_slide()
+		await get_tree().create_timer(0.05).timeout
+	queue_free()
+		
+		
+		
+	

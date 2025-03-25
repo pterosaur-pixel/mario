@@ -1,6 +1,6 @@
 extends Label
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var score = Score.score
 	if score < 10:
 		text = '00000'+str(score)

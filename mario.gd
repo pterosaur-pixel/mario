@@ -24,14 +24,14 @@ func _physics_process(delta: float) -> void:
 			
 			get_big()
 			return
-			$AnimationPlayer.play("mario-idle")
-			await get_tree().create_timer(0.5).timeout
+			#$AnimationPlayer.play("mario-idle")
+			#await get_tree().create_timer(0.5).timeout
 			
 		elif last_pu > 1:
 			get_flower()
 			return
-			$CollisionShape2DLittle.call_deferred("set_disabled", true)
-			$CollisionShape2D.call_deferred("set_disabled", false)
+#			$CollisionShape2DLittle.call_deferred("set_disabled", true)
+#			$CollisionShape2D.call_deferred("set_disabled", false)
 		
 			
 	#set_platform_on_leave(PLATFORM_ON_LEAVE_DO_NOTHING)
@@ -72,24 +72,24 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
-func update_animations(direction, last_pu):
-	if direction and is_on_floor() and last_pu == 0:
+func update_animations(direction, last):
+	if direction and is_on_floor() and last == 0:
 		$AnimationPlayer.play("mario-little-running")
-	elif not is_on_floor() and last_pu == 0:
+	elif not is_on_floor() and last == 0:
 		$AnimationPlayer.play("mario-little-jump")
-	elif last_pu == 0:
+	elif last == 0:
 		$AnimationPlayer.play("mario-little-idle")
-	elif direction and is_on_floor() and last_pu == 1:
+	elif direction and is_on_floor() and last == 1:
 		$AnimationPlayer.play("mario-running")
-	elif not is_on_floor() and last_pu == 1:
+	elif not is_on_floor() and last == 1:
 		$AnimationPlayer.play("mario-jump")
-	elif last_pu == 1:
+	elif last == 1:
 		$AnimationPlayer.play("mario-idle")
-	elif direction and is_on_floor() and last_pu >= 2:
+	elif direction and is_on_floor() and last >= 2:
 		$AnimationPlayer.play("mario-powerup-running")
-	elif not is_on_floor() and last_pu >= 2:
+	elif not is_on_floor() and last >= 2:
 		$AnimationPlayer.play("mario-powerup-jump")
-	elif last_pu >= 2:
+	elif last >= 2:
 		$AnimationPlayer.play("mario-powerup-idle")
 
 func _on_level_one_fall_collider_entered() -> void:
@@ -102,7 +102,9 @@ func _on_level_one_fall_collider_entered() -> void:
 	
 func _on_level_one_mushroom_killed_mario_l_1() -> void:
 	set_physics_process(false)
+	set_z_index(3)
 	$AnimationPlayer.play("mario-dead")	
+	
 	$CollisionShape2D.call_deferred("set_disabled",true)
 	$CollisionShape2DLittle.call_deferred("set_disabled",true)
 	velocity.y = -200

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7jlmxfmf6nx7"]
+[gd_scene load_steps=17 format=3 uid="uid://c7jlmxfmf6nx7"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_gvsd5"]
 [ext_resource type="Script" uid="uid://bnlow6fbnmf02" path="res://mushroom.gd" id="1_ke5i0"]
@@ -192,6 +192,9 @@ size = Vector2(250, 500)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gvq0"]
 size = Vector2(17, 11)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rjv2"]
+size = Vector2(13, 16)
+
 [node name="Mushroom" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_ke5i0")
@@ -245,8 +248,17 @@ theme_override_font_sizes/font_size = 8
 text = "100"
 script = ExtResource("4_jg55k")
 
+[node name="MushroomCollider" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomCollider"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_5rjv2")
+
 [connection signal="label_show" from="." to="MushroomKilledScoreLabel" method="_on_mushroom_label_show"]
 [connection signal="body_entered" from="Area2DKill" to="." method="_on_area_2d_kill_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2DDangerZone" to="." method="_on_area_2d_danger_zone_body_entered"]
 [connection signal="done_displaying" from="MushroomKilledScoreLabel" to="." method="_on_mushroom_killed_score_label_done_displaying"]
+[connection signal="area_entered" from="MushroomCollider" to="." method="_on_mushroom_collider_area_entered"]

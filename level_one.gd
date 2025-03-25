@@ -38,7 +38,7 @@ func _on_game_start_start_game() -> void:
 	start_game.emit()
 
 
-func _on_fall_collider_body_entered(body: Node2D) -> void:
+func _on_fall_collider_body_entered(_body: Node2D) -> void:
 	fall_collider_entered.emit()
 
 

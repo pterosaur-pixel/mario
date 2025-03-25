@@ -2,7 +2,7 @@ extends Label
 signal done_displaying
 func _ready() -> void:
 	visible = false
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

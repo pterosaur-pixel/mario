@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmvhl8ju7v6ha"]
+[gd_scene load_steps=6 format=3 uid="uid://bmvhl8ju7v6ha"]
 
 [ext_resource type="PackedScene" uid="uid://cg6ggbbgmk468" path="res://power_up_brick.tscn" id="1_0mk3g"]
 [ext_resource type="Script" uid="uid://csxqoigasomhi" path="res://power_up_brick_not_coins.gd" id="2_17667"]
@@ -9,11 +9,21 @@ resource_local_to_scene = true
 atlas = ExtResource("3_p55v7")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mk3g"]
+size = Vector2(16, 9)
+
 [node name="PowerUpBrickNotCoins" instance=ExtResource("1_0mk3g")]
 script = ExtResource("2_17667")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_76mug")
-hframes = 1
+
+[node name="MushroomArea" type="Area2D" parent="." index="8"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomArea" index="0"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_0mk3g")
 
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]

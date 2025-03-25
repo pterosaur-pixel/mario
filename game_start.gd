@@ -12,4 +12,4 @@ func _on_level_one_game_over_l_1() -> void:
 	visible = true
 	Score.score = 0
 	PowerupStatus.powerup_status = 0
-	MarioLifeLeft.lifeleft = 1
+	#MarioLifeLeft.lifeleft = 1

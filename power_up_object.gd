@@ -28,10 +28,10 @@ func _process(delta: float) -> void:
 	move_and_slide() 
 
 
-func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+func _on_area_2d_body_entered(_body: CharacterBody2D) -> void:
 	print('Mario got mushroom powerup!')
 	PowerupStatus.powerup_status += 1
-	MarioLifeLeft.lifeleft += 1
+	#MarioLifeLeft.lifeleft += 1
 	current_powerup = PowerupStatus.powerup_status
 	print(current_powerup, 'cur_pow')
 	set_process(false)
