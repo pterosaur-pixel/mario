@@ -30,7 +30,13 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	print('Mario got mushroom powerup!')
 	PowerupStatus.powerup_status += 1
+	MarioLifeLeft.lifeleft += 1
 	current_powerup = PowerupStatus.powerup_status
 	print(current_powerup, 'cur_pow')
 	set_process(false)
+	$CollisionShape2D.call_deferred("set_disabled", true)
+	$Area2D/CollisionPolygon2D.call_deferred("set_disabled",true)
+	Score.score += 1000
+	hide()
+func _on_point_label_done_displaying() -> void:
 	queue_free()

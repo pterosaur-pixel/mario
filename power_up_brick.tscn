@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cg6ggbbgmk468"]
+[gd_scene load_steps=21 format=3 uid="uid://cg6ggbbgmk468"]
 
 [ext_resource type="Script" uid="uid://k06g61gh062v" path="res://power_up_brick.gd" id="1_4se21"]
 [ext_resource type="Texture2D" uid="uid://capes54fyhh2" path="res://assets/overworld -coins.png" id="2_j730v"]
 [ext_resource type="Script" uid="uid://dj83f14yj0ary" path="res://area_2d.gd" id="2_jwqqy"]
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="4_j730v"]
+[ext_resource type="Script" uid="uid://bkckdj085d7k3" path="res://sprite_2d_3.gd" id="5_5xly1"]
+[ext_resource type="Theme" uid="uid://bky0bmqfgxurt" path="res://font_theme.tres" id="5_pcjeq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcjeq"]
 resource_local_to_scene = true
@@ -166,6 +168,143 @@ _data = {
 &"new_animation": SubResource("Animation_j730v")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j730v"]
+atlas = ExtResource("4_j730v")
+region = Rect2(178, 36, 21, 16)
+
+[sub_resource type="Animation" id="Animation_pcjeq"]
+resource_name = "coin"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(178, 36, 21, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D3:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_5xly1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(178, 36, 21, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D3:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7mdy"]
+_data = {
+&"RESET": SubResource("Animation_5xly1"),
+&"coin": SubResource("Animation_pcjeq")
+}
+
 [node name="PowerUpBrick" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
@@ -204,5 +343,27 @@ libraries = {
 &"": SubResource("AnimationLibrary_koamc")
 }
 
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_j730v")
+offset = Vector2(0, -10)
+hframes = 2
+script = ExtResource("5_5xly1")
+
+[node name="Label" type="Label" parent="Sprite2D3"]
+offset_left = 10.0
+offset_top = -27.0
+offset_right = 34.0
+offset_bottom = -19.0
+theme = ExtResource("5_pcjeq")
+theme_override_font_sizes/font_size = 8
+text = "200"
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j7mdy")
+}
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="mushroom_hit" from="Area2D" to="." method="_on_area_2d_mushroom_hit"]
+[connection signal="animation_finished" from="AnimationPlayer3" to="." method="_on_animation_player_3_animation_finished"]

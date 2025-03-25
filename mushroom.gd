@@ -61,11 +61,14 @@ func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
 
 
 func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
+	
+	#MarioLifeLeft.lifeleft -= 1
+	#if MarioLifeLeft.lifeleft == 0:
 	$Area2DKill.queue_free()
 	$Area2DDangerZone.queue_free()
 	mushroom_killed_mario.emit()
 
-
+	
 func _on_level_one_game_over_l_1() -> void:
 	
 	print('gmovr')

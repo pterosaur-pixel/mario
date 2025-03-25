@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Score="*res://score.gd"
 PowerupStatus="*res://powerup_status.gd"
+MarioLifeLeft="*res://mario_life_left.gd"
 
 [display]
 

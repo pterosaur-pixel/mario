@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2hplxwkmso2x"]
+[gd_scene load_steps=11 format=3 uid="uid://d2hplxwkmso2x"]
 
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="1_5lohm"]
 [ext_resource type="Script" uid="uid://ja4n5ajqi476" path="res://power_up_object.gd" id="1_q401g"]
+[ext_resource type="Theme" uid="uid://bky0bmqfgxurt" path="res://font_theme.tres" id="3_ja1y2"]
+[ext_resource type="Script" uid="uid://bqa4m6x7sihbw" path="res://point_label.gd" id="4_bk5yg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q401g"]
 resource_local_to_scene = true
@@ -70,6 +72,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 12)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D/CollisionPolygon2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 12)]
+}
 
 [sub_resource type="Animation" id="Animation_q401g"]
 resource_name = "flower"
@@ -110,45 +124,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_ja1y2"]
-resource_name = "mushroom"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 8, 16, 16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_8e7lv"]
@@ -213,6 +188,57 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 12), Vector2(0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D/CollisionPolygon2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 12), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ja1y2"]
+resource_name = "mushroom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 8, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8e7lv"]
 _data = {
@@ -224,7 +250,7 @@ _data = {
 
 [node name="PowerUpObject" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_q401g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -245,6 +271,19 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-4, -8, 3, -8, 8, -1, 6, 8, -6, 8, -8, -1)
+position = Vector2(0, 12)
+polygon = PackedVector2Array(-4, -8, 3, -8, 8, -1, 8, 8, -8, 8, -8, -1)
+
+[node name="PointLabel" type="Label" parent="."]
+offset_left = -15.0
+offset_top = -14.0
+offset_right = 17.0
+offset_bottom = -6.0
+theme = ExtResource("3_ja1y2")
+theme_override_font_sizes/font_size = 8
+text = "1000"
+script = ExtResource("4_bk5yg")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="PointLabel" method="_on_area_2d_body_entered"]
+[connection signal="done_displaying" from="PointLabel" to="." method="_on_point_label_done_displaying"]
