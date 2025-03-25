@@ -79,6 +79,8 @@ offset_bottom = 26.0
 theme = ExtResource("6_rj586")
 text = "MARIO"
 
+[connection signal="camera_go" from="SubViewportContainer/SubViewport/LevelOne" to="SubViewportContainer/SubViewport/Camera2D" method="_on_level_one_camera_go"]
+[connection signal="camera_stop" from="SubViewportContainer/SubViewport/LevelOne" to="SubViewportContainer/SubViewport/Camera2D" method="_on_level_one_camera_stop"]
 [connection signal="game_over_l1" from="SubViewportContainer/SubViewport/LevelOne" to="GameStart" method="_on_level_one_game_over_l_1"]
 [connection signal="grow_mushroom1" from="SubViewportContainer/SubViewport/LevelOne" to="." method="_on_level_one_grow_mushroom_1"]
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/FallCollider" to="SubViewportContainer/SubViewport/LevelOne" method="_on_fall_collider_body_entered"]

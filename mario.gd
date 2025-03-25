@@ -1,5 +1,7 @@
 extends CharacterBody2D
 signal game_over
+signal camera_stop
+signal mario_in_castle
 const SPEED = 82.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY = 1250
@@ -156,4 +158,46 @@ func _on_mushroom_mario_invincible() -> void:
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	$CollisionShape2DLittle.call_deferred("set_disabled", true)
 	
+	
+
+
+func _on_flagpole_flag_mario_grabbed_pole() -> void:
+	camera_stop.emit()
+	set_z_index(2)
+	set_physics_process(false)
+	if last_pu == 0:
+		end_animation("little-")
+	if last_pu == 1:
+		end_animation("")
+	if last_pu >= 2:
+		end_animation("powerup-")
+		
+func end_animation(size):
+	$AnimationPlayer.play("mario-"+size + "flagpole")
+	global_position.x += 2
+	velocity.y = 200
+	await get_tree().create_timer(0.1).timeout
+	$AnimationPlayer.pause()
+	await get_tree().create_timer(1).timeout
+	$AnimationPlayer.play("mario-"+size+"flagpole")
+	while not is_on_floor():
+		move_and_slide()
+		await get_tree().create_timer(0.033).timeout
+	await get_tree().create_timer(1).timeout
+	$AnimationPlayer.play("mario-"+size+"idle")
+	global_position.x += 30
+	velocity.y = 200
+	for i in range(0, 20):
+		move_and_slide()
+		await get_tree().create_timer(0.033).timeout
+	$AnimationPlayer.play("mario-"+size+"running")
+	for i in range(0, 46):
+		global_position.x += 3
+		move_and_slide()
+		await get_tree().create_timer(0.033).timeout
+	$AnimationPlayer.play("mario-"+size+"idle")
+	hide()
+	mario_in_castle.emit()
+		
+		
 	

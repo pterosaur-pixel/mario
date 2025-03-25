@@ -240,9 +240,9 @@ position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_4gvq0")
 
 [node name="MushroomKilledScoreLabel" type="Label" parent="."]
-offset_top = -15.0
+offset_top = -30.0
 offset_right = 24.0
-offset_bottom = -7.0
+offset_bottom = -22.0
 theme_override_fonts/font = ExtResource("4_4gvq0")
 theme_override_font_sizes/font_size = 8
 text = "100"

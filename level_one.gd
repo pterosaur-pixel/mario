@@ -5,6 +5,8 @@ signal mario_should_jumpl1
 signal game_over_l1
 signal start_game
 signal fall_collider_entered
+signal camera_stop
+signal camera_go
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,3 +46,11 @@ func _on_fall_collider_body_entered(_body: Node2D) -> void:
 
 func _on_mario_should_jumpl_1() -> void:
 	pass # Replace with function body.
+
+
+func _on_mario_camera_stop() -> void:
+	camera_stop.emit()
+
+
+func _on_mario_camera_go() -> void:
+	camera_go.emit()
