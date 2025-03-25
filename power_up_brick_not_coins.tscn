@@ -7,12 +7,13 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_76mug"]
 resource_local_to_scene = true
 atlas = ExtResource("3_p55v7")
-region = Rect2(0, 0, 50, 16)
+region = Rect2(0, 0, 16, 16)
 
 [node name="PowerUpBrickNotCoins" instance=ExtResource("1_0mk3g")]
 script = ExtResource("2_17667")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_76mug")
+hframes = 1
 
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]

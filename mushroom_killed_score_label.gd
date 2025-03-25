@@ -6,8 +6,10 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_area_2d_kill_body_entered(body: Node2D) -> void:
-	#global_position.x = get_parent().global_position.x
+	
+
+
+func _on_mushroom_label_show() -> void:
 	visible = true
 	for i in range(0, 5):
 		global_position.y -= 3

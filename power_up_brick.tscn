@@ -10,7 +10,7 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcjeq"]
 resource_local_to_scene = true
 atlas = ExtResource("2_j730v")
-region = Rect2(0, 0, 50, 16)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="Animation" id="Animation_a2e6y"]
 length = 0.001
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 0, 50, 16)]
+"values": [Rect2(0, 0, 16, 16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -56,6 +56,7 @@ resource_name = "brick"
 
 [sub_resource type="Animation" id="Animation_2in15"]
 resource_name = "brick-questiion-mark"
+length = 0.75
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -64,10 +65,10 @@ tracks/0/path = NodePath("Sprite2D:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.0394237, 0.25, 0.5),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
 "update": 0,
-"values": [Rect2(0, 0, 50, 16)]
+"values": [Rect2(0, 0, 16, 16), Rect2(17, 0, 16, 16), Rect2(34, 0, 16, 16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -76,10 +77,10 @@ tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.0394237, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [3]
+"values": [1, 1, 1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -88,10 +89,10 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.75),
+"times": PackedFloat32Array(0.0394237, 0.25, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 0, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvjqs"]
@@ -233,7 +234,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, -10)]
+"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, -20)]
 }
 
 [sub_resource type="Animation" id="Animation_5xly1"]
@@ -313,7 +314,6 @@ script = ExtResource("1_4se21")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 4)
 texture = SubResource("AtlasTexture_pcjeq")
-hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -321,6 +321,7 @@ libraries = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("2_jwqqy")
@@ -330,6 +331,7 @@ position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_i7j08")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_pcjeq")
 
@@ -346,11 +348,12 @@ libraries = {
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 visible = false
 texture = SubResource("AtlasTexture_j730v")
-offset = Vector2(0, -10)
+offset = Vector2(0, -15)
 hframes = 2
 script = ExtResource("5_5xly1")
 
 [node name="Label" type="Label" parent="Sprite2D3"]
+visible = false
 offset_left = 10.0
 offset_top = -27.0
 offset_right = 34.0
@@ -367,3 +370,4 @@ libraries = {
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="mushroom_hit" from="Area2D" to="." method="_on_area_2d_mushroom_hit"]
 [connection signal="animation_finished" from="AnimationPlayer3" to="." method="_on_animation_player_3_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer3" to="Sprite2D3" method="_on_animation_player_3_animation_started"]

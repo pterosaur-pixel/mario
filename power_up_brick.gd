@@ -1,4 +1,5 @@
 extends CharacterBody2D
+
 func _process(delta: float) -> void:
 	$AnimationPlayer.play("brick-questiion-mark")
 func _on_area_2d_mushroom_hit() -> void:

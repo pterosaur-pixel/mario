@@ -10,6 +10,7 @@ func _ready() -> void:
 	
 	
 func _process(delta: float) -> void:	
+	current_powerup = PowerupStatus.powerup_status
 	
 	
 	set_z_index(0)

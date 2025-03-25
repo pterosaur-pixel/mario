@@ -148,3 +148,9 @@ func get_flower() -> void:
 	set_physics_process(true)
 
 	
+
+
+func _on_mushroom_mario_invincible() -> void:
+	$CollisionShape2D.set_disabled(true)
+	$CollisionShape2DLittle.set_disabled(true)
+	

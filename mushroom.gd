@@ -1,9 +1,13 @@
 extends CharacterBody2D
 signal mushroom_killed_mario
 signal mario_should_jump
+signal mario_invincible
+signal label_show()
 var gravity = 1250
 var direction
 var floor_coor
+var mario_can_kill = true
+var can_kill_mario = true
 @onready var cur_y = global_position.y 
 @onready var ap = $Sprite2D/AnimationPlayer
 # Called when the node enters the scene tree for the first time.
@@ -22,8 +26,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		floor_coor = global_position.y
 		
-	if cur_y > global_position.y:
-		print('mario killed me by my butt!')
+	
 	move_and_slide()
 	
 	var x = get_slide_collision_count()
@@ -34,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			direction = -1
 	cur_y = global_position.y
+	
 		
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	set_physics_process(true)
@@ -41,32 +45,53 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 
 func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
-	Score.score += 100
-	print(Score.score)
-	$Area2DKill.queue_free()
-	$Area2DDangerZone.queue_free()
+	if mario_can_kill:
+		label_show.emit()
+		Score.score += 100
+		print(Score.score)
+		$Area2DKill.queue_free()
+		$Area2DDangerZone.queue_free()
 	
-	ap.play("evil-mushroom-squashed")
-	
-	global_position.y = floor_coor + 6
-	print("squished")
-	velocity.x = 0
-	set_physics_process(false)
-	mario_should_jump.emit()
-	
-	await get_tree().create_timer(0.25).timeout
+		ap.play("evil-mushroom-squashed")
+		
+		global_position.y = floor_coor + 6
+		print("squished")
+		velocity.x = 0
+		set_physics_process(false)
+		mario_should_jump.emit()
+		
+		await get_tree().create_timer(0.25).timeout
 	
 	
 	
 
 
 func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
-	
-	#MarioLifeLeft.lifeleft -= 1
-	#if MarioLifeLeft.lifeleft == 0:
-	$Area2DKill.queue_free()
-	$Area2DDangerZone.queue_free()
-	mushroom_killed_mario.emit()
+	if can_kill_mario:
+		can_kill_mario = false
+		set_physics_process(false)
+		$Area2DKill/MarioKillCollider.set_disabled(true)
+		$Area2DDangerZone/CollisionShape2D.set_disabled(true)
+		mario_can_kill = false
+		$Area2DKill/MarioKillCollider.call_deferred("set_disabled", true)
+		$Area2DDangerZone/CollisionShape2D.call_deferred("set_disabled", true)
+		
+		MarioLifeLeft.lifeleft -= 1
+		PowerupStatus.powerup_status -= 1
+		print(MarioLifeLeft.lifeleft)
+		if MarioLifeLeft.lifeleft == 0:
+			print('dead mario')
+			$Area2DKill.queue_free()
+			$Area2DDangerZone.queue_free()
+			mushroom_killed_mario.emit()
+		else:
+			mario_invincible.emit()
+			set_physics_process(true)
+			$Area2DKill/MarioKillCollider.call_deferred("set_disabled", false)
+			$Area2DDangerZone/CollisionShape2D.call_deferred("set_disabled", false)
+		await get_tree().create_timer(1).timeout
+		mario_can_kill = true
+		can_kill_mario = true
 
 	
 func _on_level_one_game_over_l_1() -> void:
