@@ -70,8 +70,8 @@ func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
 	if can_kill_mario:
 		can_kill_mario = false
 		set_physics_process(false)
-		$Area2DKill/MarioKillCollider.set_disabled(true)
-		$Area2DDangerZone/CollisionShape2D.set_disabled(true)
+		#$Area2DKill/MarioKillCollider.set_disabled(true)
+		#$Area2DDangerZone/CollisionShape2D.set_disabled(true)
 		mario_can_kill = false
 		$Area2DKill/MarioKillCollider.call_deferred("set_disabled", true)
 		$Area2DDangerZone/CollisionShape2D.call_deferred("set_disabled", true)
