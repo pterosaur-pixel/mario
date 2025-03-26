@@ -121,10 +121,10 @@ margins = Vector2i(8, 4)
 22:22/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_xsnk2"]
-physics_layer_0/collision_layer = 5
-physics_layer_0/collision_mask = 5
-physics_layer_1/collision_layer = 2
-physics_layer_1/collision_mask = 2
+physics_layer_0/collision_layer = 37
+physics_layer_0/collision_mask = 37
+physics_layer_1/collision_layer = 34
+physics_layer_1/collision_mask = 34
 sources/0 = SubResource("TileSetAtlasSource_eck3n")
 sources/2 = SubResource("TileSetAtlasSource_xq862")
 
@@ -232,7 +232,8 @@ separation = Vector2i(1, 1)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_foyw7"]
-physics_layer_0/collision_layer = 5
+physics_layer_0/collision_layer = 37
+physics_layer_0/collision_mask = 33
 sources/0 = SubResource("TileSetAtlasSource_bo08i")
 sources/1 = SubResource("TileSetAtlasSource_0l1we")
 sources/5 = SubResource("TileSetAtlasSource_6t2mo")
@@ -319,7 +320,7 @@ position = Vector2(-1055, 120)
 
 [node name="Mario" parent="." instance=ExtResource("12_xq862")]
 process_mode = 3
-position = Vector2(991, 15)
+position = Vector2(-1052, 122)
 
 [node name="PowerUpBrick2" parent="." instance=ExtResource("13_rnwmu")]
 position = Vector2(248, 132)

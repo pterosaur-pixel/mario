@@ -5,7 +5,10 @@ signal mario_in_castle
 const SPEED = 82.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY = 1250
+var direction2 = 1
 var last_pu 
+var fireball_scene = preload("res://fireball.tscn")
+var is_fire_ball
 #var last_pu = PowerupStatus.powerup_status
 func _ready() -> void:
 	set_physics_process(false)
@@ -26,29 +29,32 @@ func _physics_process(delta: float) -> void:
 			
 			get_big()
 			return
-			#$AnimationPlayer.play("mario-idle")
-			#await get_tree().create_timer(0.5).timeout
 			
 		elif last_pu > 1:
 			get_flower()
 			return
-#			$CollisionShape2DLittle.call_deferred("set_disabled", true)
-#			$CollisionShape2D.call_deferred("set_disabled", false)
-		
-			
-	#set_platform_on_leave(PLATFORM_ON_LEAVE_DO_NOTHING)
 	
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-	
-		#$Camera2D.global_position.y = $Camera2D.y
-		
+
 	if Input.is_action_just_pressed("move_up") and is_on_floor():
 		$AudioStreamPlayer3.play(0.1)
 		velocity.y = JUMP_VELOCITY
-			
+	if Input.is_action_just_pressed("shoot_fireball") and PowerupStatus.powerup_status >= 2:
+		if FireballsOnScreen.fireballs_on_screen < 2:
+			var fireball = fireball_scene.instantiate()
+			add_child(fireball)
+			fireball.global_position.x = global_position.x + direction2 * 20
+			fireball.global_position.y = global_position.y
+			fireball.velocity.x = direction2 * 200
+		
 	
+		
 	var direction := Input.get_axis("move_left", "move_right")
+	if not direction2 == direction:
+		if not direction == 0:
+			direction2 = direction
+			print('cd', direction2)
 	
 	if direction and is_on_floor():
 		#$Camera2D.global_position.y = $Camera2D.y
@@ -72,6 +78,7 @@ func _physics_process(delta: float) -> void:
 	elif is_on_floor():	
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
+	
 	update_animations(direction, last_pu)
 	
 	

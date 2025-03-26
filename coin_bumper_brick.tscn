@@ -15,12 +15,6 @@ script = ExtResource("2_x6v0y")
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_xh3sf")
 
-[node name="AudioStreamPlayer" parent="." index="9"]
-volume_db = -5.0
-
-[node name="AudioStreamPlayer2" parent="." index="10"]
-volume_db = -10.0
-
 [connection signal="bump" from="Area2D" to="." method="_on_area_2d_bump"]
 [connection signal="start_bumping" from="Area2D" to="." method="_on_area_2d_start_bumping"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]

@@ -106,6 +106,18 @@ func _on_mushroom_killed_score_label_done_displaying() -> void:
 
 func _on_mushroom_collider_area_entered(_area: Area2D) -> void:
 	print('dead mushroom by the means of a brick up the rear')
+	twirly_dead()
+		
+		
+		
+	
+
+
+func _on_fireball_kill_collider_body_entered(body: Node2D) -> void:
+	print('FIREBALLED')
+	twirly_dead()
+	
+func twirly_dead() -> void:
 	set_physics_process(false)
 	can_kill_mario = false
 	mario_can_kill = false
@@ -125,7 +137,3 @@ func _on_mushroom_collider_area_entered(_area: Area2D) -> void:
 		await get_tree().create_timer(0.05).timeout
 	Score.score += 100
 	queue_free()
-		
-		
-		
-	
