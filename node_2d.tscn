@@ -23,6 +23,8 @@ script = ExtResource("4_kdubu")
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(255, 240)
 render_target_update_mode = 4
 
@@ -63,6 +65,7 @@ theme = ExtResource("6_rj586")
 text = "TIME"
 
 [node name="ScoreCount" type="Label" parent="HUD"]
+process_mode = 3
 offset_left = 13.0
 offset_top = 15.0
 offset_right = 73.0

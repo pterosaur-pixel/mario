@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cg6ggbbgmk468"]
+[gd_scene load_steps=27 format=3 uid="uid://cg6ggbbgmk468"]
 
 [ext_resource type="Script" uid="uid://k06g61gh062v" path="res://power_up_brick.gd" id="1_4se21"]
 [ext_resource type="Texture2D" uid="uid://capes54fyhh2" path="res://assets/overworld -coins.png" id="2_j730v"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="4_j730v"]
 [ext_resource type="Script" uid="uid://bkckdj085d7k3" path="res://sprite_2d_3.gd" id="5_5xly1"]
 [ext_resource type="Theme" uid="uid://bky0bmqfgxurt" path="res://font_theme.tres" id="5_pcjeq"]
+[ext_resource type="AudioStream" uid="uid://7iwy5eqppie0" path="res://assets/audio/smb_coin.wav" id="7_j7mdy"]
+[ext_resource type="AudioStream" uid="uid://bkbfra0fcbihp" path="res://assets/audio/smb_bump.wav" id="8_a2e6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcjeq"]
 resource_local_to_scene = true
@@ -172,9 +174,8 @@ size = Vector2(16, 15)
 atlas = ExtResource("4_j730v")
 region = Rect2(353, 166, 15, 15)
 
-[sub_resource type="Animation" id="Animation_j730v"]
-resource_name = "new_animation"
-length = 0.75
+[sub_resource type="Animation" id="Animation_mvjqs"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -185,7 +186,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(360, 128, 16, 16)]
+"values": [Rect2(353, 166, 15, 15)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -218,10 +219,22 @@ tracks/3/path = NodePath("Sprite2D2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 4), Vector2(0, 0), Vector2(0, 4)]
+"values": [Vector2(0, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D2:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_j7mdy"]
@@ -288,8 +301,9 @@ tracks/4/keys = {
 "values": [Vector2(0, 4), Vector2(0, 0), Vector2(0, 4)]
 }
 
-[sub_resource type="Animation" id="Animation_mvjqs"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_j730v"]
+resource_name = "new_animation"
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -300,7 +314,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(353, 166, 15, 15)]
+"values": [Rect2(360, 128, 16, 16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -333,22 +347,10 @@ tracks/3/path = NodePath("Sprite2D2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.0333333, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 4)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D2:vframes")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
+"values": [Vector2(0, 4), Vector2(0, 0), Vector2(0, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_koamc"]
@@ -631,6 +633,14 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomArea"]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_5xly1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j7mdy")
+volume_db = -5.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_a2e6y")
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="mushroom_hit" from="Area2D" to="." method="_on_area_2d_mushroom_hit"]

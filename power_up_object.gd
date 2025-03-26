@@ -4,6 +4,8 @@ var direction = 1
 func _ready() -> void:
 	set_process(false)
 	if current_powerup == 0:
+	
+		
 		$AnimationPlayer.play("growing-mushroom")
 		await get_tree().create_timer(0.75).timeout
 	set_process(true)
@@ -29,6 +31,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(_body: CharacterBody2D) -> void:
+	$AudioStreamPlayer2.play()
 	print('Mario got mushroom powerup!')
 	PowerupStatus.powerup_status += 1
 	#MarioLifeLeft.lifeleft += 1
@@ -39,5 +42,12 @@ func _on_area_2d_body_entered(_body: CharacterBody2D) -> void:
 	$Area2D/CollisionPolygon2D.call_deferred("set_disabled",true)
 	Score.score += 1000
 	hide()
-func _on_point_label_done_displaying() -> void:
+
+
+
+func _on_audio_stream_player_finished() -> void:
+	print('done playing sound')
+
+
+func _on_audio_stream_player_2_finished() -> void:
 	queue_free()

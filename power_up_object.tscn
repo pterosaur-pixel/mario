@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2hplxwkmso2x"]
+[gd_scene load_steps=12 format=3 uid="uid://d2hplxwkmso2x"]
 
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="1_5lohm"]
 [ext_resource type="Script" uid="uid://ja4n5ajqi476" path="res://power_up_object.gd" id="1_q401g"]
 [ext_resource type="Theme" uid="uid://bky0bmqfgxurt" path="res://font_theme.tres" id="3_ja1y2"]
 [ext_resource type="Script" uid="uid://bqa4m6x7sihbw" path="res://point_label.gd" id="4_bk5yg"]
+[ext_resource type="AudioStream" uid="uid://cb6ng6h1xgmy" path="res://assets/audio/smb_powerup.wav" id="6_ktho5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q401g"]
 resource_local_to_scene = true
@@ -284,6 +285,10 @@ theme_override_font_sizes/font_size = 8
 text = "1000"
 script = ExtResource("4_bk5yg")
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ktho5")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D" to="PointLabel" method="_on_area_2d_body_entered"]
 [connection signal="done_displaying" from="PointLabel" to="." method="_on_point_label_done_displaying"]
+[connection signal="finished" from="AudioStreamPlayer2" to="." method="_on_audio_stream_player_2_finished"]

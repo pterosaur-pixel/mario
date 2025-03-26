@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 Score="*res://score.gd"
 PowerupStatus="*res://powerup_status.gd"
 MarioLives="*res://mario_lives.gd"
+TimeLeft="*res://time_left.gd"
+FireworksEarned="*res://fireworks_earned.gd"
 
 [display]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7jlmxfmf6nx7"]
+[gd_scene load_steps=18 format=3 uid="uid://c7jlmxfmf6nx7"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_gvsd5"]
 [ext_resource type="Script" uid="uid://bnlow6fbnmf02" path="res://mushroom.gd" id="1_ke5i0"]
 [ext_resource type="Script" uid="uid://ce71cq81s68om" path="res://area_2d_danger_zone.gd" id="3_pl5ep"]
 [ext_resource type="FontFile" uid="uid://biuqagt7vi4n6" path="res://assets/font.png" id="4_4gvq0"]
 [ext_resource type="Script" uid="uid://bt4cjhqt1xgtp" path="res://mushroom_killed_score_label.gd" id="4_jg55k"]
+[ext_resource type="AudioStream" uid="uid://coetx2h15u3e0" path="res://assets/audio/smb_stomp.wav" id="6_5rjv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gvq0"]
 resource_local_to_scene = true
@@ -255,6 +256,9 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomCollider"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_5rjv2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5rjv2")
 
 [connection signal="label_show" from="." to="MushroomKilledScoreLabel" method="_on_mushroom_label_show"]
 [connection signal="body_entered" from="Area2DKill" to="." method="_on_area_2d_kill_body_entered"]

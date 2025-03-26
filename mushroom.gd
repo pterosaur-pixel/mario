@@ -46,6 +46,7 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
 	if mario_can_kill:
+		$AudioStreamPlayer.play(0.05)
 		label_show.emit()
 		Score.score += 100
 		print(Score.score)

@@ -1,7 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://pi0lfrwkyf8a"]
+[gd_scene load_steps=26 format=3 uid="uid://pi0lfrwkyf8a"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_w74su"]
 [ext_resource type="Script" uid="uid://drqxatw5h3t8f" path="res://mario.gd" id="1_wrvex"]
+[ext_resource type="AudioStream" uid="uid://bdi6nrywayybd" path="res://assets/audio/smb_mariodie.wav" id="3_4ckko"]
+[ext_resource type="AudioStream" uid="uid://cb6ng6h1xgmy" path="res://assets/audio/smb_powerup.wav" id="4_4gsdp"]
+[ext_resource type="AudioStream" uid="uid://5xkbu24ax8qx" path="res://assets/audio/smb_jump-small.wav" id="5_752v2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrvex"]
 size = Vector2(12, 15)
@@ -882,3 +885,15 @@ vframes = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_4ckko")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4ckko")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4gsdp")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_752v2")
+volume_db = -10.0
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

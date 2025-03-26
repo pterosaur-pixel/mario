@@ -22,12 +22,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	grabbed_pole(5000)
 func grabbed_pole(points_given):
 	if can_grab_pole:
-		print('Points: '+str(points_given))
 		can_grab_pole = false
 		Score.score += points_given
 		mario_grabbed_pole.emit()
 		await get_tree().create_timer(1.2).timeout
 		$AnimationPlayer.play("moving_flag")
+		$AudioStreamPlayer.play()
 		$Label.text = str(points_given)
 		$Label.visible = true
 		for i in range(0, 75):

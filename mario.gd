@@ -44,7 +44,9 @@ func _physics_process(delta: float) -> void:
 		#$Camera2D.global_position.y = $Camera2D.y
 		
 	if Input.is_action_just_pressed("move_up") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+		$AudioStreamPlayer3.play(0.1)
+		velocity.y = JUMP_VELOCITY
+			
 	
 	var direction := Input.get_axis("move_left", "move_right")
 	
@@ -79,6 +81,7 @@ func update_animations(direction, last):
 		$AnimationPlayer.play("mario-little-running")
 	elif not is_on_floor() and last == 0:
 		$AnimationPlayer.play("mario-little-jump")
+		
 	elif last == 0:
 		$AnimationPlayer.play("mario-little-idle")
 	elif direction and is_on_floor() and last == 1:
@@ -103,6 +106,7 @@ func _on_level_one_fall_collider_entered() -> void:
 
 	
 func _on_level_one_mushroom_killed_mario_l_1() -> void:
+	$AudioStreamPlayer.play()
 	set_physics_process(false)
 	set_z_index(3)
 	$AnimationPlayer.play("mario-dead")	
@@ -120,7 +124,7 @@ func _on_level_one_mushroom_killed_mario_l_1() -> void:
 	for i in range(0, 20):
 		move_and_slide()
 		await get_tree().create_timer(0.06).timeout
-		
+func _on_audio_stream_player_finished() -> void:
 	print('dead mario')
 	game_over.emit()
 	velocity = Vector2(0, 0)
@@ -155,6 +159,7 @@ func get_flower() -> void:
 
 
 func _on_mushroom_mario_invincible() -> void:
+	$AudioStreamPlayer2.play()
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	$CollisionShape2DLittle.call_deferred("set_disabled", true)
 	
