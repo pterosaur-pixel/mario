@@ -19,12 +19,12 @@ func _physics_process(delta: float) -> void:
 		last_pu = PowerupStatus.powerup_status
 	
 		if last_pu == 0:
-			$CollisionShape2DLittle.call_deferred("set_disabled", false)
-			$CollisionShape2D.call_deferred("set_disabled", true)
+			$CollisionPolygon2D.call_deferred("set_disabled", false)
+			$CollisionPolygon2D2.call_deferred("set_disabled", true)
 		if last_pu == 1:
 			print("mario-animating")
-			$CollisionShape2DLittle.call_deferred("set_disabled", true)
-			$CollisionShape2D.call_deferred("set_disabled", false)
+			$CollisionPolygon2D.call_deferred("set_disabled", true)
+			$CollisionPolygon2D2.call_deferred("set_disabled", false)
 			global_position.y = global_position.y - 5
 			
 			get_big()
@@ -78,6 +78,7 @@ func _physics_process(delta: float) -> void:
 	elif is_on_floor():	
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
+	
 	
 	update_animations(direction, last_pu)
 	

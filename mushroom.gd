@@ -118,6 +118,7 @@ func _on_fireball_kill_collider_body_entered(body: Node2D) -> void:
 	twirly_dead()
 	
 func twirly_dead() -> void:
+
 	set_physics_process(false)
 	can_kill_mario = false
 	mario_can_kill = false

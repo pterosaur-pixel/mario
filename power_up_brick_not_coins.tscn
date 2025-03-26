@@ -16,6 +16,9 @@ script = ExtResource("2_17667")
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_76mug")
 
+[node name="MushroomArea" parent="." index="8"]
+visible = false
+
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." index="9"]
 stream = ExtResource("4_17667")
 

@@ -868,8 +868,10 @@ platform_on_leave = 2
 script = ExtResource("1_wrvex")
 
 [node name="CollisionShape2DLittle" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_wrvex")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -885,6 +887,7 @@ vframes = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_4ckko")
+disabled = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4ckko")
@@ -895,5 +898,11 @@ stream = ExtResource("4_4gsdp")
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_752v2")
 volume_db = -10.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-2, -6, -5, 2, -5, 7, 5, 7, 5, 2, 1, -6)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, -14, -7, 0, -6, 15, 7, 15, 7, 0, 1, -15)
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
