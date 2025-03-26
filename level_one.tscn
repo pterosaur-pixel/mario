@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dr7c27a40my32"]
+[gd_scene load_steps=31 format=4 uid="uid://dr7c27a40my32"]
 
 [ext_resource type="Texture2D" uid="uid://dbg2sitf2j3d7" path="res://assets/overworld - water and sky.png" id="1_bo08i"]
 [ext_resource type="Texture2D" uid="uid://c3m1hoh3ponc2" path="res://assets/overworld-ground and stone.png" id="1_ojold"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://pi0lfrwkyf8a" path="res://mario.tscn" id="12_xq862"]
 [ext_resource type="PackedScene" uid="uid://bmvhl8ju7v6ha" path="res://power_up_brick_not_coins.tscn" id="13_rnwmu"]
 [ext_resource type="PackedScene" uid="uid://dsm1yccigisgs" path="res://coin_bumper_brick.tscn" id="13_xdopl"]
+[ext_resource type="AudioStream" uid="uid://b1o3fqg88gtyt" path="res://assets/audio/smb_stage_clear.wav" id="14_xdopl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_foyw7"]
 texture = ExtResource("1_bo08i")
@@ -318,7 +319,7 @@ position = Vector2(-1055, 120)
 
 [node name="Mario" parent="." instance=ExtResource("12_xq862")]
 process_mode = 3
-position = Vector2(991, 34)
+position = Vector2(991, 15)
 
 [node name="PowerUpBrick2" parent="." instance=ExtResource("13_rnwmu")]
 position = Vector2(248, 132)
@@ -339,6 +340,9 @@ position = Vector2(-792, 100)
 
 [node name="CoinBumperBrick2" parent="." instance=ExtResource("13_xdopl")]
 position = Vector2(-152, 132)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_xdopl")
 
 [connection signal="fall_collider_entered" from="." to="Mario" method="_on_level_one_fall_collider_entered"]
 [connection signal="mario_should_jumpl1" from="." to="." method="_on_mario_should_jumpl_1"]
@@ -375,3 +379,5 @@ position = Vector2(-152, 132)
 [connection signal="mario_in_castle" from="Mario" to="FlagpoleFlag" method="_on_mario_mario_in_castle"]
 [connection signal="mario_grabbed_pole" from="FlagpoleFlag" to="." method="_on_flagpole_flag_mario_grabbed_pole"]
 [connection signal="mario_grabbed_pole" from="FlagpoleFlag" to="Mario" method="_on_flagpole_flag_mario_grabbed_pole"]
+[connection signal="start_stage_clear_music" from="FlagpoleFlag" to="." method="_on_flagpole_flag_start_stage_clear_music"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

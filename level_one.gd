@@ -66,6 +66,20 @@ func _on_flagpole_flag_mario_grabbed_pole() -> void:
 
 
 func _on_mario_mario_in_castle() -> void:
+	
+	print("fireworks: ", FireworksEarned.fireworks_earned)
+	
+func make_fireworks(position):
+	var fireworks = fireworks_scene.instantiate()
+	add_child(fireworks)
+	fireworks.global_position = position
+
+
+func _on_flagpole_flag_start_stage_clear_music() -> void:
+	$AudioStreamPlayer.play()
+
+
+func _on_audio_stream_player_finished() -> void:
 	if TimeLeft.time_left % 10 == 1:
 		print('fireworking')
 		make_fireworks(Vector2(1250, 50))
@@ -90,9 +104,3 @@ func _on_mario_mario_in_castle() -> void:
 		make_fireworks(Vector2(1235, 40))
 		await get_tree().create_timer(0.7).timeout
 		make_fireworks(Vector2(1295, 70))
-	print("fireworks: ", FireworksEarned.fireworks_earned)
-	
-func make_fireworks(position):
-	var fireworks = fireworks_scene.instantiate()
-	add_child(fireworks)
-	fireworks.global_position = position

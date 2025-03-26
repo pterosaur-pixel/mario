@@ -1,5 +1,6 @@
 extends CharacterBody2D
 signal mario_grabbed_pole
+signal start_stage_clear_music
 var can_grab_pole = true
 func _ready() -> void:
 	$AnimationPlayer.play("flag")
@@ -41,3 +42,8 @@ func _on_mario_mario_in_castle() -> void:
 	$Sprite2D2.global_position = Vector2(1275, 120)
 	$Sprite2D2.visible = true
 	$AnimationPlayer2.play("castle-flag-rising")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "moving_flag":
+		start_stage_clear_music.emit()
