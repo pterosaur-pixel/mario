@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dr7c27a40my32"]
+[gd_scene load_steps=30 format=4 uid="uid://dr7c27a40my32"]
 
 [ext_resource type="Texture2D" uid="uid://dbg2sitf2j3d7" path="res://assets/overworld - water and sky.png" id="1_bo08i"]
 [ext_resource type="Texture2D" uid="uid://c3m1hoh3ponc2" path="res://assets/overworld-ground and stone.png" id="1_ojold"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cuwbp6b57kfwg" path="res://flagpole_flag.tscn" id="12_rnwmu"]
 [ext_resource type="PackedScene" uid="uid://pi0lfrwkyf8a" path="res://mario.tscn" id="12_xq862"]
 [ext_resource type="PackedScene" uid="uid://bmvhl8ju7v6ha" path="res://power_up_brick_not_coins.tscn" id="13_rnwmu"]
+[ext_resource type="PackedScene" uid="uid://dsm1yccigisgs" path="res://coin_bumper_brick.tscn" id="13_xdopl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_foyw7"]
 texture = ExtResource("1_bo08i")
@@ -315,7 +316,7 @@ position = Vector2(-824, 116)
 position = Vector2(-1055, 120)
 
 [node name="Mario" parent="." instance=ExtResource("12_xq862")]
-position = Vector2(991, 38)
+position = Vector2(-1055, 128)
 
 [node name="PowerUpBrick2" parent="." instance=ExtResource("13_rnwmu")]
 position = Vector2(248, 132)
@@ -329,6 +330,9 @@ scale = Vector2(1.03512, 1)
 
 [node name="FlagpoleFlag" parent="." instance=ExtResource("12_rnwmu")]
 position = Vector2(1102, 24)
+
+[node name="CoinBumperBrick" parent="." instance=ExtResource("13_xdopl")]
+position = Vector2(-993, 133)
 
 [connection signal="fall_collider_entered" from="." to="Mario" method="_on_level_one_fall_collider_entered"]
 [connection signal="mario_should_jumpl1" from="." to="." method="_on_mario_should_jumpl_1"]

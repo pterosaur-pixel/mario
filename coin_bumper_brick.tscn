@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsm1yccigisgs"]
+
+[ext_resource type="PackedScene" uid="uid://cg6ggbbgmk468" path="res://power_up_brick.tscn" id="1_o82yy"]
+[ext_resource type="Script" uid="uid://dn26pr3hewvyo" path="res://coin_bumper_brick.gd" id="2_x6v0y"]
+[ext_resource type="Texture2D" uid="uid://c3m1hoh3ponc2" path="res://assets/overworld-ground and stone.png" id="3_xh3sf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh3sf"]
+resource_local_to_scene = true
+atlas = ExtResource("3_xh3sf")
+region = Rect2(0, 0, 16, 16)
+
+[node name="CoinBumperBrick" instance=ExtResource("1_o82yy")]
+script = ExtResource("2_x6v0y")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_xh3sf")
+
+[connection signal="bump" from="Area2D" to="." method="_on_area_2d_bump"]
+[connection signal="start_bumping" from="Area2D" to="." method="_on_area_2d_start_bumping"]
+[connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]
