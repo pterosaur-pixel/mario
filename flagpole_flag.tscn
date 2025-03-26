@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cuwbp6b57kfwg"]
+[gd_scene load_steps=18 format=3 uid="uid://cuwbp6b57kfwg"]
 
 [ext_resource type="Script" uid="uid://dv1aslhjrtmhl" path="res://flagpole_flag.gd" id="1_78plk"]
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="1_n63q3"]
+[ext_resource type="Theme" uid="uid://bky0bmqfgxurt" path="res://font_theme.tres" id="3_e2bhv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78plk"]
 atlas = ExtResource("1_n63q3")
@@ -393,6 +394,16 @@ root_node = NodePath("../Sprite2D2")
 libraries = {
 &"": SubResource("AnimationLibrary_vfygx")
 }
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 19.0
+offset_top = 141.0
+offset_right = 59.0
+offset_bottom = 151.0
+theme = ExtResource("3_e2bhv")
+theme_override_font_sizes/font_size = 8
+text = "2000"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

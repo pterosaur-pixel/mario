@@ -28,16 +28,15 @@ func grabbed_pole(points_given):
 		mario_grabbed_pole.emit()
 		await get_tree().create_timer(1.2).timeout
 		$AnimationPlayer.play("moving_flag")
-
-
-
-		
-		
-	
-
+		$Label.text = str(points_given)
+		$Label.visible = true
+		for i in range(0, 75):
+			$Label.global_position.y -= 2
+			await get_tree().create_timer(0.033).timeout
 
 func _on_mario_mario_in_castle() -> void:
 	set_z_index(-1)
+	$Label.visible = false
 	#$Sprite2D.visible = false
 	$Sprite2D2.global_position = Vector2(1275, 120)
 	$Sprite2D2.visible = true

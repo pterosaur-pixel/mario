@@ -316,7 +316,7 @@ position = Vector2(-824, 116)
 position = Vector2(-1055, 120)
 
 [node name="Mario" parent="." instance=ExtResource("12_xq862")]
-position = Vector2(-1055, 128)
+position = Vector2(982, 13)
 
 [node name="PowerUpBrick2" parent="." instance=ExtResource("13_rnwmu")]
 position = Vector2(248, 132)
