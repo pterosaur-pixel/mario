@@ -35,6 +35,7 @@ func _on_mario_bump_area_body_entered(body: Node2D) -> void:
 		broken_brick_2.velocity = Vector2(50, -300)
 		broken_brick_3.velocity = Vector2(-50, -200)
 		broken_brick_4.velocity = Vector2(50, -200)
+		Score.score += 50
 		$Sprite2D.hide()
 		$MarioBumpArea/CollisionShape2D.call_deferred("set_disabled", true)
 		$WholeBrick.call_deferred("set_disabled", true)
