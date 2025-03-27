@@ -23,6 +23,7 @@ MarioLives="*res://mario_lives.gd"
 TimeLeft="*res://time_left.gd"
 FireworksEarned="*res://fireworks_earned.gd"
 FireballsOnScreen="*res://fireballs_on_screen.gd"
+CoinCount="*res://coin_count.gd"
 
 [display]
 

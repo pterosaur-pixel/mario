@@ -69,10 +69,10 @@ func _on_mario_mario_in_castle() -> void:
 	
 	print("fireworks: ", FireworksEarned.fireworks_earned)
 	
-func make_fireworks(position):
+func make_fireworks(place):
 	var fireworks = fireworks_scene.instantiate()
 	add_child(fireworks)
-	fireworks.global_position = position
+	fireworks.global_position = place
 
 
 func _on_flagpole_flag_start_stage_clear_music() -> void:

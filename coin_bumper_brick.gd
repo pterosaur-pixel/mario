@@ -13,9 +13,9 @@ func _process(delta: float) -> void:
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled", false)
 		$AudioStreamPlayer2.play(0.02)
 		$AnimationPlayer2.play("coin_bumper_bounce")
-		
 		$Sprite2D3.show()
 		$AnimationPlayer3.play("coin_2")
+		CoinCount.coin_count += 1
 		$AudioStreamPlayer.play(0.05)
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled", true)
 		Score.score += 200
@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 		$AnimationPlayer2.play("new_animation")
 		$Sprite2D3.show()
 		$AnimationPlayer3.play("coin_2")
+		CoinCount.coin_count += 1
 		$AudioStreamPlayer.play(0.05)
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled", true)
 		Score.score += 200
@@ -49,6 +50,7 @@ func _on_area_2d_mushroom_hit() -> void:
 	$Sprite2D3.show()
 	$AudioStreamPlayer.play(0.05)
 	$AnimationPlayer3.play("coin_2")
+	CoinCount.coin_count += 1
 	$MushroomArea/CollisionShape2D.call_deferred("set_disabled", true)
 	Score.score += 200
 	bump = false

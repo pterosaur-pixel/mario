@@ -15,6 +15,7 @@ func _on_area_2d_mushroom_hit() -> void:
 	await get_tree().create_timer(0.25).timeout
 	$Sprite2D3.show()
 	$AnimationPlayer3.play("coin")
+	CoinCount.coin_count += 1
 	$AudioStreamPlayer.play(0.05)
 	await get_tree().create_timer(0.25).timeout
 	$MushroomArea/CollisionShape2D.call_deferred("set_disabled", true)

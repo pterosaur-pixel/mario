@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+var broken_brick_scene = preload("res://broken_brick.tscn")
 func _ready() -> void:
 	set_physics_process(false)
 	$AnimationPlayer.play("brick")
@@ -14,9 +14,34 @@ func _on_mario_bump_area_hit() -> void:
 
 
 func _on_mario_bump_area_body_entered(body: Node2D) -> void:
-	$AnimationPlayer.play("brick_bounce")
-	$MushroomArea/CollisionShape2D.call_deferred("set_disabled",false)
-	
-	await get_tree().create_timer(0.5).timeout
+	if PowerupStatus.powerup_status == 0:
+		$AnimationPlayer.play("brick_bounce")
+		$MushroomArea/CollisionShape2D.call_deferred("set_disabled",false)
+		
+		await get_tree().create_timer(0.5).timeout
 	#await get_tree().create_timer(0.25).timeout
-	$MushroomArea/CollisionShape2D.call_deferred("set_disabled",true)
+		$MushroomArea/CollisionShape2D.call_deferred("set_disabled",true)
+	elif PowerupStatus.powerup_status <= 2:
+		$MushroomArea/CollisionShape2D.call_deferred("set_disabled",false)
+		var broken_brick_1 = broken_brick_scene.instantiate()
+		var broken_brick_2 = broken_brick_scene.instantiate()
+		var broken_brick_3 = broken_brick_scene.instantiate()
+		var broken_brick_4 = broken_brick_scene.instantiate()
+		add_child(broken_brick_1)
+		add_child(broken_brick_2)
+		add_child(broken_brick_3)
+		add_child(broken_brick_4)
+		broken_brick_1.velocity = Vector2(-50, -300)
+		broken_brick_2.velocity = Vector2(50, -300)
+		broken_brick_3.velocity = Vector2(-50, -200)
+		broken_brick_4.velocity = Vector2(50, -200)
+		$Sprite2D.hide()
+		$MarioBumpArea/CollisionShape2D.call_deferred("set_disabled", true)
+		$WholeBrick.call_deferred("set_disabled", true)
+		await get_tree().create_timer(0.5).timeout
+		$MushroomArea/CollisionShape2D.call_deferred("set_disabled", true)
+		
+		
+		
+		
+		

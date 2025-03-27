@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bihxfisedkjut"]
+[gd_scene load_steps=13 format=3 uid="uid://bihxfisedkjut"]
 
 [ext_resource type="Script" uid="uid://butmbu2aqo0kr" path="res://brick.gd" id="1_5p85m"]
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="1_awxk8"]
@@ -186,10 +186,14 @@ tracks/3/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_nnjo0"]
+resource_name = "brick-broken"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_itwfj"]
 _data = {
 &"RESET": SubResource("Animation_llic7"),
 &"brick": SubResource("Animation_itwfj"),
+&"brick-broken": SubResource("Animation_nnjo0"),
 &"brick_bounce": SubResource("Animation_mt0q5")
 }
 
