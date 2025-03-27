@@ -48,6 +48,9 @@ script = ExtResource("5_ir8iy")
 [node name="GameStart" parent="." instance=ExtResource("5_q6r6c")]
 position = Vector2(127, 120)
 
+[node name="UndergroundRoom" parent="." instance=ExtResource("15_d2bti")]
+visible = false
+
 [node name="HUD" type="Node2D" parent="."]
 script = ExtResource("6_4d7sh")
 
@@ -119,9 +122,6 @@ theme = ExtResource("6_rj586")
 theme_override_font_sizes/font_size = 6
 text = "X"
 
-[node name="UndergroundRoom" parent="." instance=ExtResource("15_d2bti")]
-visible = false
-
 [connection signal="camera_go" from="SubViewportContainer/SubViewport/LevelOne" to="SubViewportContainer/SubViewport/Camera2D" method="_on_level_one_camera_go"]
 [connection signal="camera_stop" from="SubViewportContainer/SubViewport/LevelOne" to="SubViewportContainer/SubViewport/Camera2D" method="_on_level_one_camera_stop"]
 [connection signal="game_over_l1" from="SubViewportContainer/SubViewport/LevelOne" to="GameStart" method="_on_level_one_game_over_l_1"]
@@ -132,4 +132,5 @@ visible = false
 [connection signal="start_game" from="GameStart" to="SubViewportContainer/SubViewport/LevelOne" method="_on_game_start_start_game"]
 [connection signal="start_game" from="GameStart" to="HUD" method="_on_game_start_start_game"]
 [connection signal="start_game" from="GameStart" to="HUD/GameTime" method="_on_game_start_start_game"]
+[connection signal="underground_room_exited" from="UndergroundRoom" to="SubViewportContainer/SubViewport/LevelOne" method="_on_underground_room_underground_room_exited"]
 [connection signal="timeout" from="HUD/GameTime/Timer" to="HUD/GameTime" method="_on_timer_timeout"]

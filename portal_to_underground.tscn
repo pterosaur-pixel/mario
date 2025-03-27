@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr86fqbnt4yyt"]
+[gd_scene load_steps=4 format=3 uid="uid://cr86fqbnt4yyt"]
 
 [ext_resource type="Script" uid="uid://bxlcym5ifaf0k" path="res://portal_to_underground.gd" id="1_re1hc"]
+[ext_resource type="AudioStream" uid="uid://clkcnq2cbqlm0" path="res://assets/audio/smb_pipe.wav" id="2_p55v1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p55v1"]
 
@@ -11,6 +12,9 @@ script = ExtResource("1_re1hc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p55v1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_p55v1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -116,6 +116,24 @@ func _on_audio_stream_player_finished() -> void:
 
 
 func _on_portal_to_underground_mario_to_underground() -> void:
-	hide()
+	
 	$Mario.call_deferred("set_physics_process", false)
+	$Mario.set_z_index(-1)
+	for i in range(0, 20):
+		$Mario.global_position.y += 1
+		await get_tree().create_timer(0.033).timeout
+	hide()
 	show_underground_room_1.emit()
+
+
+
+func _on_underground_room_underground_room_exited() -> void:
+	show()
+	$Mario.global_position = $MarioEmergeMarker.global_position
+	
+	
+	#$Mario.velocity.y = -400
+	for i in range(0, 20):
+		$Mario.global_position.y -= 1
+		await get_tree().create_timer(0.033).timeout
+	$Mario.set_physics_process(true)

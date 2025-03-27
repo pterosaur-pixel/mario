@@ -360,6 +360,9 @@ position = Vector2(-988, 138)
 [node name="PortalToUnderground" parent="." instance=ExtResource("17_rapvx")]
 position = Vector2(-656, 153)
 
+[node name="MarioEmergeMarker" type="Marker2D" parent="."]
+position = Vector2(736, 157)
+
 [connection signal="fall_collider_entered" from="." to="Mario" method="_on_level_one_fall_collider_entered"]
 [connection signal="mario_should_jumpl1" from="." to="." method="_on_mario_should_jumpl_1"]
 [connection signal="mario_should_jumpl1" from="." to="Mario" method="_on_level_one_mario_should_jumpl_1"]
