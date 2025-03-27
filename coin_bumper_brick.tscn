@@ -1,19 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsm1yccigisgs"]
+[gd_scene load_steps=11 format=3 uid="uid://dsm1yccigisgs"]
 
 [ext_resource type="PackedScene" uid="uid://cg6ggbbgmk468" path="res://power_up_brick.tscn" id="1_o82yy"]
 [ext_resource type="Script" uid="uid://dn26pr3hewvyo" path="res://coin_bumper_brick.gd" id="2_x6v0y"]
 [ext_resource type="Texture2D" uid="uid://c3m1hoh3ponc2" path="res://assets/overworld-ground and stone.png" id="3_xh3sf"]
+[ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="4_xh3sf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xh3sf"]
 resource_local_to_scene = true
 atlas = ExtResource("3_xh3sf")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kn5oo"]
+resource_local_to_scene = true
+size = Vector2(16, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ey0tv"]
+resource_local_to_scene = true
+size = Vector2(16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4e33"]
+resource_local_to_scene = true
+atlas = ExtResource("4_xh3sf")
+region = Rect2(353, 166, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkkxh"]
+resource_local_to_scene = true
+atlas = ExtResource("4_xh3sf")
+region = Rect2(178, 36, 21, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuy2j"]
+resource_local_to_scene = true
+size = Vector2(16, 9)
+
 [node name="CoinBumperBrick" instance=ExtResource("1_o82yy")]
 script = ExtResource("2_x6v0y")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = SubResource("AtlasTexture_xh3sf")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_kn5oo")
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("RectangleShape2D_ey0tv")
+
+[node name="Sprite2D2" parent="." index="4"]
+texture = SubResource("AtlasTexture_j4e33")
+
+[node name="Sprite2D3" parent="." index="6"]
+texture = SubResource("AtlasTexture_xkkxh")
+
+[node name="CollisionShape2D" parent="MushroomArea" index="0"]
+shape = SubResource("RectangleShape2D_fuy2j")
 
 [connection signal="bump" from="Area2D" to="." method="_on_area_2d_bump"]
 [connection signal="start_bumping" from="Area2D" to="." method="_on_area_2d_start_bumping"]

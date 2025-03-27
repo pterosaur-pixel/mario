@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7jlmxfmf6nx7"]
+[gd_scene load_steps=23 format=3 uid="uid://c7jlmxfmf6nx7"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_gvsd5"]
 [ext_resource type="Script" uid="uid://bnlow6fbnmf02" path="res://mushroom.gd" id="1_ke5i0"]
@@ -50,6 +50,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_ke5i0"]
@@ -174,12 +186,64 @@ tracks/2/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_uxf4e"]
+resource_name = "turtle-squashed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(144, 216, 16, 14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jg55k"]
 _data = {
 &"RESET": SubResource("Animation_pl5ep"),
 &"evil-mushroom": SubResource("Animation_ke5i0"),
 &"evil-mushroom-squashed": SubResource("Animation_jg55k"),
-&"turtle": SubResource("Animation_4gvq0")
+&"turtle": SubResource("Animation_4gvq0"),
+&"turtle-squashed": SubResource("Animation_uxf4e")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ke5i0"]
@@ -200,6 +264,12 @@ size = Vector2(13, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jokqs"]
 size = Vector2(14.125, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxf4e"]
+size = Vector2(13, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6byal"]
+size = Vector2(18, 13)
+
 [node name="Mushroom" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_ke5i0")
@@ -219,8 +289,9 @@ position = Vector2(-1.25, 0.5)
 shape = SubResource("RectangleShape2D_ke5i0")
 
 [node name="Area2DKill" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
-collision_mask = 2
+collision_mask = 130
 
 [node name="MarioKillCollider" type="CollisionShape2D" parent="Area2DKill"]
 position = Vector2(-1, -5.75)
@@ -232,11 +303,11 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2(-59, 0)
 shape = SubResource("RectangleShape2D_pl5ep")
 
 [node name="Area2DDangerZone" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_pl5ep")
@@ -256,6 +327,7 @@ text = "100"
 script = ExtResource("4_jg55k")
 
 [node name="MushroomCollider" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 16
 
@@ -267,6 +339,7 @@ shape = SubResource("RectangleShape2D_5rjv2")
 stream = ExtResource("6_5rjv2")
 
 [node name="FireballKillCollider" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("7_uxf4e")
@@ -274,7 +347,25 @@ script = ExtResource("7_uxf4e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireballKillCollider"]
 shape = SubResource("RectangleShape2D_jokqs")
 
+[node name="TurtleWallCollider" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.5, 3.5)
+shape = SubResource("RectangleShape2D_uxf4e")
+
+[node name="ShellCollider" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShellCollider"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6byal")
+
+[node name="ShellWallCollider" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-8, 1, -6, -3, -3, -6, 2, -6, 6, -2, 8, 2, 3, 7, -2, 7)
+
 [connection signal="label_show" from="." to="MushroomKilledScoreLabel" method="_on_mushroom_label_show"]
+[connection signal="area_entered" from="Area2DKill" to="." method="_on_area_2d_kill_area_entered"]
 [connection signal="body_entered" from="Area2DKill" to="." method="_on_area_2d_kill_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2DDangerZone" to="." method="_on_area_2d_danger_zone_body_entered"]

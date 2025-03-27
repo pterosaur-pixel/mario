@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr86fqbnt4yyt"]
+
+[ext_resource type="Script" uid="uid://bxlcym5ifaf0k" path="res://portal_to_underground.gd" id="1_re1hc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p55v1"]
+
+[node name="PortalToUnderground" type="Area2D"]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("1_re1hc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p55v1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

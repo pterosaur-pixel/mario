@@ -24,6 +24,7 @@ TimeLeft="*res://time_left.gd"
 FireworksEarned="*res://fireworks_earned.gd"
 FireballsOnScreen="*res://fireballs_on_screen.gd"
 CoinCount="*res://coin_count.gd"
+MarioGlobalPosition="*res://mario_global_position.gd"
 
 [display]
 

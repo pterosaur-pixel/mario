@@ -11,9 +11,11 @@ var fireball_scene = preload("res://fireball.tscn")
 var is_fire_ball
 #var last_pu = PowerupStatus.powerup_status
 func _ready() -> void:
+	MarioGlobalPosition.mario_global_position_x = global_position.x
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
+	MarioGlobalPosition.mario_global_position_x = global_position.x
 	if not last_pu == PowerupStatus.powerup_status:
 	
 		last_pu = PowerupStatus.powerup_status
@@ -110,7 +112,7 @@ func _on_level_one_fall_collider_entered() -> void:
 	game_over.emit()
 	velocity = Vector2(0, 0)
 	set_physics_process(false)
-	move_and_slide()
+	#move_and_slide()
 
 	
 func _on_level_one_mushroom_killed_mario_l_1() -> void:
