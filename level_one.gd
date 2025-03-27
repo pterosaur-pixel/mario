@@ -131,8 +131,13 @@ func _on_underground_room_underground_room_exited() -> void:
 	show()
 	$Mario.global_position = $MarioEmergeMarker.global_position
 	
+	if PowerupStatus.powerup_status == 0:
+		$Mario/AnimationPlayer.play("mario-little-idle")
+	if PowerupStatus.powerup_status == 1:
+		$Mario/AnimationPlayer.play("mario-idle")
+	if PowerupStatus.powerup_status >= 2:
+		$Mario/AnimationPlayer.play("mario-powerup-idle")
 	
-	#$Mario.velocity.y = -400
 	for i in range(0, 20):
 		$Mario.global_position.y -= 1
 		await get_tree().create_timer(0.033).timeout

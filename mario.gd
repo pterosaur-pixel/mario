@@ -9,9 +9,11 @@ var direction2 = 1
 var last_pu 
 var fireball_scene = preload("res://fireball.tscn")
 var is_fire_ball
+var crouch = false
 #var last_pu = PowerupStatus.powerup_status
 func _ready() -> void:
 	MarioGlobalPosition.mario_global_position_x = global_position.x
+	$CollisionPolygon2D3.call_deferred("set_disabled", true)
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
@@ -42,6 +44,18 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_up") and is_on_floor():
 		$AudioStreamPlayer3.play(0.1)
 		velocity.y = JUMP_VELOCITY
+	if Input.is_action_pressed("move_down") and last_pu >= 1:
+		crouch = true
+		$CollisionPolygon2D2.call_deferred("set_disabled", true)
+		$CollisionPolygon2D3.call_deferred("set_disabled", false)
+	elif last_pu >= 1:
+		crouch = false
+		$CollisionPolygon2D2.call_deferred("set_disabled", false)
+		$CollisionPolygon2D3.call_deferred("set_disabled", true)
+	else:
+		$CollisionPolygon2D.call_deferred("set_disabled", false)
+		$CollisionPolygon2D2.call_deferred("set_disabled", true)
+		
 	if Input.is_action_just_pressed("shoot_fireball") and PowerupStatus.powerup_status >= 2:
 		if FireballsOnScreen.fireballs_on_screen < 2:
 			var fireball = fireball_scene.instantiate()
@@ -90,16 +104,19 @@ func update_animations(direction, last):
 	if direction and is_on_floor() and last == 0:
 		$AnimationPlayer.play("mario-little-running")
 	elif not is_on_floor() and last == 0:
-		$AnimationPlayer.play("mario-little-jump")
-		
+		$AnimationPlayer.play("mario-little-jump")	
 	elif last == 0:
 		$AnimationPlayer.play("mario-little-idle")
+	elif crouch and last == 1:
+		$AnimationPlayer.play("mario-crouch")
 	elif direction and is_on_floor() and last == 1:
 		$AnimationPlayer.play("mario-running")
 	elif not is_on_floor() and last == 1:
 		$AnimationPlayer.play("mario-jump")
 	elif last == 1:
 		$AnimationPlayer.play("mario-idle")
+	elif crouch and last >= 2:
+		$AnimationPlayer.play("mario-powerup-crouch")
 	elif direction and is_on_floor() and last >= 2:
 		$AnimationPlayer.play("mario-powerup-running")
 	elif not is_on_floor() and last >= 2:

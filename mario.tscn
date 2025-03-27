@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://pi0lfrwkyf8a"]
+[gd_scene load_steps=28 format=3 uid="uid://pi0lfrwkyf8a"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_w74su"]
 [ext_resource type="Script" uid="uid://drqxatw5h3t8f" path="res://mario.gd" id="1_wrvex"]
@@ -834,10 +834,113 @@ tracks/3/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_4e6v2"]
+resource_name = "mario-crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(277, 11, 16, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2bqwu"]
+resource_name = "mario-powerup-crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(277, 135, 16, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_752v2"]
 _data = {
 &"RESET": SubResource("Animation_4ckko"),
 &"mario-big-shooter": SubResource("Animation_obwv5"),
+&"mario-crouch": SubResource("Animation_4e6v2"),
 &"mario-dead": SubResource("Animation_fntcd"),
 &"mario-flagpole": SubResource("Animation_6mls1"),
 &"mario-idle": SubResource("Animation_wrvex"),
@@ -847,6 +950,7 @@ _data = {
 &"mario-little-idle": SubResource("Animation_4gsdp"),
 &"mario-little-jump": SubResource("Animation_wv04r"),
 &"mario-little-running": SubResource("Animation_752v2"),
+&"mario-powerup-crouch": SubResource("Animation_2bqwu"),
 &"mario-powerup-flagpole": SubResource("Animation_egumw"),
 &"mario-powerup-idle": SubResource("Animation_76esm"),
 &"mario-powerup-jump": SubResource("Animation_se746"),
@@ -905,5 +1009,8 @@ polygon = PackedVector2Array(-2, -6, -5, 2, -5, 7, 5, 7, 5, 2, 1, -6)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-3, -14, -7, 0, -6, 15, 7, 15, 7, 0, 1, -15)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -11, -6, -4, -8, 11, 8, 11, 7, -4, 4, -11)
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

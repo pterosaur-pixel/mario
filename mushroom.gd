@@ -9,6 +9,7 @@ var floor_coor
 var mario_can_kill = true
 var can_kill_mario = true
 var stomped = 0
+var done = false
 @export var enemy = 0
 @onready var cur_y = global_position.y 
 @onready var ap = $Sprite2D/AnimationPlayer
@@ -82,7 +83,7 @@ func _on_area_2d_kill_body_entered(body: Node2D) -> void:
 				stomped = 1
 				await get_tree().create_timer(0.25).timeout
 				$ShellCollider/CollisionShape2D.call_deferred("set_disabled", false)
-		if enemy == 1 and stomped == 1:
+		if enemy == 1 and stomped == 1 and not done:
 			$AudioStreamPlayer.play(0.05)
 			label_show.emit()
 			$MushroomKilledScoreLabel.text = str(500)
@@ -96,6 +97,7 @@ func _on_area_2d_kill_body_entered(body: Node2D) -> void:
 			mario_can_kill = false
 			mario_should_jump.emit()
 			set_physics_process(true)
+			done = true
 			
 			
 		else:
