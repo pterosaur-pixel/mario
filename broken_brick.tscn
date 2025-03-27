@@ -8,8 +8,8 @@
 atlas = ExtResource("2_s4jw5")
 region = Rect2(210, 26, 8, 8)
 
-[sub_resource type="Animation" id="Animation_k6eqg"]
-resource_name = "broken-brick"
+[sub_resource type="Animation" id="Animation_cpucj"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,8 +59,8 @@ tracks/3/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_cpucj"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_k6eqg"]
+resource_name = "broken-brick"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
