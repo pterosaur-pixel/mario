@@ -15,6 +15,7 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	print(body.name)
 	set_process(true)
+	x = false
 	
 func _on_body_exited(_body: Node2D) -> void:
 	x = true	

@@ -237,8 +237,3 @@ func end_animation(size):
 	mario_in_castle.emit()
 		
 		
-	
-
-
-#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	#global_position.x += 5

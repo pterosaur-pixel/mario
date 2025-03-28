@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://dr7c27a40my32"]
+[gd_scene load_steps=43 format=4 uid="uid://dr7c27a40my32"]
 
 [ext_resource type="Texture2D" uid="uid://dbg2sitf2j3d7" path="res://assets/overworld - water and sky.png" id="1_bo08i"]
 [ext_resource type="Texture2D" uid="uid://c3m1hoh3ponc2" path="res://assets/overworld-ground and stone.png" id="1_ojold"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://3scap547yn6d" path="res://camera_2d.gd" id="21_0xm52"]
 [ext_resource type="PackedScene" uid="uid://b7up2aab8q1wb" path="res://intermission_screen.tscn" id="22_pflst"]
 [ext_resource type="PackedScene" uid="uid://d1tngnw551ucx" path="res://fall_collider.tscn" id="23_c6i7l"]
+[ext_resource type="Script" uid="uid://b1y65kcelh1tc" path="res://rigid_body_2d.gd" id="23_o24hg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_foyw7"]
 texture = ExtResource("1_bo08i")
@@ -253,6 +254,9 @@ sources/2 = SubResource("TileSetAtlasSource_rnwmu")
 sources/4 = SubResource("TileSetScenesCollectionSource_37gll")
 pattern_0 = SubResource("TileMapPattern_xq862")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6i7l"]
+size = Vector2(54, 251.5)
+
 [node name="LevelOne" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_xsnk2")
@@ -383,9 +387,21 @@ stream = ExtResource("20_hiwaj")
 playback_type = 1
 
 [node name="IntermissionScreen" parent="." instance=ExtResource("22_pflst")]
-position = Vector2(-1042, 97)
+position = Vector2(-1009, 97)
 
 [node name="FallCollider" parent="." instance=ExtResource("23_c6i7l")]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+process_mode = 3
+position = Vector2(-1017, 93)
+collision_layer = 512
+collision_mask = 512
+gravity_scale = 0.0
+script = ExtResource("23_o24hg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-120, 10)
+shape = SubResource("RectangleShape2D_c6i7l")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-997, 96)

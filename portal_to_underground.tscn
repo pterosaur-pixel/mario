@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://clkcnq2cbqlm0" path="res://assets/audio/smb_pipe.wav" id="2_p55v1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p55v1"]
+size = Vector2(4, 20)
 
 [node name="PortalToUnderground" type="Area2D"]
 collision_layer = 256

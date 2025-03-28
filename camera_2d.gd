@@ -5,10 +5,10 @@ signal stop_level_one
 @onready var cur_x = global_position.x
 func _physics_process(_delta: float) -> void:
 	global_position.x = get_node("../Mario").global_position.x
-	#"if global_position.x < cur_x:
-	#	global_position.x = cur_x
-	#else:
-	#	cur_x = global_position.x"
+	if global_position.x < cur_x:
+		global_position.x = cur_x
+	else:
+		cur_x = global_position.x
 
 func _on_level_one_camera_stop() -> void:
 	set_physics_process(false)

@@ -968,9 +968,10 @@ size = Vector2(15, 31)
 
 [node name="Mario" type="CharacterBody2D"]
 process_mode = 3
-collision_layer = 271
-collision_mask = 271
+collision_layer = 783
+collision_mask = 783
 platform_on_leave = 2
+platform_wall_layers = 512
 script = ExtResource("1_wrvex")
 
 [node name="CollisionShape2DLittle" type="CollisionShape2D" parent="."]
@@ -1014,4 +1015,9 @@ polygon = PackedVector2Array(-3, -14, -7, 0, -6, 15, 7, 15, 7, 0, 1, -15)
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -11, -6, -4, -8, 11, 8, 11, 7, -4, 4, -11)
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-7.5, 0.5)
+scale = Vector2(0.25, 1.05)
+
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
