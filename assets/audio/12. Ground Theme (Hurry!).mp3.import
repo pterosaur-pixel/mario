@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4h765psgsfck"
+path="res://.godot/imported/12. Ground Theme (Hurry!).mp3-5713dfd9e3e102d0ba835aa947917dac.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/12. Ground Theme (Hurry!).mp3"
+dest_files=["res://.godot/imported/12. Ground Theme (Hurry!).mp3-5713dfd9e3e102d0ba835aa947917dac.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -16,5 +16,5 @@ func _on_body_entered(body: Node2D) -> void:
 	print(body.name)
 	set_process(true)
 	
-#func _on_body_exited(_body: Node2D) -> void:
-	
+func _on_body_exited(_body: Node2D) -> void:
+	x = true	

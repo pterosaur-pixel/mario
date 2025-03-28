@@ -139,14 +139,19 @@ func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
 		$Area2DDangerZone/CollisionShape2D.call_deferred("set_disabled", true)
 		
 		#MarioLifeLeft.lifeleft -= 1
-		PowerupStatus.powerup_status -= 1
+		
+		
+		
 		#print(MarioLifeLeft.lifeleft)
-		if PowerupStatus.powerup_status == -1:
+		if PowerupStatus.powerup_status == 0:
+			MarioLives.lives -= 1
 			print('dead mario')
 			$Area2DKill.queue_free()
 			$Area2DDangerZone.queue_free()
 			mushroom_killed_mario.emit()
+			
 		else:
+			PowerupStatus.powerup_status -= 1
 			mario_invincible.emit()
 			set_physics_process(true)
 			$Area2DKill/MarioKillCollider.call_deferred("set_disabled", false)

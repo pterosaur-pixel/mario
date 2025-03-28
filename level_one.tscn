@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dr7c27a40my32"]
+[gd_scene load_steps=41 format=4 uid="uid://dr7c27a40my32"]
 
 [ext_resource type="Texture2D" uid="uid://dbg2sitf2j3d7" path="res://assets/overworld - water and sky.png" id="1_bo08i"]
 [ext_resource type="Texture2D" uid="uid://c3m1hoh3ponc2" path="res://assets/overworld-ground and stone.png" id="1_ojold"]
@@ -17,6 +17,12 @@
 [ext_resource type="AudioStream" uid="uid://b1o3fqg88gtyt" path="res://assets/audio/smb_stage_clear.wav" id="14_xdopl"]
 [ext_resource type="PackedScene" uid="uid://bihxfisedkjut" path="res://brick.tscn" id="16_37gll"]
 [ext_resource type="PackedScene" uid="uid://cr86fqbnt4yyt" path="res://portal_to_underground.tscn" id="17_rapvx"]
+[ext_resource type="AudioStream" uid="uid://bh0c6a47q24bb" path="res://assets/audio/01. Ground Theme.mp3" id="18_uyji0"]
+[ext_resource type="AudioStream" uid="uid://baotnr0fydo3w" path="res://assets/audio/02. Underground Theme.mp3" id="19_i8j42"]
+[ext_resource type="AudioStream" uid="uid://s1yj5k83ree3" path="res://assets/audio/12. Ground Theme (Hurry!) (1).mp3" id="20_hiwaj"]
+[ext_resource type="Script" uid="uid://3scap547yn6d" path="res://camera_2d.gd" id="21_0xm52"]
+[ext_resource type="PackedScene" uid="uid://b7up2aab8q1wb" path="res://intermission_screen.tscn" id="22_pflst"]
+[ext_resource type="PackedScene" uid="uid://d1tngnw551ucx" path="res://fall_collider.tscn" id="23_c6i7l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_foyw7"]
 texture = ExtResource("1_bo08i")
@@ -328,7 +334,6 @@ position = Vector2(-824, 116)
 position = Vector2(-1055, 120)
 
 [node name="Mario" parent="." instance=ExtResource("12_xq862")]
-process_mode = 3
 position = Vector2(-1057, 124)
 
 [node name="PowerUpBrick2" parent="." instance=ExtResource("13_rnwmu")]
@@ -363,11 +368,35 @@ position = Vector2(-656, 153)
 [node name="MarioEmergeMarker" type="Marker2D" parent="."]
 position = Vector2(736, 157)
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("18_uyji0")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("19_i8j42")
+parameters/looping = true
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("20_hiwaj")
+playback_type = 1
+
+[node name="IntermissionScreen" parent="." instance=ExtResource("22_pflst")]
+position = Vector2(-1042, 97)
+
+[node name="FallCollider" parent="." instance=ExtResource("23_c6i7l")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-997, 96)
+script = ExtResource("21_0xm52")
+
 [connection signal="fall_collider_entered" from="." to="Mario" method="_on_level_one_fall_collider_entered"]
 [connection signal="mario_should_jumpl1" from="." to="." method="_on_mario_should_jumpl_1"]
 [connection signal="mario_should_jumpl1" from="." to="Mario" method="_on_level_one_mario_should_jumpl_1"]
 [connection signal="mushroom_killed_mario_l1" from="." to="Mario" method="_on_level_one_mushroom_killed_mario_l_1"]
 [connection signal="start_game" from="." to="Mario" method="_on_level_one_start_game"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="mario_invincible" from="Mushroom1-1-1" to="Mario" method="_on_mushroom_mario_invincible"]
 [connection signal="mario_should_jump" from="Mushroom1-1-1" to="." method="_on_mushroom_mario_should_jump"]
 [connection signal="mushroom_killed_mario" from="Mushroom1-1-1" to="." method="_on_mushroom_mushroom_killed_mario"]
@@ -394,6 +423,7 @@ position = Vector2(736, 157)
 [connection signal="mushroom_killed_mario" from="Mushroom1-1-8" to="." method="_on_mushroom_mushroom_killed_mario"]
 [connection signal="camera_stop" from="Mario" to="." method="_on_mario_camera_stop"]
 [connection signal="game_over" from="Mario" to="." method="_on_mario_game_over"]
+[connection signal="mario_dead" from="Mario" to="." method="_on_mario_mario_dead"]
 [connection signal="mario_in_castle" from="Mario" to="." method="_on_mario_mario_in_castle"]
 [connection signal="mario_in_castle" from="Mario" to="FlagpoleFlag" method="_on_mario_mario_in_castle"]
 [connection signal="mario_grabbed_pole" from="FlagpoleFlag" to="." method="_on_flagpole_flag_mario_grabbed_pole"]
@@ -401,3 +431,4 @@ position = Vector2(736, 157)
 [connection signal="start_stage_clear_music" from="FlagpoleFlag" to="." method="_on_flagpole_flag_start_stage_clear_music"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="mario_to_underground" from="PortalToUnderground" to="." method="_on_portal_to_underground_mario_to_underground"]
+[connection signal="body_entered" from="FallCollider" to="." method="_on_fall_collider_body_entered"]

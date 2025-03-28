@@ -25,6 +25,9 @@ FireworksEarned="*res://fireworks_earned.gd"
 FireballsOnScreen="*res://fireballs_on_screen.gd"
 CoinCount="*res://coin_count.gd"
 MarioGlobalPosition="*res://mario_global_position.gd"
+World="*res://world.gd"
+Stage="*res://stage.gd"
+GameStatus="*res://game_status.gd"
 
 [display]
 

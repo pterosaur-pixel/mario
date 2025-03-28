@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7up2aab8q1wb"]
+
+[ext_resource type="Texture2D" uid="uid://cupquo8t7tb5" path="res://assets/NES - Super Mario Bros - Title Screen HUD and Miscellaneous.png" id="1_yn3rk"]
+[ext_resource type="Theme" uid="uid://bky0bmqfgxurt" path="res://font_theme.tres" id="2_wjfmm"]
+[ext_resource type="Script" uid="uid://b7kbqsgnmbdnu" path="res://remaining_lives_label.gd" id="3_30anp"]
+[ext_resource type="Script" uid="uid://do4y5w8lbg4gl" path="res://world_label.gd" id="4_30anp"]
+[ext_resource type="Script" uid="uid://cbihqdlxlr6ip" path="res://stage_label.gd" id="5_snts7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snts7"]
+atlas = ExtResource("1_yn3rk")
+region = Rect2(0, 384, 256, 232)
+
+[node name="IntermissionScreen" type="CharacterBody2D"]
+position = Vector2(130, 120)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = -183.0
+offset_top = -156.0
+offset_right = 168.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, 0)
+texture = SubResource("AtlasTexture_snts7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -123.0
+offset_top = -111.0
+offset_right = 111.0
+offset_bottom = -71.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 26.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 3.0
+offset_top = -48.0
+offset_right = 14.0
+offset_bottom = -26.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 21.0
+offset_top = -49.0
+offset_right = 34.0
+offset_bottom = -10.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RemainingLivesLabel" type="Label" parent="."]
+offset_left = 7.0
+offset_top = -8.0
+offset_right = 27.0
+offset_bottom = 2.0
+theme = ExtResource("2_wjfmm")
+text = "3"
+script = ExtResource("3_30anp")
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldLabel" type="Label" parent="."]
+offset_left = 3.0
+offset_top = -41.0
+offset_right = 13.0
+offset_bottom = -28.0
+theme = ExtResource("2_wjfmm")
+text = "1"
+script = ExtResource("4_30anp")
+metadata/_edit_use_anchors_ = true
+
+[node name="StageLabel" type="Label" parent="."]
+offset_left = 23.0
+offset_top = -41.0
+offset_right = 35.0
+offset_bottom = -29.0
+theme = ExtResource("2_wjfmm")
+text = "1"
+script = ExtResource("5_snts7")
+metadata/_edit_use_anchors_ = true

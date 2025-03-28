@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://c88bh0olmfat3"]
+[gd_scene load_steps=15 format=4 uid="uid://c88bh0olmfat3"]
 
 [ext_resource type="Texture2D" uid="uid://dk4aetw77m605" path="res://assets/underground - ground and stone.png" id="1_js8jk"]
 [ext_resource type="Script" uid="uid://5yb5mgteablh" path="res://underground_room.gd" id="1_ll4bs"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://pi0lfrwkyf8a" path="res://mario.tscn" id="3_ew2ta"]
 [ext_resource type="PackedScene" uid="uid://y0ri1bptq2dy" path="res://coin.tscn" id="3_yfk5h"]
 [ext_resource type="AudioStream" uid="uid://clkcnq2cbqlm0" path="res://assets/audio/smb_pipe.wav" id="6_fbkl3"]
+[ext_resource type="AudioStream" uid="uid://baotnr0fydo3w" path="res://assets/audio/02. Underground Theme.mp3" id="7_383r1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fbkl3"]
 texture = ExtResource("1_js8jk")
@@ -170,5 +171,12 @@ shape = SubResource("RectangleShape2D_yfk5h")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_fbkl3")
 volume_db = -5.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 120)
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_383r1")
+parameters/looping = true
 
 [connection signal="body_entered" from="PortalToAboveground" to="." method="_on_portal_to_aboveground_body_entered"]

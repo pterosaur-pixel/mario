@@ -4,17 +4,13 @@ var direction = 1
 func _ready() -> void:
 	set_process(false)
 	if current_powerup == 0:
-	
-		
 		$AnimationPlayer.play("growing-mushroom")
 		await get_tree().create_timer(0.75).timeout
 	set_process(true)
 	
 	
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	current_powerup = PowerupStatus.powerup_status
-	
-	
 	set_z_index(0)
 	if current_powerup == 0:
 		if not is_on_floor():

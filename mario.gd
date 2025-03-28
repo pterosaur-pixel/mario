@@ -2,35 +2,38 @@ extends CharacterBody2D
 signal game_over
 signal camera_stop
 signal mario_in_castle
+signal mario_dead
 const SPEED = 82.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY = 1250
 var direction2 = 1
-var last_pu 
 var fireball_scene = preload("res://fireball.tscn")
 var is_fire_ball
+var screen_size
 var crouch = false
+@onready var  last_pu = PowerupStatus.powerup_status
+
 #var last_pu = PowerupStatus.powerup_status
 func _ready() -> void:
+	screen_size = get_viewport_rect().size
 	MarioGlobalPosition.mario_global_position_x = global_position.x
-	$CollisionPolygon2D3.call_deferred("set_disabled", true)
-	set_physics_process(false)
+	$CollisionPolygon2D.call_deferred("set_disabled", false)
+	$CollisionPolygon2D2.call_deferred("set_disabled", true)	
+	$CollisionPolygon2D3.call_deferred("set_disabled", true)	
 
 func _physics_process(delta: float) -> void:
 	MarioGlobalPosition.mario_global_position_x = global_position.x
 	if not last_pu == PowerupStatus.powerup_status:
-	
 		last_pu = PowerupStatus.powerup_status
-	
-		if last_pu == 0:
+		if last_pu <= 0:
 			$CollisionPolygon2D.call_deferred("set_disabled", false)
 			$CollisionPolygon2D2.call_deferred("set_disabled", true)
+			$CollisionPolygon2D3.call_deferred("set_disabled", true)
 		if last_pu == 1:
 			print("mario-animating")
 			$CollisionPolygon2D.call_deferred("set_disabled", true)
 			$CollisionPolygon2D2.call_deferred("set_disabled", false)
 			global_position.y = global_position.y - 5
-			
 			get_big()
 			return
 			
@@ -95,7 +98,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 	
-	
 	update_animations(direction, last_pu)
 	
 	
@@ -138,8 +140,10 @@ func _on_level_one_mushroom_killed_mario_l_1() -> void:
 	set_z_index(3)
 	$AnimationPlayer.play("mario-dead")	
 	
-	$CollisionShape2D.call_deferred("set_disabled",true)
-	$CollisionShape2DLittle.call_deferred("set_disabled",true)
+	$CollisionPolygon2D.call_deferred("set_disabled", true)
+	$CollisionPolygon2D2.call_deferred("set_disabled", true)
+	$CollisionPolygon2D3.call_deferred("set_disabled", true)
+		
 	velocity.y = -200
 
 	for i in range(0, 10):
@@ -151,6 +155,7 @@ func _on_level_one_mushroom_killed_mario_l_1() -> void:
 	for i in range(0, 20):
 		move_and_slide()
 		await get_tree().create_timer(0.06).timeout
+	game_over.emit()
 func _on_audio_stream_player_finished() -> void:
 	print('dead mario')
 	game_over.emit()
@@ -233,3 +238,7 @@ func end_animation(size):
 		
 		
 	
+
+
+#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	#global_position.x += 5

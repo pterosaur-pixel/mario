@@ -8,16 +8,17 @@
 script = ExtResource("1_dpf5s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(128, 121)
 texture = ExtResource("1_sn725")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -121.0
-offset_top = 7.0
-offset_right = 119.0
-offset_bottom = 42.0
+offset_left = 8.0
+offset_top = 143.0
+offset_right = 248.0
+offset_bottom = 178.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_26ewq")
 text = "@!ME

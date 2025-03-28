@@ -1,3 +1,4 @@
+class_name LevelOne
 extends Node2D
 signal grow_mushroom1
 signal mushroom_killed_mario_l1
@@ -9,21 +10,33 @@ signal camera_stop
 signal camera_go
 signal timer_countdown
 signal show_underground_room_1
+signal show_intermission_screen
+signal reload_level_one
 var fireworks_scene = preload("res://fireworks.tscn")
 var number_of_fireworks
+var mario_underground = false
+var already_started = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	GameStatus.flagpole = false
+	set_physics_process(false)
+	$IntermissionScreen.show()
+	await get_tree().create_timer(2).timeout
+	$IntermissionScreen.queue_free()
+	start_game.emit()
+	$AudioStreamPlayer2.play()
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if TimeLeft.time_left <= 90 and not mario_underground and not already_started:
+		$AudioStreamPlayer2.stop()
+		$AudioStreamPlayer4.play()
+		already_started = true
+	
 
-func _on_mushroom_brick_mushroom_1_hit() -> void:
-	print('HIT')
-	grow_mushroom1.emit()
+#func _on_mushroom_brick_mushroom_1_hit() -> void:
+#	print('HIT')
+#	grow_mushroom1.emit()
 
 func _on_mushroom_mario_should_jump() -> void:
 	mario_should_jumpl1.emit()
@@ -31,26 +44,49 @@ func _on_mushroom_mario_should_jump() -> void:
 
 func _on_mushroom_mushroom_killed_mario() -> void:
 	mushroom_killed_mario_l1.emit()
+	$AudioStreamPlayer2.stop()
+	$AudioStreamPlayer3.stop()
+	$AudioStreamPlayer4.stop()
+	
+	
+	
 	print("dead mario")
 	
 	
 
 
 func _on_mario_game_over() -> void:
-	set_physics_process(false)
-	
-	get_tree().reload_current_scene()
+	print(MarioLives.lives, "lives remaining")
+	if MarioLives.lives == 0:
+		print('Game Over and fish sticks for all')
+		queue_free()
+	else:
+		$/root/Main.reload_level_one()
+		#reload_level_one.emit()
+		#queue_free()
+		
+		#get_tree().change_scene_to_file("res://level_one.tscn")
+		#get_tree().call_deferred("change_scene_to_file", "res://level_one.tscn")
+		
+		#get_tree().reload_current_scene()
+		#print(MarioLives.lives)
+		#start_game.emit()
+		
 	#get_tree().paused = false
-	game_over_l1.emit()
+		
 func _on_game_start_start_game() -> void:
-	start_game.emit()
+	pass
 	
-	
-
-
 func _on_fall_collider_body_entered(_body: Node2D) -> void:
 	fall_collider_entered.emit()
-
+	PowerupStatus.powerup_status = 0
+	Score.score = 0
+	CoinCount.coin_count = 0
+	MarioLives.lives -= 1
+	$AudioStreamPlayer2.stop()
+	$AudioStreamPlayer3.stop()
+	$AudioStreamPlayer4.stop()
+	$/root/Main.reload_level_one()
 
 func _on_mario_should_jumpl_1() -> void:
 	pass # Replace with function body.
@@ -65,7 +101,9 @@ func _on_mario_camera_go() -> void:
 
 
 func _on_flagpole_flag_mario_grabbed_pole() -> void:
+	already_started = true
 	get_tree().paused = true
+	
 	
 	
 	#$Mario.play()
@@ -73,6 +111,7 @@ func _on_flagpole_flag_mario_grabbed_pole() -> void:
 
 
 func _on_mario_mario_in_castle() -> void:
+	GameStatus.flagpole = true
 	number_of_fireworks = TimeLeft.time_left % 10
 	timer_countdown.emit()
 	
@@ -116,29 +155,49 @@ func _on_audio_stream_player_finished() -> void:
 
 
 func _on_portal_to_underground_mario_to_underground() -> void:
-	
+	mario_underground = true
 	$Mario.call_deferred("set_physics_process", false)
 	$Mario.set_z_index(-1)
 	for i in range(0, 20):
 		$Mario.global_position.y += 1
 		await get_tree().create_timer(0.033).timeout
-	hide()
-	show_underground_room_1.emit()
+	#hide()
+	$/root/Main.load_level_one_underground()
+#	$AudioStreamPlayer3.play()
+	$AudioStreamPlayer2.stop()
 
 
 
 func _on_underground_room_underground_room_exited() -> void:
-	show()
-	$Mario.global_position = $MarioEmergeMarker.global_position
-	
-	if PowerupStatus.powerup_status == 0:
-		$Mario/AnimationPlayer.play("mario-little-idle")
-	if PowerupStatus.powerup_status == 1:
-		$Mario/AnimationPlayer.play("mario-idle")
-	if PowerupStatus.powerup_status >= 2:
-		$Mario/AnimationPlayer.play("mario-powerup-idle")
-	
-	for i in range(0, 20):
-		$Mario.global_position.y -= 1
-		await get_tree().create_timer(0.033).timeout
-	$Mario.set_physics_process(true)
+	pass
+
+
+func _on_tree_entered() -> void:
+	print('entered')
+	if mario_underground:
+		print('leaving underground')
+		mario_underground = false
+		
+		show()
+		$Mario.global_position = $MarioEmergeMarker.global_position
+		
+		if PowerupStatus.powerup_status == 0:
+			$Mario/AnimationPlayer.play("mario-little-idle")
+		if PowerupStatus.powerup_status == 1:
+			$Mario/AnimationPlayer.play("mario-idle")
+		if PowerupStatus.powerup_status >= 2:
+			$Mario/AnimationPlayer.play("mario-powerup-idle")
+		
+		for i in range(0, 20):
+			$Mario.global_position.y -= 1
+			await get_tree().create_timer(0.033).timeout
+		$Mario.set_physics_process(true)
+		
+		$AudioStreamPlayer3.stop()
+		$AudioStreamPlayer2.play()
+
+		
+
+
+func _on_main_start_l_1() -> void:
+	$AudioStreamPlayer2.play()
