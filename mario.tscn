@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_w74su"]
 [ext_resource type="Script" uid="uid://drqxatw5h3t8f" path="res://mario.gd" id="1_wrvex"]
 [ext_resource type="AudioStream" uid="uid://bdi6nrywayybd" path="res://assets/audio/smb_mariodie.wav" id="3_4ckko"]
-[ext_resource type="AudioStream" uid="uid://cb6ng6h1xgmy" path="res://assets/audio/smb_powerup.wav" id="4_4gsdp"]
+[ext_resource type="AudioStream" uid="uid://clkcnq2cbqlm0" path="res://assets/audio/smb_pipe.wav" id="4_752v2"]
 [ext_resource type="AudioStream" uid="uid://5xkbu24ax8qx" path="res://assets/audio/smb_jump-small.wav" id="5_752v2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrvex"]
@@ -1000,7 +1000,7 @@ disabled = true
 stream = ExtResource("3_4ckko")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_4gsdp")
+stream = ExtResource("4_752v2")
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_752v2")

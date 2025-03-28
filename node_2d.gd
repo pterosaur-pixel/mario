@@ -1,8 +1,4 @@
 extends Node2D
-signal back_to_level_one
-signal start_l1
-signal start_camera
-signal stop_camera
 signal start_timer
 var game_start_scene = preload("res://game_start.tscn")
 var screen_shown = false

@@ -2,15 +2,17 @@ extends CharacterBody2D
 signal game_over
 signal camera_stop
 signal mario_in_castle
-signal mario_dead
+
 const SPEED = 82.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY = 1250
+var can_change_colliders = true
 var direction2 = 1
 var fireball_scene = preload("res://fireball.tscn")
 var is_fire_ball
 var screen_size
 var crouch = false
+var invincible = 0
 @onready var  last_pu = PowerupStatus.powerup_status
 
 #var last_pu = PowerupStatus.powerup_status
@@ -25,11 +27,11 @@ func _physics_process(delta: float) -> void:
 	MarioGlobalPosition.mario_global_position_x = global_position.x
 	if not last_pu == PowerupStatus.powerup_status:
 		last_pu = PowerupStatus.powerup_status
-		if last_pu <= 0:
+		if last_pu <= 0 and can_change_colliders:
 			$CollisionPolygon2D.call_deferred("set_disabled", false)
 			$CollisionPolygon2D2.call_deferred("set_disabled", true)
 			$CollisionPolygon2D3.call_deferred("set_disabled", true)
-		if last_pu == 1:
+		if last_pu == 1 and can_change_colliders:
 			print("mario-animating")
 			$CollisionPolygon2D.call_deferred("set_disabled", true)
 			$CollisionPolygon2D2.call_deferred("set_disabled", false)
@@ -47,15 +49,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_up") and is_on_floor():
 		$AudioStreamPlayer3.play(0.1)
 		velocity.y = JUMP_VELOCITY
-	if Input.is_action_pressed("move_down") and last_pu >= 1:
+	if Input.is_action_pressed("move_down") and last_pu >= 1 and can_change_colliders:
 		crouch = true
 		$CollisionPolygon2D2.call_deferred("set_disabled", true)
 		$CollisionPolygon2D3.call_deferred("set_disabled", false)
-	elif last_pu >= 1:
+	elif last_pu >= 1 and can_change_colliders:
 		crouch = false
 		$CollisionPolygon2D2.call_deferred("set_disabled", false)
 		$CollisionPolygon2D3.call_deferred("set_disabled", true)
-	else:
+	elif can_change_colliders:
 		$CollisionPolygon2D.call_deferred("set_disabled", false)
 		$CollisionPolygon2D2.call_deferred("set_disabled", true)
 		
@@ -97,7 +99,13 @@ func _physics_process(delta: float) -> void:
 	elif is_on_floor():	
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
-	
+	if invincible == 1:
+		hide()
+		invincible = 2
+	elif invincible == 2:
+		show()
+		invincible = 1
+		
 	update_animations(direction, last_pu)
 	
 	
@@ -192,9 +200,23 @@ func get_flower() -> void:
 
 func _on_mushroom_mario_invincible() -> void:
 	$AudioStreamPlayer2.play()
-	$CollisionShape2D.call_deferred("set_disabled", true)
-	$CollisionShape2DLittle.call_deferred("set_disabled", true)
 	
+	
+	set_collision_layer_value(1, false)
+	set_collision_layer_value(2, false)
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(2, false)
+	
+	#$CollisionPolygon2D2.call_deferred("set_disabled", true)
+	#$CollisionPolygon2D3.call_deferred("set_disabled", true)
+	invincible = 1
+	await get_tree().create_timer(3).timeout
+	invincible = 0
+	show()
+	set_collision_layer_value(1, true)
+	set_collision_layer_value(2, true)
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(2, true)
 	
 
 

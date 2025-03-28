@@ -1,17 +1,17 @@
 class_name LevelOne
 extends Node2D
-signal grow_mushroom1
 signal mushroom_killed_mario_l1
 signal mario_should_jumpl1
-signal game_over_l1
+
 signal start_game
 signal fall_collider_entered
 signal camera_stop
 signal camera_go
 signal timer_countdown
-signal show_underground_room_1
-signal show_intermission_screen
-signal reload_level_one
+
+
+
+
 var fireworks_scene = preload("res://fireworks.tscn")
 var number_of_fireworks
 var mario_underground = false

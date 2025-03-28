@@ -19,7 +19,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	FireballsOnScreen.fireballs_on_screen -= 1
 	queue_free()
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(_area: Area2D) -> void:
 	print('done firing')
 	await get_tree().create_timer(0.05).timeout
 	FireballsOnScreen.fireballs_on_screen -= 1

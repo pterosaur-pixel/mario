@@ -3,7 +3,7 @@ var is_scene = preload("res://intermission_screen.tscn")
 
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if GameStatus.flagpole:
 		TimeLeft.time_left -= 1
 		if TimeLeft.time_left < 0:

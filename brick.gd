@@ -13,7 +13,7 @@ func _on_mario_bump_area_hit() -> void:
 	pass
 
 
-func _on_mario_bump_area_body_entered(body: Node2D) -> void:
+func _on_mario_bump_area_body_entered(_body: Node2D) -> void:
 	if PowerupStatus.powerup_status == 0:
 		$AnimationPlayer.play("brick_bounce")
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled",false)

@@ -1,5 +1,5 @@
 extends Camera2D
-signal stop_level_one
+
 @onready var y = global_position.y
 @onready var x = global_position.x
 @onready var cur_x = global_position.x

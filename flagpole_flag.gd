@@ -7,19 +7,19 @@ func _ready() -> void:
 	set_z_index(1)
 	velocity.y = 200
 
-func _on_area_2d_5_body_entered(body: Node2D) -> void:
+func _on_area_2d_5_body_entered(_body: Node2D) -> void:
 	grabbed_pole(100)
 
-func _on_area_2d_4_body_entered(body: Node2D) -> void:
+func _on_area_2d_4_body_entered(_body: Node2D) -> void:
 	grabbed_pole(400)
 
-func _on_area_2d_3_body_entered(body: Node2D) -> void:
+func _on_area_2d_3_body_entered(_body: Node2D) -> void:
 	grabbed_pole(800)
 
-func _on_area_2d_2_body_entered(body: Node2D) -> void:
+func _on_area_2d_2_body_entered(_body: Node2D) -> void:
 	grabbed_pole(2000)
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	grabbed_pole(5000)
 func grabbed_pole(points_given):
 	if can_grab_pole:

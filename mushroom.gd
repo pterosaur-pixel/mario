@@ -66,7 +66,7 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 	
 
 
-func _on_area_2d_kill_body_entered(body: Node2D) -> void:
+func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
 	if mario_can_kill:
 		if enemy == 1:
 			print("...turtle")
@@ -182,7 +182,7 @@ func _on_mushroom_collider_area_entered(area: Area2D) -> void:
 	
 
 
-func _on_fireball_kill_collider_body_entered(body: Node2D) -> void:
+func _on_fireball_kill_collider_body_entered(_body: Node2D) -> void:
 	print('FIREBALLED')
 	twirly_dead()
 	

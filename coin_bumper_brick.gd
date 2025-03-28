@@ -6,7 +6,7 @@ func _ready() -> void:
 	$MushroomArea/CollisionShape2D.set_disabled(true)
 	$AnimationPlayer.play("brick")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if bumping == 1 and bump:
 		print('bumping')
