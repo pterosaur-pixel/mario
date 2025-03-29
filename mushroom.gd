@@ -129,7 +129,7 @@ func _on_area_2d_kill_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
-	if can_kill_mario:
+	if can_kill_mario and not GameStatus.mario_invincible:
 		can_kill_mario = false
 		set_physics_process(false)
 		#$Area2DKill/MarioKillCollider.set_disabled(true)
@@ -151,7 +151,7 @@ func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
 			mushroom_killed_mario.emit()
 			
 		else:
-			PowerupStatus.powerup_status -= 1
+			PowerupStatus.powerup_status = 0
 			mario_invincible.emit()
 			set_physics_process(true)
 			$Area2DKill/MarioKillCollider.call_deferred("set_disabled", false)
@@ -159,6 +159,9 @@ func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
 		await get_tree().create_timer(1).timeout
 		mario_can_kill = true
 		can_kill_mario = true
+	elif GameStatus.mario_invincible:
+		$AudioStreamPlayer2.play(0.02)
+		twirly_dead()
 
 	
 func _on_level_one_game_over_l_1() -> void:

@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://pi0lfrwkyf8a"]
+[gd_scene load_steps=29 format=3 uid="uid://pi0lfrwkyf8a"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_w74su"]
 [ext_resource type="Script" uid="uid://drqxatw5h3t8f" path="res://mario.gd" id="1_wrvex"]
 [ext_resource type="AudioStream" uid="uid://bdi6nrywayybd" path="res://assets/audio/smb_mariodie.wav" id="3_4ckko"]
 [ext_resource type="AudioStream" uid="uid://clkcnq2cbqlm0" path="res://assets/audio/smb_pipe.wav" id="4_752v2"]
 [ext_resource type="AudioStream" uid="uid://5xkbu24ax8qx" path="res://assets/audio/smb_jump-small.wav" id="5_752v2"]
+[ext_resource type="AudioStream" uid="uid://dgs2i7e7sve66" path="res://assets/audio/05. Invincibility Theme.mp3" id="6_76esm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrvex"]
 size = Vector2(12, 15)
@@ -968,8 +969,8 @@ size = Vector2(15, 31)
 
 [node name="Mario" type="CharacterBody2D"]
 process_mode = 3
-collision_layer = 783
-collision_mask = 783
+collision_layer = 2831
+collision_mask = 2831
 platform_on_leave = 2
 platform_wall_layers = 512
 script = ExtResource("1_wrvex")
@@ -992,6 +993,7 @@ hframes = 3
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_4ckko")
 disabled = true
@@ -1007,17 +1009,25 @@ stream = ExtResource("5_752v2")
 volume_db = -15.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-2, -6, -5, 2, -5, 7, 5, 7, 5, 2, 1, -6)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-3, -14, -7, 0, -6, 15, 7, 15, 7, 0, 1, -15)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(0, -11, -6, -4, -8, 11, 8, 11, 7, -4, 4, -11)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
 position = Vector2(-7.5, 0.5)
 scale = Vector2(0.25, 1.05)
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_76esm")
+parameters/looping = true
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

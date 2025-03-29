@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://xonvpxw6h277"]
+
+[ext_resource type="PackedScene" uid="uid://cg6ggbbgmk468" path="res://power_up_brick.tscn" id="1_amthu"]
+[ext_resource type="Script" uid="uid://02bggtnabmia" path="res://power_up_brick_star.gd" id="2_amthu"]
+[ext_resource type="Texture2D" uid="uid://capes54fyhh2" path="res://assets/overworld -coins.png" id="3_hn4hp"]
+[ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="4_ak3b4"]
+[ext_resource type="AudioStream" uid="uid://bluncfpux83v0" path="res://assets/audio/smb_powerup_appears.wav" id="5_7d6ee"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76mug"]
+resource_local_to_scene = true
+atlas = ExtResource("3_hn4hp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76mug"]
+resource_local_to_scene = true
+size = Vector2(16, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6joif"]
+resource_local_to_scene = true
+size = Vector2(16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e52bk"]
+resource_local_to_scene = true
+atlas = ExtResource("4_ak3b4")
+region = Rect2(353, 166, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbyoo"]
+resource_local_to_scene = true
+atlas = ExtResource("4_ak3b4")
+region = Rect2(178, 36, 21, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj6ky"]
+resource_local_to_scene = true
+size = Vector2(16, 9)
+
+[node name="PowerUpBrickStar" instance=ExtResource("1_amthu")]
+script = ExtResource("2_amthu")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_76mug")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_76mug")
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("RectangleShape2D_6joif")
+
+[node name="Sprite2D2" parent="." index="4"]
+texture = SubResource("AtlasTexture_e52bk")
+
+[node name="Sprite2D3" parent="." index="6"]
+texture = SubResource("AtlasTexture_mbyoo")
+
+[node name="MushroomArea" parent="." index="8"]
+visible = false
+
+[node name="CollisionShape2D" parent="MushroomArea" index="0"]
+shape = SubResource("RectangleShape2D_nj6ky")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." index="9"]
+stream = ExtResource("5_7d6ee")
+
+[connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_animation_player_2_animation_finished"]

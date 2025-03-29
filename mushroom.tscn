@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c7jlmxfmf6nx7"]
+[gd_scene load_steps=24 format=3 uid="uid://c7jlmxfmf6nx7"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_gvsd5"]
 [ext_resource type="Script" uid="uid://bnlow6fbnmf02" path="res://mushroom.gd" id="1_ke5i0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bt4cjhqt1xgtp" path="res://mushroom_killed_score_label.gd" id="4_jg55k"]
 [ext_resource type="AudioStream" uid="uid://coetx2h15u3e0" path="res://assets/audio/smb_stomp.wav" id="6_5rjv2"]
 [ext_resource type="Script" uid="uid://du0bnnahbsj3q" path="res://fireball_kill_collider.gd" id="7_uxf4e"]
+[ext_resource type="AudioStream" uid="uid://dh85ersa83oe7" path="res://assets/audio/smb_kick.wav" id="8_jokqs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gvq0"]
 resource_local_to_scene = true
@@ -300,8 +301,8 @@ shape = SubResource("RectangleShape2D_jg55k")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
-collision_layer = 2
-collision_mask = 2
+collision_layer = 2050
+collision_mask = 2050
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-59, 0)
@@ -363,6 +364,9 @@ shape = SubResource("RectangleShape2D_6byal")
 [node name="ShellWallCollider" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-8, 1, -6, -3, -3, -6, 2, -6, 6, -2, 8, 2, 3, 7, -2, 7)
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_jokqs")
 
 [connection signal="label_show" from="." to="MushroomKilledScoreLabel" method="_on_mushroom_label_show"]
 [connection signal="area_entered" from="Area2DKill" to="." method="_on_area_2d_kill_area_entered"]

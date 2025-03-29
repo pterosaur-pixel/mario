@@ -8,10 +8,6 @@ signal fall_collider_entered
 signal camera_stop
 signal camera_go
 signal timer_countdown
-
-
-
-
 var fireworks_scene = preload("res://fireworks.tscn")
 var number_of_fireworks
 var mario_underground = false
@@ -32,6 +28,9 @@ func _process(_delta: float) -> void:
 		$AudioStreamPlayer2.stop()
 		$AudioStreamPlayer4.play()
 		already_started = true
+	if GameStatus.mario_invincible:
+		$AudioStreamPlayer2.stop()
+	
 	
 
 #func _on_mushroom_brick_mushroom_1_hit() -> void:
@@ -59,8 +58,13 @@ func _on_mario_game_over() -> void:
 	print(MarioLives.lives, "lives remaining")
 	if MarioLives.lives == 0:
 		print('Game Over and fish sticks for all')
+		Score.score = 0
+		CoinCount.coin_count = 0
+		PowerupStatus.powerup_status = 0 
+		GameStatus.mario_invincible = false
 		queue_free()
 	else:
+		GameStatus.mario_invincible = false
 		$/root/Main.reload_level_one()
 		#reload_level_one.emit()
 		#queue_free()
@@ -79,10 +83,12 @@ func _on_game_start_start_game() -> void:
 	
 func _on_fall_collider_body_entered(_body: Node2D) -> void:
 	fall_collider_entered.emit()
-	PowerupStatus.powerup_status = 0
-	Score.score = 0
-	CoinCount.coin_count = 0
 	MarioLives.lives -= 1
+	if MarioLives.lives == 0:
+		Score.score = 0
+		CoinCount.coin_count = 0
+	PowerupStatus.powerup_status = 0
+	GameStatus.mario_invincible = false
 	$AudioStreamPlayer2.stop()
 	$AudioStreamPlayer3.stop()
 	$AudioStreamPlayer4.stop()
@@ -200,4 +206,8 @@ func _on_tree_entered() -> void:
 
 
 func _on_main_start_l_1() -> void:
+	$AudioStreamPlayer2.play()
+
+
+func _on_mario_start_playing_regular_music() -> void:
 	$AudioStreamPlayer2.play()

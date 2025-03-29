@@ -207,8 +207,8 @@ size = Vector2(14, 8)
 size = Vector2(16, 8)
 
 [node name="Brick" type="CharacterBody2D"]
-collision_layer = 37
-collision_mask = 33
+collision_layer = 1061
+collision_mask = 1057
 script = ExtResource("1_5p85m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

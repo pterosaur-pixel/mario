@@ -2,7 +2,7 @@ extends CharacterBody2D
 signal game_over
 signal camera_stop
 signal mario_in_castle
-
+signal start_playing_regular_music
 const SPEED = 82.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY = 1250
@@ -13,6 +13,7 @@ var is_fire_ball
 var screen_size
 var crouch = false
 var invincible = 0
+var first_trigger = true
 @onready var  last_pu = PowerupStatus.powerup_status
 
 #var last_pu = PowerupStatus.powerup_status
@@ -105,7 +106,26 @@ func _physics_process(delta: float) -> void:
 	elif invincible == 2:
 		show()
 		invincible = 1
-		
+	if GameStatus.mario_invincible and first_trigger:
+		$AudioStreamPlayer4.play()
+		print('should be musicing')
+		first_trigger = false
+		#set_collision_layer_value(1, false)
+		#set_collision_layer_value(2, false)
+		#set_collision_mask_value(1, false)
+		#set_collision_mask_value(2, false)
+		invincible = 1
+		await get_tree().create_timer(10).timeout
+		invincible = 0
+		show()
+		#set_collision_layer_value(1, true)
+		#set_collision_layer_value(2, true)
+		#set_collision_mask_value(1, true)
+		#set_collision_mask_value(2, true)
+		first_trigger = true
+		$AudioStreamPlayer4.stop()
+		GameStatus.mario_invincible = false
+		start_playing_regular_music.emit()
 	update_animations(direction, last_pu)
 	
 	
