@@ -319,6 +319,7 @@ shape = SubResource("RectangleShape2D_4gvq0")
 
 [node name="MushroomKilledScoreLabel" type="Label" parent="."]
 visible = false
+z_index = 5
 offset_top = -30.0
 offset_right = 24.0
 offset_bottom = -22.0

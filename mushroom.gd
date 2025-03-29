@@ -106,7 +106,7 @@ func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
 			#else:
 				$AudioStreamPlayer.play(0.05)
 				label_show.emit()
-				Score.score += 200
+				Score.score += 100
 				print(Score.score)
 				$Area2DKill.queue_free()
 				$Area2DDangerZone.queue_free()
@@ -137,12 +137,7 @@ func _on_area_2d_danger_zone_body_entered(_body: Node2D) -> void:
 		mario_can_kill = false
 		$Area2DKill/MarioKillCollider.call_deferred("set_disabled", true)
 		$Area2DDangerZone/CollisionShape2D.call_deferred("set_disabled", true)
-		
-		#MarioLifeLeft.lifeleft -= 1
-		
-		
-		
-		#print(MarioLifeLeft.lifeleft)
+
 		if PowerupStatus.powerup_status == 0:
 			MarioLives.lives -= 1
 			print('dead mario')

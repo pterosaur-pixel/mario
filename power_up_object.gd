@@ -69,22 +69,32 @@ func _on_area_2d_body_entered(_body: CharacterBody2D) -> void:
 		current_powerup = PowerupStatus.powerup_status
 		print(current_powerup, 'cur_pow')
 		set_process(false)
+		$Sprite2D.hide()
 		$CollisionShape2D.call_deferred("set_disabled", true)
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled",true)
 		Score.score += 1000
+		$PointLabel.show()
+		await get_tree().create_timer(1).timeout
 		hide()
 	elif type_of_powerup == 1:
 		GameStatus.mario_invincible = true
+		$Sprite2D.hide()
 		set_process(false)
 		$CollisionShape2D.call_deferred("set_disabled", true)
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled",true)
+		$PointLabel.show()
 		Score.score += 1000
+		await get_tree().create_timer(1).timeout
 		hide()
 	elif type_of_powerup == 2:
+		$PointLabel.text = "ONE UP"
 		MarioLives.lives += 1
 		set_process(false)
+		$Sprite2D.hide()
+		$PointLabel.show()
 		$CollisionShape2D.call_deferred("set_disabled", true)
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled",true)
+		await get_tree().create_timer(1).timeout
 		hide()
 func _on_audio_stream_player_2_finished() -> void:
 	queue_free()

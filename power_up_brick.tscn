@@ -618,6 +618,7 @@ script = ExtResource("5_5xly1")
 
 [node name="Label" type="Label" parent="Sprite2D3"]
 visible = false
+z_index = 5
 offset_left = 10.0
 offset_top = -27.0
 offset_right = 34.0
