@@ -163,27 +163,7 @@ func _on_level_one_fall_collider_entered() -> void:
 
 	
 func _on_level_one_mushroom_killed_mario_l_1() -> void:
-	$AudioStreamPlayer.play()
-	set_physics_process(false)
-	set_z_index(3)
-	$AnimationPlayer.play("mario-dead")	
-	
-	$CollisionPolygon2D.call_deferred("set_disabled", true)
-	$CollisionPolygon2D2.call_deferred("set_disabled", true)
-	$CollisionPolygon2D3.call_deferred("set_disabled", true)
-		
-	velocity.y = -200
-
-	for i in range(0, 10):
-		move_and_slide()
-		await get_tree().create_timer(0.06).timeout
-	print(velocity.y)
-	velocity.y = 600
-	
-	for i in range(0, 20):
-		move_and_slide()
-		await get_tree().create_timer(0.06).timeout
-	game_over.emit()
+	mario_dead_mushroom()
 func _on_audio_stream_player_finished() -> void:
 	print('dead mario')
 	game_over.emit()
@@ -195,7 +175,6 @@ func _on_level_one_mario_should_jumpl_1() -> void:
 	velocity.y = -150
 	
 func _on_level_one_start_game() -> void:
-	print(velocity, 'vvvvvvvvelocity', global_position)
 	set_physics_process(true)
 	
 func get_big() -> void:
@@ -279,3 +258,44 @@ func end_animation(size):
 	mario_in_castle.emit()
 		
 		
+
+
+func _on_level_two_fall_collider_entered() -> void:
+	print('dead marioooooooooooo')
+	game_over.emit()
+	velocity = Vector2(0, 0)
+	set_physics_process(false)
+
+
+func _on_level_two_mario_should_jumpl_2() -> void:
+	velocity.y = -150
+
+
+func _on_level_two_mushroom_killed_mario_l_2() -> void:
+	mario_dead_mushroom()
+func mario_dead_mushroom():
+	$AudioStreamPlayer.play()
+	set_physics_process(false)
+	set_z_index(3)
+	$AnimationPlayer.play("mario-dead")	
+	
+	$CollisionPolygon2D.call_deferred("set_disabled", true)
+	$CollisionPolygon2D2.call_deferred("set_disabled", true)
+	$CollisionPolygon2D3.call_deferred("set_disabled", true)
+		
+	velocity.y = -200
+
+	for i in range(0, 10):
+		move_and_slide()
+		await get_tree().create_timer(0.06).timeout
+	print(velocity.y)
+	velocity.y = 600
+	
+	for i in range(0, 20):
+		move_and_slide()
+		await get_tree().create_timer(0.06).timeout
+	game_over.emit()
+
+
+func _on_level_two_start_game() -> void:
+	set_physics_process(true)

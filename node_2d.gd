@@ -54,6 +54,9 @@ func exit_level_addition():
 func reload_level_one() -> void:
 	var level_one_scene = load("res://level_one.tscn")
 	load_level(level_one_scene)
+func reload_level_two() -> void:
+	var level_two_scene = load("res://level_two.tscn")
+	load_level(level_two_scene)
 func load_level_one_underground() -> void:
 	var level_one_underground_scene = load("res://underground_room.tscn")
 	load_level_addition(level_one_underground_scene)
