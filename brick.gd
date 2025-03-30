@@ -2,7 +2,10 @@ extends CharacterBody2D
 var broken_brick_scene = preload("res://broken_brick.tscn")
 func _ready() -> void:
 	set_physics_process(false)
-	$AnimationPlayer.play("brick")
+	if GameStatus.theme == 'overworld':
+		$AnimationPlayer.play("brick")
+	if GameStatus.theme == "underground":
+		$AnimationPlayer.play("brick-underground")
 	$MushroomArea/CollisionShape2D.set_disabled(true)
 
 func _on_mushroom_area_body_entered(_body: Node2D) -> void:
@@ -15,7 +18,10 @@ func _on_mario_bump_area_hit() -> void:
 
 func _on_mario_bump_area_body_entered(_body: Node2D) -> void:
 	if PowerupStatus.powerup_status == 0:
-		$AnimationPlayer.play("brick_bounce")
+		if GameStatus.theme == 'overworld':
+			$AnimationPlayer.play("brick_bounce")
+		if GameStatus.theme == "underground":
+			$AnimationPlayer.play("brick_bounce_underground")
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled",false)
 		
 		await get_tree().create_timer(0.5).timeout
@@ -41,8 +47,3 @@ func _on_mario_bump_area_body_entered(_body: Node2D) -> void:
 		$WholeBrick.call_deferred("set_disabled", true)
 		await get_tree().create_timer(0.5).timeout
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled", true)
-		
-		
-		
-		
-		

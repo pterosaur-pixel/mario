@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cg6ggbbgmk468" path="res://power_up_brick.tscn" id="1_o82yy"]
 [ext_resource type="Script" uid="uid://dn26pr3hewvyo" path="res://coin_bumper_brick.gd" id="2_x6v0y"]
-[ext_resource type="Texture2D" uid="uid://c3m1hoh3ponc2" path="res://assets/overworld-ground and stone.png" id="3_xh3sf"]
+[ext_resource type="Texture2D" uid="uid://capes54fyhh2" path="res://assets/overworld -coins.png" id="3_xh3sf"]
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="4_xh3sf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xh3sf"]

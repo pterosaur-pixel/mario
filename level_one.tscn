@@ -394,6 +394,7 @@ stream = ExtResource("20_hiwaj")
 playback_type = 1
 
 [node name="IntermissionScreen" parent="." instance=ExtResource("22_pflst")]
+visible = false
 position = Vector2(-1009, 97)
 
 [node name="FallCollider" parent="." instance=ExtResource("23_c6i7l")]

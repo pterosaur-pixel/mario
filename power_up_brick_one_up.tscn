@@ -34,7 +34,6 @@ resource_local_to_scene = true
 size = Vector2(16, 9)
 
 [node name="PowerUpBrickOneUP" instance=ExtResource("1_je8hl")]
-visible = false
 script = ExtResource("2_1et4k")
 
 [node name="Sprite2D" parent="." index="0"]

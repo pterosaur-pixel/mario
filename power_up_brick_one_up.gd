@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 func _ready() -> void:
-	hide()
+	if GameStatus.theme == 'overworld':
+		hide()
+	elif GameStatus.theme == 'underground':
+		show()
 	set_physics_process(false)
 	$AnimationPlayer.play("brick-questiion-mark")
 	$MushroomArea/CollisionShape2D.set_disabled(true)

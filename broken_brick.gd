@@ -1,6 +1,9 @@
 extends CharacterBody2D
 func _ready() -> void:
-	$AnimationPlayer.play("broken-brick")
+	if GameStatus.theme == 'overworld':
+		$AnimationPlayer.play("broken-brick")
+	elif GameStatus.theme == 'underground':
+		$AnimationPlayer.play("brick-broken-underground")
 	$AudioStreamPlayer.play()
 
 func _process(delta: float) -> void:
