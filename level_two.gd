@@ -47,10 +47,10 @@ func _on_mario_game_over() -> void:
 	print(MarioLives.lives, "lives remaining")
 	if MarioLives.lives == 0:
 		print('Game Over and fish sticks for all on level TWO')
-		Score.score = 0
-		CoinCount.coin_count = 0
-		PowerupStatus.powerup_status = 0 
-		GameStatus.mario_invincible = false
+		#Score.score = 0
+		#CoinCount.coin_count = 0
+		#PowerupStatus.powerup_status = 0 
+		#GameStatus.mario_invincible = false
 		GameStatus.ready_for_game_over = true
 		queue_free()
 	else:
@@ -60,10 +60,10 @@ func _on_mario_game_over() -> void:
 func _on_fall_collider_body_entered(_body: Node2D) -> void:
 	MarioLives.lives -= 1
 	if MarioLives.lives == 0:
-		Score.score = 0
-		CoinCount.coin_count = 0
-		PowerupStatus.powerup_status = 0 
-		GameStatus.mario_invincible = false
+		#Score.score = 0
+		#CoinCount.coin_count = 0
+		#PowerupStatus.powerup_status = 0 
+		#GameStatus.mario_invincible = false
 		GameStatus.ready_for_game_over = true
 		queue_free()
 	else:

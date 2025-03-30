@@ -11,15 +11,14 @@ func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	print('game status', GameStatus.ready_for_game_over)
 	if MarioLives.lives == 0 and not screen_shown and not is_just_opened and not started_gos and GameStatus.ready_for_game_over:
-		#GameStatus.ready_for_game_over = false
 		started_gos = true
 		can_show_gs = false
-		$HUD.hide()
 		var game_over_screen = game_over_scene.instantiate()
 		add_child(game_over_screen)
 		$AudioStreamPlayer.play()
+		$HUD.show()
+		$HUD/GameTime/Timer.stop()
 		await get_tree().create_timer(3.77).timeout
 		game_over_screen.queue_free()
 		started_gos = false
@@ -27,6 +26,11 @@ func _process(_delta: float) -> void:
 		
 	if MarioLives.lives == 0 and not screen_shown and can_show_gs and GameStatus.ready_for_game_over: 
 		GameStatus.ready_for_game_over = false
+		$HUD.hide()
+		Score.score = 0
+		CoinCount.coin_count = 0
+		PowerupStatus.powerup_status = 0 
+		GameStatus.mario_invincible = false
 		var game_start_screen = game_start_scene.instantiate()
 		add_child(game_start_screen)
 		game_start_screen.start_game.connect(_on_start_game)
