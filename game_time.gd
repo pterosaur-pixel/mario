@@ -8,7 +8,9 @@ func _process(_delta: float) -> void:
 		TimeLeft.time_left -= 1
 		if TimeLeft.time_left < 0:
 			print('game_over')
-			queue_free()
+			$Timer.stop()
+			hide()
+			set_process(false)
 		if TimeLeft.time_left < 10:
 			text = '00'+str(TimeLeft.time_left)
 		elif TimeLeft.time_left < 100:
@@ -23,7 +25,9 @@ func _on_timer_timeout() -> void:
 	TimeLeft.time_left -= 1
 	if TimeLeft.time_left < 0:
 		print('game_over')
-		queue_free()
+		$Timer.stop()
+		hide()
+		set_process(false)
 	if TimeLeft.time_left < 10:
 		text = '00'+str(TimeLeft.time_left)
 	elif TimeLeft.time_left < 100:
@@ -35,6 +39,8 @@ func _on_main_start_timer() -> void:
 	$Timer.stop()
 	TimeLeft.time_left = 300
 	text = str(300)
+	show()
 	await get_tree().create_timer(2).timeout
 	$Timer.start()
+	#set_process(true)
 	

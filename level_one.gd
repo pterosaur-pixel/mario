@@ -7,6 +7,7 @@ signal fall_collider_entered
 signal camera_stop
 signal camera_go
 signal timer_countdown
+signal camera_move_two
 var fireworks_scene = preload("res://fireworks.tscn")
 var number_of_fireworks
 var mario_underground = false
@@ -45,9 +46,6 @@ func _on_mushroom_mushroom_killed_mario() -> void:
 	$AudioStreamPlayer2.stop()
 	$AudioStreamPlayer3.stop()
 	$AudioStreamPlayer4.stop()
-	
-	
-	
 	print("dead mario")
 	
 	
@@ -65,17 +63,6 @@ func _on_mario_game_over() -> void:
 	else:
 		GameStatus.mario_invincible = false
 		$/root/Main.reload_level_one()
-		#reload_level_one.emit()
-		#queue_free()
-		
-		#get_tree().change_scene_to_file("res://level_one.tscn")
-		#get_tree().call_deferred("change_scene_to_file", "res://level_one.tscn")
-		
-		#get_tree().reload_current_scene()
-		#print(MarioLives.lives)
-		#start_game.emit()
-		
-	#get_tree().paused = false
 		
 func _on_game_start_start_game() -> void:
 	pass
@@ -144,6 +131,7 @@ func _on_audio_stream_player_finished() -> void:
 		make_fireworks(Vector2(1225, 75))
 		await get_tree().create_timer(0.7).timeout
 		make_fireworks(Vector2(1275, 65))
+		await get_tree().create_timer(0.7).timeout
 		
 	if number_of_fireworks == 6:
 		make_fireworks(Vector2(1250, 50))
@@ -157,7 +145,9 @@ func _on_audio_stream_player_finished() -> void:
 		make_fireworks(Vector2(1235, 40))
 		await get_tree().create_timer(0.7).timeout
 		make_fireworks(Vector2(1295, 70))
-
+		await get_tree().create_timer(0.7).timeout
+		
+	camera_move_two.emit()
 
 func _on_portal_to_underground_mario_to_underground() -> void:
 	mario_underground = true
@@ -210,3 +200,30 @@ func _on_main_start_l_1() -> void:
 
 func _on_mario_start_playing_regular_music() -> void:
 	$AudioStreamPlayer2.play()
+
+
+func _on_camera_2d_move_mario_to_pipe() -> void:
+	$Mario.show()
+	if PowerupStatus.powerup_status == 0:
+		$Mario/AnimationPlayer.play("mario-little-running")
+	if PowerupStatus.powerup_status == 1:
+		$Mario/AnimationPlayer.play("mario-running")
+	if PowerupStatus.powerup_status >= 2:
+		$Mario/AnimationPlayer.play("mario-powerup-running")
+	for i in range(0, 55):
+		$Mario.global_position.x += 2
+		await get_tree().create_timer(0.033).timeout
+	$Mario.set_z_index(-1)
+	$Mario/AudioStreamPlayer2.play()
+	$Mario.global_position.y -= 3
+	for i in range(0, 20):
+		$Mario.global_position.x += 1
+		await get_tree().create_timer(0.033).timeout
+	$Mario.hide()
+	Stage.stage = 2
+	GameStatus.theme = 'underground'
+	get_tree().paused = false
+	$/root/Main.load_world_one_stage_two()
+
+		
+	

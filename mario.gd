@@ -101,27 +101,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 	if invincible == 1:
-		hide()
+		$Sprite2D.hide()
 		invincible = 2
 	elif invincible == 2:
-		show()
+		$Sprite2D.show()
 		invincible = 1
 	if GameStatus.mario_invincible and first_trigger:
 		$AudioStreamPlayer4.play()
-		print('should be musicing')
 		first_trigger = false
-		#set_collision_layer_value(1, false)
-		#set_collision_layer_value(2, false)
-		#set_collision_mask_value(1, false)
-		#set_collision_mask_value(2, false)
 		invincible = 1
 		await get_tree().create_timer(10).timeout
 		invincible = 0
-		show()
-		#set_collision_layer_value(1, true)
-		#set_collision_layer_value(2, true)
-		#set_collision_mask_value(1, true)
-		#set_collision_mask_value(2, true)
+		$Sprite2D.show()
 		first_trigger = true
 		$AudioStreamPlayer4.stop()
 		GameStatus.mario_invincible = false

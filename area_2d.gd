@@ -16,7 +16,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(_Body: CharacterBody2D) -> void:
-	#print('hello')
 	if first_hit:
 		print('first hit')
 		mushroom_hit.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsm1yccigisgs"]
+[gd_scene load_steps=15 format=3 uid="uid://dsm1yccigisgs"]
 
 [ext_resource type="PackedScene" uid="uid://cg6ggbbgmk468" path="res://power_up_brick.tscn" id="1_o82yy"]
 [ext_resource type="Script" uid="uid://dn26pr3hewvyo" path="res://coin_bumper_brick.gd" id="2_x6v0y"]
@@ -32,13 +32,129 @@ region = Rect2(178, 36, 21, 16)
 resource_local_to_scene = true
 size = Vector2(16, 9)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn5oo"]
+atlas = ExtResource("4_xh3sf")
+region = Rect2(440, 166, 16, 16)
+
+[sub_resource type="Animation" id="Animation_ey0tv"]
+resource_name = "brick-underground"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D4:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(440, 166, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D4:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D4:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D4:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_j4e33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D4:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(440, 166, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D4:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D4:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D4:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xkkxh"]
+_data = {
+&"RESET": SubResource("Animation_j4e33"),
+&"brick-underground": SubResource("Animation_ey0tv")
+}
+
 [node name="CoinBumperBrick" instance=ExtResource("1_o82yy")]
 collision_layer = 1028
 collision_mask = 1028
 script = ExtResource("2_x6v0y")
 
 [node name="Sprite2D" parent="." index="0"]
+visible = false
 texture = SubResource("AtlasTexture_xh3sf")
+
+[node name="Area2D" parent="." index="2"]
+visible = true
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("RectangleShape2D_kn5oo")
@@ -54,6 +170,16 @@ texture = SubResource("AtlasTexture_xkkxh")
 
 [node name="CollisionShape2D" parent="MushroomArea" index="0"]
 shape = SubResource("RectangleShape2D_fuy2j")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="11"]
+visible = false
+position = Vector2(0, 4)
+texture = SubResource("AtlasTexture_kn5oo")
+
+[node name="AnimationPlayer4" type="AnimationPlayer" parent="." index="12"]
+libraries = {
+&"": SubResource("AnimationLibrary_xkkxh")
+}
 
 [connection signal="bump" from="Area2D" to="." method="_on_area_2d_bump"]
 [connection signal="start_bumping" from="Area2D" to="." method="_on_area_2d_start_bumping"]

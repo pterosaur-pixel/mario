@@ -1,4 +1,4 @@
 extends Node
 var flagpole = false
 var mario_invincible = false
-var theme = 'underground'
+var theme = 'overworld'

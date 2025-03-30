@@ -21,8 +21,9 @@ func _on_start_game():
 	MarioLives.lives = 3
 	World.world = 1
 	Stage.stage = 1
-	var level_one_scene = load("res://level_one.tscn")
-	load_level(level_one_scene)
+	# IMPORTANT var level_one_scene = load("res://level_one.tscn")
+	var level_two_scene = load("res://level_two.tscn")
+	load_level(level_two_scene)
 	screen_shown = false
 	
 
@@ -55,6 +56,9 @@ func reload_level_one() -> void:
 	var level_one_scene = load("res://level_one.tscn")
 	load_level(level_one_scene)
 func reload_level_two() -> void:
+	var level_two_scene = load("res://level_two.tscn")
+	load_level(level_two_scene)
+func load_world_one_stage_two() -> void:
 	var level_two_scene = load("res://level_two.tscn")
 	load_level(level_two_scene)
 func load_level_one_underground() -> void:
