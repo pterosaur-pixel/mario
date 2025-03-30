@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bftuafhnhaa40"]
+[gd_scene load_steps=28 format=4 uid="uid://bftuafhnhaa40"]
 
 [ext_resource type="Texture2D" uid="uid://dk4aetw77m605" path="res://assets/underground - ground and stone.png" id="1_7v2bu"]
 [ext_resource type="Script" uid="uid://bxlyfulwrln1t" path="res://level_two.gd" id="1_m7216"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://u6bnpqxl1r5c" path="res://brick_filler.tscn" id="13_j03hg"]
 [ext_resource type="PackedScene" uid="uid://dsm1yccigisgs" path="res://coin_bumper_brick.tscn" id="14_48q8l"]
 [ext_resource type="PackedScene" uid="uid://d1tngnw551ucx" path="res://fall_collider.tscn" id="17_f8h4k"]
+[ext_resource type="PackedScene" uid="uid://dcnop00ckkafi" path="res://floating_platform.tscn" id="18_klqtm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cnkpv"]
 texture = ExtResource("1_7v2bu")
@@ -192,7 +193,7 @@ tile_map_data = PackedByteArray("AADf/wwAAAAHAAEAAADg/wwAAAAIAAEAAADf/wsAAAAHAAA
 tile_set = SubResource("TileSet_lfs58")
 
 [node name="Mario" parent="." instance=ExtResource("3_72vtx")]
-position = Vector2(-1190, 36)
+position = Vector2(593, 83)
 
 [node name="L2Camera" type="Camera2D" parent="."]
 position = Vector2(-1103, 121)
@@ -290,7 +291,21 @@ visible = false
 position = Vector2(-1092, 144)
 
 [node name="FallCollider" parent="." instance=ExtResource("17_f8h4k")]
-position = Vector2(0, 37)
+position = Vector2(0, 34)
+
+[node name="FloatingPlatform" parent="." instance=ExtResource("18_klqtm")]
+position = Vector2(678, 38)
+
+[node name="FloatingPlatform2" parent="." instance=ExtResource("18_klqtm")]
+position = Vector2(678, 149)
+
+[node name="FloatingPlatform3" parent="." instance=ExtResource("18_klqtm")]
+position = Vector2(953, 38)
+type_of_platform = 1
+
+[node name="FloatingPlatform4" parent="." instance=ExtResource("18_klqtm")]
+position = Vector2(953, 149)
+type_of_platform = 1
 
 [connection signal="camera_stop" from="." to="L2Camera" method="_on_level_two_camera_stop"]
 [connection signal="fall_collider_entered" from="." to="Mario" method="_on_level_two_fall_collider_entered"]
