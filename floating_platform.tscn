@@ -11,6 +11,7 @@ region = Rect2(116, 64, 48, 8)
 size = Vector2(48, 8)
 
 [node name="FloatingPlatform" type="CharacterBody2D"]
+platform_on_leave = 2
 script = ExtResource("1_1314b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,4 +24,10 @@ shape = SubResource("RectangleShape2D_7teko")
 position = Vector2(-1.43051e-06, -14)
 scale = Vector2(2.4, 1.8)
 
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-22, 0.5)
+scale = Vector2(0.2, 0.95)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D2" to="." method="_on_visible_on_screen_notifier_2d_2_screen_entered"]

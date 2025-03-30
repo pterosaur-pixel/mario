@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b73gmeflwcday"]
+[gd_scene load_steps=20 format=3 uid="uid://b73gmeflwcday"]
 
 [ext_resource type="Script" uid="uid://wobjpwkcckga" path="res://node_2d.gd" id="1_0hol4"]
 [ext_resource type="Script" uid="uid://dt5ucp7saaxv2" path="res://sub_viewport_container.gd" id="4_kdubu"]
@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://cs4tsmsb7p6md" path="res://assets/audio/smb_pause.wav" id="11_nr8wp"]
 [ext_resource type="Script" uid="uid://m3l3j6tsst60" path="res://coin_count_label.gd" id="12_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://capes54fyhh2" path="res://assets/overworld -coins.png" id="13_0h7mo"]
+[ext_resource type="Script" uid="uid://g2ghoqf6ffkg" path="res://world_count_label.gd" id="13_d2bti"]
+[ext_resource type="AudioStream" uid="uid://dej6rjx5qqor4" path="res://assets/audio/smb_gameover.wav" id="13_nr8wp"]
+[ext_resource type="Script" uid="uid://5p77gkjdoag0" path="res://stage_count_label.gd" id="14_d2bti"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nr8wp"]
 atlas = ExtResource("13_0h7mo")
@@ -222,6 +225,45 @@ text = "X"
 libraries = {
 &"": SubResource("AnimationLibrary_flf07")
 }
+
+[node name="WorldLabel" type="Label" parent="HUD"]
+offset_left = 135.0
+offset_top = 6.0
+offset_right = 185.0
+offset_bottom = 21.0
+theme = ExtResource("6_rj586")
+text = "WORLD"
+horizontal_alignment = 1
+
+[node name="World" type="Label" parent="HUD"]
+offset_left = 141.0
+offset_top = 18.0
+offset_right = 152.0
+offset_bottom = 33.0
+theme = ExtResource("6_rj586")
+text = "1"
+script = ExtResource("13_d2bti")
+
+[node name="dash" type="Label" parent="HUD"]
+offset_left = 154.0
+offset_top = 17.0
+offset_right = 166.0
+offset_bottom = 30.0
+theme = ExtResource("6_rj586")
+text = "-"
+
+[node name="Stage" type="Label" parent="HUD"]
+offset_left = 169.0
+offset_top = 18.0
+offset_right = 184.0
+offset_bottom = 41.0
+theme = ExtResource("6_rj586")
+text = "1
+"
+script = ExtResource("14_d2bti")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_nr8wp")
 
 [connection signal="start_timer" from="." to="HUD/GameTime" method="_on_main_start_timer"]
 [connection signal="timeout" from="HUD/GameTime/Timer" to="HUD/GameTime" method="_on_timer_timeout"]

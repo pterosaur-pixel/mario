@@ -51,23 +51,24 @@ func _on_mario_game_over() -> void:
 		CoinCount.coin_count = 0
 		PowerupStatus.powerup_status = 0 
 		GameStatus.mario_invincible = false
+		GameStatus.ready_for_game_over = true
 		queue_free()
 	else:
 		GameStatus.mario_invincible = false
 		$/root/Main.reload_level_two()
 	
 func _on_fall_collider_body_entered(_body: Node2D) -> void:
-	fall_collider_entered.emit()
 	MarioLives.lives -= 1
 	if MarioLives.lives == 0:
 		Score.score = 0
 		CoinCount.coin_count = 0
-	PowerupStatus.powerup_status = 0
-	GameStatus.mario_invincible = false
-	#$AudioStreamPlayer2.stop()
-	#$AudioStreamPlayer3.stop()
-	#$AudioStreamPlayer4.stop()
-	$/root/Main.reload_level_two()
+		PowerupStatus.powerup_status = 0 
+		GameStatus.mario_invincible = false
+		GameStatus.ready_for_game_over = true
+		queue_free()
+	else:
+		GameStatus.mario_invincible = false
+		$/root/Main.reload_level_two()
 
 
 func _on_mario_camera_stop() -> void:

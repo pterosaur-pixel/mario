@@ -14,12 +14,14 @@ var mario_underground = false
 var already_started = false
 
 func _ready() -> void:
+	$Mario.set_physics_process(false)
 	GameStatus.flagpole = false
 	set_physics_process(false)
 	$IntermissionScreen.show()
 	await get_tree().create_timer(2).timeout
 	$IntermissionScreen.queue_free()
 	start_game.emit()
+	$Mario.set_physics_process(true)
 	$AudioStreamPlayer2.play()
 	
 
@@ -59,6 +61,8 @@ func _on_mario_game_over() -> void:
 		CoinCount.coin_count = 0
 		PowerupStatus.powerup_status = 0 
 		GameStatus.mario_invincible = false
+		#await get_tree().create_timer(2.7).timeout
+		GameStatus.ready_for_game_over = true
 		queue_free()
 	else:
 		GameStatus.mario_invincible = false
@@ -68,17 +72,21 @@ func _on_game_start_start_game() -> void:
 	pass
 	
 func _on_fall_collider_body_entered(_body: Node2D) -> void:
-	fall_collider_entered.emit()
+	#fall_collider_entered.emit()
 	MarioLives.lives -= 1
-	if MarioLives.lives == 0:
+	if MarioLives.lives <= 0:
+		#print('Mario is dead by falling')
 		Score.score = 0
 		CoinCount.coin_count = 0
-	PowerupStatus.powerup_status = 0
-	GameStatus.mario_invincible = false
-	$AudioStreamPlayer2.stop()
-	$AudioStreamPlayer3.stop()
-	$AudioStreamPlayer4.stop()
-	$/root/Main.reload_level_one()
+		PowerupStatus.powerup_status = 0 
+		GameStatus.mario_invincible = false
+		GameStatus.ready_for_game_over = true
+		queue_free()
+	else:
+		GameStatus.mario_invincible = false
+		$/root/Main.reload_level_one()
+		
+	
 
 func _on_mario_should_jumpl_1() -> void:
 	pass # Replace with function body.

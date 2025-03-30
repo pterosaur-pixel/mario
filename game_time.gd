@@ -42,5 +42,5 @@ func _on_main_start_timer() -> void:
 	show()
 	await get_tree().create_timer(2).timeout
 	$Timer.start()
-	#set_process(true)
+	set_process(true)
 	

@@ -27,7 +27,7 @@ func _on_mario_bump_area_body_entered(_body: Node2D) -> void:
 		await get_tree().create_timer(0.5).timeout
 	#await get_tree().create_timer(0.25).timeout
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled",true)
-	elif PowerupStatus.powerup_status <= 2:
+	elif PowerupStatus.powerup_status >= 1:
 		$MushroomArea/CollisionShape2D.call_deferred("set_disabled",false)
 		var broken_brick_1 = broken_brick_scene.instantiate()
 		var broken_brick_2 = broken_brick_scene.instantiate()

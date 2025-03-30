@@ -26,6 +26,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	MarioGlobalPosition.mario_global_position_x = global_position.x
+	$Sprite2D.show()
 	if not last_pu == PowerupStatus.powerup_status:
 		last_pu = PowerupStatus.powerup_status
 		if last_pu <= 0 and can_change_colliders:
@@ -46,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-
+		
 	if Input.is_action_just_pressed("move_up") and is_on_floor():
 		$AudioStreamPlayer3.play(0.1)
 		velocity.y = JUMP_VELOCITY
@@ -264,27 +265,25 @@ func _on_level_two_mario_should_jumpl_2() -> void:
 
 func _on_level_two_mushroom_killed_mario_l_2() -> void:
 	mario_dead_mushroom()
+	
 func mario_dead_mushroom():
 	$AudioStreamPlayer.play()
 	set_physics_process(false)
 	set_z_index(3)
-	$AnimationPlayer.play("mario-dead")	
-	
+	$AnimationPlayer.play("mario-dead")		
 	$CollisionPolygon2D.call_deferred("set_disabled", true)
 	$CollisionPolygon2D2.call_deferred("set_disabled", true)
-	$CollisionPolygon2D3.call_deferred("set_disabled", true)
-		
+	$CollisionPolygon2D3.call_deferred("set_disabled", true)	
 	velocity.y = -200
-
 	for i in range(0, 10):
 		move_and_slide()
 		await get_tree().create_timer(0.06).timeout
-	print(velocity.y)
-	velocity.y = 600
 	
+	velocity.y = 600
 	for i in range(0, 20):
 		move_and_slide()
 		await get_tree().create_timer(0.06).timeout
+	print('emitting game over signal from mario.')
 	game_over.emit()
 
 
