@@ -87,8 +87,9 @@ func _on_area_2d_body_entered(_body: CharacterBody2D) -> void:
 		await get_tree().create_timer(1).timeout
 		hide()
 	elif type_of_powerup == 2:
-		$PointLabel.text = "ONE UP"
+		$PointLabel.text = "1 UP"
 		MarioLives.lives += 1
+		GameStatus.one_up_gettable = false
 		set_process(false)
 		$Sprite2D.hide()
 		$PointLabel.show()

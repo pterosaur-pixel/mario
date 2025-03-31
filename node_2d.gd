@@ -49,6 +49,7 @@ func _on_start_game():
 	var level_one_scene = load("res://level_one.tscn")
 	#var level_two_scene = load("res://level_two.tscn")
 	load_level(level_one_scene)
+	GameStatus.one_up_gettable = true
 	screen_shown = false
 	
 
@@ -75,7 +76,9 @@ func exit_level_addition():
 		additional_level.queue_free()
 	level_container.call_deferred("add_child", current_level)
 	
-		
+func exit_level() -> void:
+	if not current_level == null:
+		current_level.queue_free()		
 
 func reload_level_one() -> void:
 	var level_one_scene = load("res://level_one.tscn")
@@ -84,8 +87,10 @@ func reload_level_two() -> void:
 	var level_two_scene = load("res://level_two.tscn")
 	load_level(level_two_scene)
 func load_world_one_stage_two() -> void:
+	GameStatus.one_up_gettable = true
 	var level_two_scene = load("res://level_two.tscn")
 	load_level(level_two_scene)
+	
 func load_level_one_underground() -> void:
 	var level_one_underground_scene = load("res://underground_room.tscn")
 	load_level_addition(level_one_underground_scene)

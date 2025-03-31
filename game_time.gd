@@ -24,10 +24,31 @@ func _process(_delta: float) -> void:
 func _on_timer_timeout() -> void:
 	TimeLeft.time_left -= 1
 	if TimeLeft.time_left < 0:
-		print('game_over')
 		$Timer.stop()
-		hide()
-		set_process(false)
+		MarioLives.lives -= 1
+		if MarioLives.lives <= 0:
+			$/root/Main.exit_level()
+			$TimeoutScreen.show()
+			await get_tree().create_timer(2).timeout
+			$TimeoutScreen.hide()
+			GameStatus.ready_for_game_over = true
+			
+			
+		else:
+			$/root/Main.exit_level()
+			$TimeoutScreen.show()
+			await get_tree().create_timer(2).timeout
+			$TimeoutScreen.hide()
+			PowerupStatus.powerup_status = 0 
+			GameStatus.mario_invincible = false
+			
+			if World.world == 1:
+				if Stage.stage == 1:
+					$/root/Main.reload_level_one()
+				elif Stage.stage == 2:
+					$/root/Main.reload_level_two()
+
+
 	if TimeLeft.time_left < 10:
 		text = '00'+str(TimeLeft.time_left)
 	elif TimeLeft.time_left < 100:

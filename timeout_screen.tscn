@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwmcwsh1oj141"]
+
+[ext_resource type="Texture2D" uid="uid://cupquo8t7tb5" path="res://assets/NES - Super Mario Bros - Title Screen HUD and Miscellaneous.png" id="1_22r35"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0exe2"]
+atlas = ExtResource("1_22r35")
+region = Rect2(267, 380, 253, 239)
+
+[node name="TimeoutScreen" type="CharacterBody2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -31.0
+offset_top = -24.0
+offset_right = 280.0
+offset_bottom = 258.0
+color = Color(3.72304e-05, 3.72304e-05, 3.72304e-05, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(128, 121)
+texture = SubResource("AtlasTexture_0exe2")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -8.0
+offset_right = 261.0
+offset_bottom = 56.0
+color = Color(0.00139673, 0.00139673, 0.00139673, 1)
+metadata/_edit_use_anchors_ = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b73gmeflwcday"]
+[gd_scene load_steps=21 format=3 uid="uid://b73gmeflwcday"]
 
 [ext_resource type="Script" uid="uid://wobjpwkcckga" path="res://node_2d.gd" id="1_0hol4"]
 [ext_resource type="Script" uid="uid://dt5ucp7saaxv2" path="res://sub_viewport_container.gd" id="4_kdubu"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://g2ghoqf6ffkg" path="res://world_count_label.gd" id="13_d2bti"]
 [ext_resource type="AudioStream" uid="uid://dej6rjx5qqor4" path="res://assets/audio/smb_gameover.wav" id="13_nr8wp"]
 [ext_resource type="Script" uid="uid://5p77gkjdoag0" path="res://stage_count_label.gd" id="14_d2bti"]
+[ext_resource type="PackedScene" uid="uid://bwmcwsh1oj141" path="res://timeout_screen.tscn" id="16_ta5nu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nr8wp"]
 atlas = ExtResource("13_0h7mo")
@@ -173,6 +174,10 @@ wait_time = 0.5
 stream = ExtResource("11_nr8wp")
 volume_db = -5.0
 pitch_scale = 0.77
+
+[node name="TimeoutScreen" parent="HUD/GameTime" instance=ExtResource("16_ta5nu")]
+visible = false
+position = Vector2(-208, -18)
 
 [node name="TimeLabel" type="Label" parent="HUD"]
 offset_left = 199.0

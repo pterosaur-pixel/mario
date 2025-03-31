@@ -1,13 +1,16 @@
 extends CharacterBody2D
 
 func _ready() -> void:
-	if GameStatus.theme == 'overworld':
-		hide()
-	elif GameStatus.theme == 'underground':
-		show()
-	set_physics_process(false)
-	$AnimationPlayer.play("brick-questiion-mark")
-	$MushroomArea/CollisionShape2D.set_disabled(true)
+	if GameStatus.one_up_gettable:
+		if GameStatus.theme == 'overworld':
+			hide()
+		elif GameStatus.theme == 'underground':
+			show()
+		set_physics_process(false)
+		$AnimationPlayer.play("brick-questiion-mark")
+		$MushroomArea/CollisionShape2D.set_disabled(true)
+	else:
+		queue_free()
 var powerup_scene = preload("res://power_up_object.tscn")
 var powerup
 var direction = 1
@@ -35,6 +38,7 @@ func _on_animation_player_2_animation_finished(_anim_name: StringName) -> void:
 	powerup.global_position.y = global_position.y - 12
 	add_sibling(powerup)
 	powerup.velocity.x = 35
+	
 
 func _on_mushroom_area_body_entered(_body: Node2D) -> void:
 	$MushroomArea/CollisionShape2D.set_disabled(true)

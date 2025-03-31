@@ -65,6 +65,7 @@ func _on_mario_game_over() -> void:
 		GameStatus.ready_for_game_over = true
 		queue_free()
 	else:
+		PowerupStatus.powerup_status = 0 
 		GameStatus.mario_invincible = false
 		$/root/Main.reload_level_one()
 		
@@ -83,6 +84,7 @@ func _on_fall_collider_body_entered(_body: Node2D) -> void:
 		GameStatus.ready_for_game_over = true
 		queue_free()
 	else:
+		PowerupStatus.powerup_status = 0 
 		GameStatus.mario_invincible = false
 		$/root/Main.reload_level_one()
 		
