@@ -1,2 +1,2 @@
 extends Node
-var coin_count = 0
+var coin_count = 00

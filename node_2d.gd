@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 		GameStatus.ready_for_game_over = false
 		$HUD.hide()
 		Score.score = 0
-		CoinCount.coin_count = 0
+		CoinCount.coin_count = 99
 		PowerupStatus.powerup_status = 0 
 		GameStatus.mario_invincible = false
 		var game_start_screen = game_start_scene.instantiate()
