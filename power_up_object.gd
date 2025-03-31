@@ -99,3 +99,10 @@ func _on_area_2d_body_entered(_body: CharacterBody2D) -> void:
 		hide()
 func _on_audio_stream_player_2_finished() -> void:
 	queue_free()
+
+
+func _on_brick_moved_collider_area_entered(area: Area2D) -> void:
+	print('hit by a brick', direction)
+	direction = -direction
+	velocity.x = direction * 35
+	print(direction)

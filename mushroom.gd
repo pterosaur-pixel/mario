@@ -188,7 +188,6 @@ func _on_mushroom_killed_score_label_done_displaying() -> void:
 func _on_mushroom_collider_area_entered(area: Area2D) -> void:
 	if not area.name == "MushroomCollider":
 		print(area.name)
-		print('dead mushroom by the means of a brick up the rear')
 		twirly_dead()
 		
 		
