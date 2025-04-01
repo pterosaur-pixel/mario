@@ -24,6 +24,7 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 func grabbed_pole(points_given):
 	if can_grab_pole:
 		can_grab_pole = false
+		#print("grabbed pole")
 		Score.score += points_given
 		mario_grabbed_pole.emit()
 		await get_tree().create_timer(1.2).timeout
@@ -39,10 +40,10 @@ func _on_mario_mario_in_castle() -> void:
 	set_z_index(-1)
 	$Label.visible = false
 	#$Sprite2D.visible = false
-	$Sprite2D2.global_position = Vector2(1275, 120)
+	$Sprite2D2.global_position = Vector2(500, 50)
 	$Sprite2D2.visible = true
 	$AnimationPlayer2.play("castle-flag-rising")
-
+	print($Sprite2D2.global_position, $Sprite2D2.visible)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "moving_flag":

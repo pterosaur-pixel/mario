@@ -18,12 +18,31 @@ var first_trigger = true
 
 #var last_pu = PowerupStatus.powerup_status
 func _ready() -> void:
+	set_z_index(-1)
+	set_physics_process(false)
 	screen_size = get_viewport_rect().size
 	MarioGlobalPosition.mario_global_position_x = global_position.x
 	$CollisionPolygon2D.call_deferred("set_disabled", false)
 	$CollisionPolygon2D2.call_deferred("set_disabled", true)	
 	$CollisionPolygon2D3.call_deferred("set_disabled", true)	
-
+	if PowerupStatus.powerup_status == 0:
+		$AnimationPlayer.play("mario-little-idle")
+		$CollisionPolygon2D.set_disabled(true)
+	elif PowerupStatus.powerup_status == 1:
+		$AnimationPlayer.play("mario-idle")
+		$CollisionPolygon2D.set_disabled(true)
+	elif PowerupStatus.powerup_status >= 2:
+		$AnimationPlayer.play("mario-powerup-idle")
+		$CollisionPolygon2D.set_disabled(true)
+	
+	for i in range(0, 10):
+		global_position.y -= 2
+		await get_tree().create_timer(0.033).timeout
+	$CollisionPolygon2D.set_disabled(false)
+	$CollisionPolygon2D.set_disabled(false)
+	$CollisionPolygon2D.set_disabled(false)
+	set_physics_process(true)
+	set_z_index(0)
 func _physics_process(delta: float) -> void:
 	MarioGlobalPosition.mario_global_position_x = global_position.x
 	$Sprite2D.show()
@@ -226,6 +245,7 @@ func end_animation(size):
 	$AnimationPlayer.play("mario-"+size + "flagpole")
 	global_position.x += 2
 	velocity.y = 200
+	velocity.x = 0
 	await get_tree().create_timer(0.1).timeout
 	$AnimationPlayer.pause()
 	await get_tree().create_timer(1).timeout

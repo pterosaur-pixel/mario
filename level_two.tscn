@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bftuafhnhaa40"]
+[gd_scene load_steps=29 format=4 uid="uid://bftuafhnhaa40"]
 
 [ext_resource type="Texture2D" uid="uid://dk4aetw77m605" path="res://assets/underground - ground and stone.png" id="1_7v2bu"]
 [ext_resource type="Script" uid="uid://bxlyfulwrln1t" path="res://level_two.gd" id="1_m7216"]
@@ -176,6 +176,9 @@ physics_layer_0/collision_layer = 1061
 physics_layer_0/collision_mask = 1061
 sources/0 = SubResource("TileSetAtlasSource_72vtx")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klqtm"]
+size = Vector2(32, 21)
+
 [node name="LevelTwo" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_m7216")
@@ -193,7 +196,7 @@ tile_map_data = PackedByteArray("AADf/wwAAAAHAAEAAADg/wwAAAAIAAEAAADf/wsAAAAHAAA
 tile_set = SubResource("TileSet_lfs58")
 
 [node name="Mario" parent="." instance=ExtResource("3_72vtx")]
-position = Vector2(-1177, 36)
+position = Vector2(-1176, 45)
 
 [node name="L2Camera" type="Camera2D" parent="."]
 position = Vector2(-1103, 121)
@@ -305,6 +308,12 @@ position = Vector2(953, 38)
 [node name="FloatingPlatform4" parent="." instance=ExtResource("18_klqtm")]
 position = Vector2(953, 149)
 
+[node name="Exit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(1055, 191.5)
+shape = SubResource("RectangleShape2D_klqtm")
+
 [connection signal="camera_stop" from="." to="L2Camera" method="_on_level_two_camera_stop"]
 [connection signal="fall_collider_entered" from="." to="Mario" method="_on_level_two_fall_collider_entered"]
 [connection signal="mario_should_jumpl2" from="." to="Mario" method="_on_level_two_mario_should_jumpl_2"]
@@ -357,3 +366,4 @@ position = Vector2(953, 149)
 [connection signal="mario_should_jump" from="Mushroom14" to="." method="_on_mushroom_mario_should_jump"]
 [connection signal="mushroom_killed_mario" from="Mushroom14" to="." method="_on_mushroom_mushroom_killed_mario"]
 [connection signal="body_entered" from="FallCollider" to="." method="_on_fall_collider_body_entered"]
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

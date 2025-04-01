@@ -78,7 +78,7 @@ func _on_area_2d_start_bumping() -> void:
 	#can_be_bounced = true
 	#pass
 	bumping = 1
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(6).timeout
 	bumping = 2
 	
 func _on_area_2d_bump() -> void:

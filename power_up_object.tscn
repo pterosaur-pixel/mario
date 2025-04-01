@@ -621,6 +621,7 @@ collision_mask = 16
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BrickMovedCollider"]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_8e7lv")
+disabled = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D" to="PointLabel" method="_on_area_2d_body_entered"]

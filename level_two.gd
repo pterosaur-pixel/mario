@@ -67,6 +67,7 @@ func _on_fall_collider_body_entered(_body: Node2D) -> void:
 		GameStatus.ready_for_game_over = true
 		queue_free()
 	else:
+		PowerupStatus.powerup_status = 0
 		GameStatus.mario_invincible = false
 		$/root/Main.reload_level_two()
 
@@ -171,3 +172,9 @@ func _on_main_start_l_1() -> void:
 func _on_mario_start_playing_regular_music() -> void:
 	#$AudioStreamPlayer2.play()
 	pass
+
+
+func _on_exit_body_entered(body: Node2D) -> void:
+	if body.name == 'Mario':
+		print('finished level two')
+		$/root/Main.load_flagpole_and_castle()

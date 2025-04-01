@@ -90,7 +90,9 @@ func load_world_one_stage_two() -> void:
 	GameStatus.one_up_gettable = true
 	var level_two_scene = load("res://level_two.tscn")
 	load_level(level_two_scene)
-	
+func load_flagpole_and_castle() -> void:
+	var flagpole_and_castle_scene = load("res://flagpole_and_castle.tscn")
+	load_level(flagpole_and_castle_scene)
 func load_level_one_underground() -> void:
 	var level_one_underground_scene = load("res://underground_room.tscn")
 	load_level_addition(level_one_underground_scene)

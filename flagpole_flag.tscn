@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cuwbp6b57kfwg"]
+[gd_scene load_steps=20 format=3 uid="uid://cuwbp6b57kfwg"]
 
 [ext_resource type="Script" uid="uid://dv1aslhjrtmhl" path="res://flagpole_flag.gd" id="1_78plk"]
 [ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="1_n63q3"]
@@ -175,11 +175,63 @@ tracks/4/keys = {
 "values": [Vector2(0, 0), Vector2(0, 125)]
 }
 
+[sub_resource type="Animation" id="Animation_1j7l4"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(53, 109, 59, 56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rxwdy"]
 _data = {
 &"RESET": SubResource("Animation_iy5yd"),
 &"flag": SubResource("Animation_e2bhv"),
-&"moving_flag": SubResource("Animation_78plk")
+&"moving_flag": SubResource("Animation_78plk"),
+&"new_animation": SubResource("Animation_1j7l4")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78plk"]
