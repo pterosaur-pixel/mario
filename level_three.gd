@@ -68,7 +68,7 @@ func _on_mario_game_over() -> void:
 	else:
 		PowerupStatus.powerup_status = 0 
 		GameStatus.mario_invincible = false
-		$/root/Main.reload_level_one()
+		$/root/Main.load_level_three()
 		
 func _on_game_start_start_game() -> void:
 	pass
@@ -87,7 +87,7 @@ func _on_fall_collider_body_entered(_body: Node2D) -> void:
 	else:
 		PowerupStatus.powerup_status = 0 
 		GameStatus.mario_invincible = false
-		$/root/Main.reload_level_one()
+		$/root/Main.load_level_three()
 		
 	
 
@@ -161,17 +161,7 @@ func _on_audio_stream_player_finished() -> void:
 		
 	camera_move_two.emit()
 
-func _on_portal_to_underground_mario_to_underground() -> void:
-	mario_underground = true
-	$Mario.call_deferred("set_physics_process", false)
-	$Mario.set_z_index(-1)
-	for i in range(0, 20):
-		$Mario.global_position.y += 1
-		await get_tree().create_timer(0.033).timeout
-	#hide()
-	$/root/Main.load_level_one_underground()
-#	#$AudioStreamPlayer3.play()
-	#$AudioStreamPlayer2.stop()
+
 
 
 

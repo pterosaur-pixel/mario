@@ -47,8 +47,11 @@ func _on_mario_mario_in_castle() -> void:
 		await get_tree().create_timer(0.7).timeout
 		make_fireworks(Vector2(425, 70))
 		await get_tree().create_timer(0.7).timeout
-	get_tree().paused = false
-	$/root/Main.load_level_three()
+	if Stage.stage == 2:
+		GameStatus.theme = 'overworld'
+		Stage.stage = 3
+		get_tree().paused = false
+		$/root/Main.load_level_three()
 
 func make_fireworks(place):
 	var fireworks = fireworks_scene.instantiate()

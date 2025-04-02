@@ -28,7 +28,7 @@ func _on_level_one_camera_move_two() -> void:
 func _on_level_three_camera_stop() -> void:
 	set_physics_process(false)
 	global_position.x = get_node("../Mario").global_position.x
-	for i in range(0, 45):
+	for i in range(0, 50):
 		global_position.x += 2
 		await get_tree().create_timer(0.033).timeout
 

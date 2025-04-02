@@ -196,7 +196,7 @@ tile_map_data = PackedByteArray("AADf/wwAAAAHAAEAAADg/wwAAAAIAAEAAADf/wsAAAAHAAA
 tile_set = SubResource("TileSet_lfs58")
 
 [node name="Mario" parent="." instance=ExtResource("3_72vtx")]
-position = Vector2(-1176, 45)
+position = Vector2(1018, 78)
 
 [node name="L2Camera" type="Camera2D" parent="."]
 position = Vector2(-1103, 121)

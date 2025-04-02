@@ -4,6 +4,7 @@ var direction = 1
 var star_velocity = randf_range(-450.0, -250.0)
 var type_of_powerup = 0
 func _ready() -> void:
+	print('mushroom powerup put in the tree')
 	if type_of_powerup == 0:
 		set_process(false)
 		if current_powerup == 0:
