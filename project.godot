@@ -31,12 +31,16 @@ GameStatus="*res://game_status.gd"
 
 [display]
 
-window/size/viewport_width=255
+window/size/viewport_width=256
 window/size/viewport_height=240
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/window_width_override=1400
+window/size/window_height_override=800
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+
+[editor]
+
+movie_writer/movie_file="/home/edythepalmer/godot/mario/mario.avi"
 
 [input]
 

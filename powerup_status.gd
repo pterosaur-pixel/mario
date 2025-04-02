@@ -1,2 +1,2 @@
 extends Node
-var powerup_status = 0
+var powerup_status = 1

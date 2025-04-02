@@ -487,7 +487,8 @@ size = Vector2(18, 13)
 size = Vector2(21, 19)
 
 [node name="Mushroom" type="CharacterBody2D"]
-collision_mask = 3
+collision_layer = 8193
+collision_mask = 8195
 script = ExtResource("1_ke5i0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

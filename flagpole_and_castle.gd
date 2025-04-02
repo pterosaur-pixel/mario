@@ -3,16 +3,7 @@ signal camera_stop
 var number_of_fireworks = 0
 var fireworks_scene = preload("res://fireworks.tscn")
 var already_started = false
-func _ready() -> void:
-	pass
-	#$Mario/CollisionPolygon2D.set_disabled(true)
-	#$Mario/CollisionPolygon2D2.set_disabled(true)
-	#$Mario/CollisionPolygon2D3.set_disabled(true)
-	#for i in range(0, 20):
-		#$Mario.global_position.y -= 2
-	#$Mario/CollisionPolygon2D.set_disabled(false)
-	#$Mario/CollisionPolygon2D2.set_disabled(false)
-	#$Mario/CollisionPolygon2D3.set_disabled(false)
+
 func _process(_delta: float) -> void:
 	if TimeLeft.time_left <= 90 and not already_started:
 		$AudioStreamPlayer2.stop()
@@ -56,6 +47,8 @@ func _on_mario_mario_in_castle() -> void:
 		await get_tree().create_timer(0.7).timeout
 		make_fireworks(Vector2(425, 70))
 		await get_tree().create_timer(0.7).timeout
+	get_tree().paused = false
+	$/root/Main.load_level_three()
 
 func make_fireworks(place):
 	var fireworks = fireworks_scene.instantiate()

@@ -36,8 +36,8 @@ size = Vector2(16, 9)
 atlas = ExtResource("4_xh3sf")
 region = Rect2(440, 166, 16, 16)
 
-[sub_resource type="Animation" id="Animation_ey0tv"]
-resource_name = "brick-underground"
+[sub_resource type="Animation" id="Animation_j4e33"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,8 +87,8 @@ tracks/3/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_j4e33"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_ey0tv"]
+resource_name = "brick-underground"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

@@ -33,7 +33,6 @@ func _ready() -> void:
 		if theme == 'overworld':
 			ap.play("evil-mushroom")
 		if theme == 'underground':
-			print('UNDERGROUND MUSHROOOOOM')
 			ap.play("evil-mushroom-underground")
 		$TurtleWallCollider.call_deferred("set_disabled", true)
 	velocity.x = -35
@@ -57,7 +56,6 @@ func _physics_process(delta: float) -> void:
 		if enemy == 1:
 			$Sprite2D.flip_h = not $Sprite2D.flip_h
 			global_position.x += -direction * 10
-			print($Sprite2D.flip_h)
 		if stomped == 1:
 			velocity.x = -direction * 100
 		else:
@@ -80,10 +78,11 @@ func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
 		if enemy == 1:
 			print("...turtle")
 			if stomped == 0:
+				set_collision_layer_value(14, false)
+				set_collision_mask_value(14, false)
 				$KilledByTurtleCollider/CollisionShape2D.call_deferred("set_disabled",true)
 				print("TTTTUUUUUUUURRTLE")
 				$AudioStreamPlayer.play(0.05)
-				print(Score.score)
 				if theme == 'overworld':
 					ap.play("turtle-squashed")
 				if theme == 'underground':
@@ -93,7 +92,6 @@ func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
 				velocity.x = 0
 				set_physics_process(false)
 				mario_should_jump.emit()
-				
 				stomped = 1
 				await get_tree().create_timer(0.25).timeout
 				$ShellCollider/CollisionShape2D.call_deferred("set_disabled", false)
@@ -115,7 +113,7 @@ func _on_area_2d_kill_body_entered(_body: Node2D) -> void:
 			
 			
 			
-		else:
+		elif enemy == 0:
 			#if 'mushroom' in body.name:
 				
 			#else:
@@ -225,4 +223,6 @@ func twirly_dead() -> void:
 
 
 func _on_killed_by_turtle_collider_area_entered(_area: Area2D) -> void:
+	set_collision_layer_value(14, false)
+	set_collision_mask_value(14, false)
 	twirly_dead()

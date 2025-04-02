@@ -60,6 +60,8 @@ func load_level(scene):
 		current_level.queue_free()
 	current_level = scene.instantiate()
 	level_container.call_deferred("add_child",current_level)
+	
+	
 	start_timer.emit()
 func load_level_addition(scene):
 	print('loading level one underground')
@@ -93,9 +95,15 @@ func load_world_one_stage_two() -> void:
 func load_flagpole_and_castle() -> void:
 	var flagpole_and_castle_scene = load("res://flagpole_and_castle.tscn")
 	load_level(flagpole_and_castle_scene)
+	if current_level != null:
+		current_level.queue_free()
+	current_level = flagpole_and_castle_scene.instantiate()
+	level_container.call_deferred("add_child",current_level)
 func load_level_one_underground() -> void:
 	var level_one_underground_scene = load("res://underground_room.tscn")
 	load_level_addition(level_one_underground_scene)
-
+func load_level_three() -> void:
+	var level_three_scene = load("res://level_three.tscn")
+	load_level(level_three_scene)
 func _on_camera_2d_stop_level_one() -> void:
 	pass # Replace with function body.

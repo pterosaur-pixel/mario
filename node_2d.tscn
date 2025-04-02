@@ -148,7 +148,7 @@ render_target_update_mode = 4
 
 [node name="IntermissionScreen" parent="." instance=ExtResource("7_ta5nu")]
 visible = false
-position = Vector2(127, 120)
+position = Vector2(128, 120)
 script = ExtResource("8_flf07")
 
 [node name="HUD" type="Node2D" parent="."]

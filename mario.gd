@@ -309,3 +309,7 @@ func mario_dead_mushroom():
 
 func _on_level_two_start_game() -> void:
 	set_physics_process(true)
+
+
+func _on_level_three_mario_should_jumpl_1() -> void:
+	pass # Replace with function body.
