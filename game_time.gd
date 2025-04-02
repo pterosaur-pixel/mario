@@ -47,6 +47,8 @@ func _on_timer_timeout() -> void:
 					$/root/Main.reload_level_one()
 				elif Stage.stage == 2:
 					$/root/Main.reload_level_two()
+				elif Stage.stage == 3:
+					$/root/Main.load_level_three()
 
 
 	if TimeLeft.time_left < 10:
@@ -58,6 +60,7 @@ func _on_timer_timeout() -> void:
 
 func _on_main_start_timer() -> void:
 	$Timer.stop()
+	print("starting timer")
 	TimeLeft.time_left = 300
 	text = str(300)
 	show()

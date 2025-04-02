@@ -94,7 +94,6 @@ func load_world_one_stage_two() -> void:
 	load_level(level_two_scene)
 func load_flagpole_and_castle() -> void:
 	var flagpole_and_castle_scene = load("res://flagpole_and_castle.tscn")
-	load_level(flagpole_and_castle_scene)
 	if current_level != null:
 		current_level.queue_free()
 	current_level = flagpole_and_castle_scene.instantiate()
