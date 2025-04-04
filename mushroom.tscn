@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c7jlmxfmf6nx7"]
+[gd_scene load_steps=31 format=3 uid="uid://c7jlmxfmf6nx7"]
 
 [ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="1_gvsd5"]
 [ext_resource type="Script" uid="uid://bnlow6fbnmf02" path="res://mushroom.gd" id="1_ke5i0"]
@@ -250,6 +250,59 @@ tracks/3/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_7gwmg"]
+resource_name = "plant"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(125, 180, 35, 23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="Animation" id="Animation_4gvq0"]
 resource_name = "turtle"
 length = 0.5
@@ -453,6 +506,7 @@ _data = {
 &"evil-mushroom-squashed": SubResource("Animation_jg55k"),
 &"evil-mushroom-underground": SubResource("Animation_jokqs"),
 &"evil-mushroom-underground-squished": SubResource("Animation_6byal"),
+&"plant": SubResource("Animation_7gwmg"),
 &"turtle": SubResource("Animation_4gvq0"),
 &"turtle-squashed": SubResource("Animation_uxf4e"),
 &"turtle-underground": SubResource("Animation_wr5pi"),
@@ -485,6 +539,9 @@ size = Vector2(18, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wr5pi"]
 size = Vector2(21, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeiv3"]
+size = Vector2(13, 21)
 
 [node name="Mushroom" type="CharacterBody2D"]
 collision_layer = 8193
@@ -594,6 +651,15 @@ collision_mask = 128
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_wr5pi")
 
+[node name="PlantCollider" type="Area2D" parent="."]
+z_index = -1
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantCollider"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_eeiv3")
+
 [connection signal="label_show" from="." to="MushroomKilledScoreLabel" method="_on_mushroom_label_show"]
 [connection signal="area_entered" from="Area2DKill" to="." method="_on_area_2d_kill_area_entered"]
 [connection signal="body_entered" from="Area2DKill" to="." method="_on_area_2d_kill_body_entered"]
@@ -603,3 +669,4 @@ shape = SubResource("RectangleShape2D_wr5pi")
 [connection signal="area_entered" from="MushroomCollider" to="." method="_on_mushroom_collider_area_entered"]
 [connection signal="body_entered" from="FireballKillCollider" to="." method="_on_fireball_kill_collider_body_entered"]
 [connection signal="area_entered" from="KilledByTurtleCollider" to="." method="_on_killed_by_turtle_collider_area_entered"]
+[connection signal="body_entered" from="PlantCollider" to="." method="_on_plant_collider_body_entered"]

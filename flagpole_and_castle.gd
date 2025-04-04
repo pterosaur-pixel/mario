@@ -6,11 +6,9 @@ var already_started = false
 
 func _process(_delta: float) -> void:
 	if TimeLeft.time_left <= 90 and not already_started:
-		$AudioStreamPlayer2.stop()
-		$AudioStreamPlayer4.play()
 		already_started = true
 	if GameStatus.mario_invincible:
-		$AudioStreamPlayer2.stop()
+		pass
 		
 func _on_mario_camera_stop() -> void:
 	camera_stop.emit()

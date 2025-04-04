@@ -17,6 +17,7 @@ var done = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	theme = GameStatus.theme
+	$PlantCollider/CollisionShape2D.call_deferred("set_disabled", false)
 	$ShellCollider/CollisionShape2D.call_deferred("set_disabled", true)
 	$TurtleWallCollider.call_deferred("set_disabled", true)
 	$ShellWallCollider.call_deferred("set_disabled", true)

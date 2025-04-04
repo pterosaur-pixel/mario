@@ -969,8 +969,8 @@ size = Vector2(15, 31)
 
 [node name="Mario" type="CharacterBody2D"]
 process_mode = 3
-collision_layer = 19215
-collision_mask = 19215
+collision_layer = 543503
+collision_mask = 543503
 platform_on_leave = 2
 platform_wall_layers = 512
 script = ExtResource("1_wrvex")

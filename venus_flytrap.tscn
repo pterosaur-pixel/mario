@@ -1,0 +1,154 @@
+[gd_scene load_steps=8 format=3 uid="uid://3xl5f121yni7"]
+
+[ext_resource type="Script" uid="uid://evrtbekmhtc5" path="res://venus_flytrap.gd" id="1_yyc3s"]
+[ext_resource type="Texture2D" uid="uid://b6k1asbh4ijwg" path="res://assets/characters.png" id="2_gc18a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s1me"]
+atlas = ExtResource("2_gc18a")
+region = Rect2(125, 180, 35, 23)
+
+[sub_resource type="Animation" id="Animation_t3k6y"]
+resource_name = "flytrap"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(125, 180, 35, 23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_2rlpp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture:region")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(125, 180, 35, 23)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djt07"]
+_data = {
+&"RESET": SubResource("Animation_2rlpp"),
+&"flytrap": SubResource("Animation_t3k6y")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7ekw"]
+size = Vector2(13, 19)
+
+[node name="VenusFlytrap" type="CharacterBody2D"]
+collision_layer = 524288
+collision_mask = 524288
+script = ExtResource("1_yyc3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_8s1me")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_djt07")
+}
+
+[node name="KillMario" type="Area2D" parent="."]
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillMario"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_o7ekw")
+
+[node name="FireballKill" type="Area2D" parent="."]
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FireballKill"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_o7ekw")
+
+[connection signal="body_entered" from="KillMario" to="." method="_on_kill_mario_body_entered"]
+[connection signal="body_entered" from="FireballKill" to="." method="_on_fireball_kill_body_entered"]
