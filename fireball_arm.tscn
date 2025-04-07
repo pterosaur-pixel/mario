@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://ifsmsk410jt2"]
+
+[ext_resource type="Texture2D" uid="uid://chxmg7r00ookl" path="res://assets/items and npcs.png" id="1_21s8o"]
+[ext_resource type="Script" uid="uid://ciahkcim4wt2k" path="res://fireball_arm.gd" id="1_tjn4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjn4e"]
+atlas = ExtResource("1_21s8o")
+region = Rect2(180, 270, 8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21s8o"]
+size = Vector2(88, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgir0"]
+size = Vector2(64, 8)
+
+[node name="FireballArm" type="CharacterBody2D"]
+collision_layer = 2097152
+collision_mask = 2097152
+script = ExtResource("1_tjn4e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(24, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(40, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(48, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(56, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+position = Vector2(64, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+position = Vector2(72, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+position = Vector2(80, 0)
+texture = SubResource("AtlasTexture_tjn4e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(40, 0)
+shape = SubResource("RectangleShape2D_21s8o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(28, 0)
+shape = SubResource("RectangleShape2D_vgir0")
