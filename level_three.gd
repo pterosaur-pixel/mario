@@ -14,6 +14,14 @@ var mario_underground = false
 var already_started = false
 
 func _ready() -> void:
+	if GameStatus.got_checkpoint:
+		#pass
+		$IntermissionScreen.global_position = Vector2($MarioStart2.global_position.x + 5, $MarioStart2.global_position.y + 50)
+		$Mario.global_position = $MarioStart2.global_position
+	else:
+		#pass
+		$Mario.global_position = $MarioStart1.global_position
+		$IntermissionScreen.global_position = Vector2($MarioStart1.global_position.x + 5, $MarioStart1.global_position.y + 100)
 	$Mario.set_physics_process(false)
 	GameStatus.flagpole = false
 	set_physics_process(false)
@@ -32,6 +40,8 @@ func _process(_delta: float) -> void:
 		already_started = true
 	if GameStatus.mario_invincible:
 		pass
+	if $Mario.global_position.x > $MarioStart2.global_position.x:
+		GameStatus.got_checkpoint = true
 		#$AudioStreamPlayer2.stop()
 	
 	

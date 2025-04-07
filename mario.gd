@@ -83,10 +83,10 @@ func _physics_process(delta: float) -> void:
 		$CollisionPolygon2D2.call_deferred("set_disabled", true)
 		
 	if Input.is_action_just_pressed("shoot_fireball") and PowerupStatus.powerup_status >= 2:
-		if FireballsOnScreen.fireballs_on_screen < 2:
+		if FireballsOnScreen.fireballs_on_screen <= 2:
 			var fireball = fireball_scene.instantiate()
 			add_child(fireball)
-			fireball.global_position.x = global_position.x + direction2 * 20
+			fireball.global_position.x = global_position.x + direction2 * 30
 			fireball.global_position.y = global_position.y
 			fireball.velocity.x = direction2 * 200
 		

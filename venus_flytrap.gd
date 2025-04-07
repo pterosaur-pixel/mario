@@ -50,6 +50,6 @@ func _on_kill_mario_body_entered(body: Node2D) -> void:
 
 
 func _on_fireball_kill_body_entered(body: Node2D) -> void:
-	if 'fireball' in body.name:
-		Score.score += 200
-		queue_free()
+	
+	Score.score += 200
+	queue_free()

@@ -143,8 +143,8 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_o7ekw")
 
 [node name="FireballKill" type="Area2D" parent="."]
-collision_layer = 524288
-collision_mask = 524288
+collision_layer = 1048576
+collision_mask = 1048576
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="FireballKill"]
 position = Vector2(0.5, 0.5)

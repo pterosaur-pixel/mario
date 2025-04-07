@@ -198,7 +198,7 @@ tile_map_data = PackedByteArray("AAAHAAYAAAAAAAAAAAAHAAcAAAAAAAEAAAAIAAYAAAABAAA
 tile_set = SubResource("TileSet_wopty")
 
 [node name="Mario" parent="." instance=ExtResource("3_ajwv2")]
-position = Vector2(159, 80)
+position = Vector2(134, 125)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(140, 132)
@@ -271,6 +271,8 @@ gravity_scale = 0.0
 shape = SubResource("RectangleShape2D_vce38")
 
 [node name="IntermissionScreen" parent="." instance=ExtResource("10_wopty")]
+visible = false
+position = Vector2(138, 120)
 
 [node name="Mushroom4" parent="." instance=ExtResource("8_3xp6b")]
 position = Vector2(1258, 30)
@@ -288,6 +290,12 @@ position = Vector2(1480, 37)
 [node name="FlagpoleFlag" parent="." instance=ExtResource("13_co3iu")]
 process_mode = 3
 position = Vector2(3086, 56)
+
+[node name="MarioStart2" type="Marker2D" parent="."]
+position = Vector2(2129, 76)
+
+[node name="MarioStart1" type="Marker2D" parent="."]
+position = Vector2(132, 55)
 
 [connection signal="camera_move_two" from="." to="Camera2D" method="_on_level_three_camera_move_two"]
 [connection signal="camera_stop" from="." to="Camera2D" method="_on_level_three_camera_stop"]

@@ -46,9 +46,10 @@ func _on_start_game():
 	MarioLives.lives = 3
 	World.world = 1
 	Stage.stage = 1
-	var level_one_scene = load("res://level_one.tscn")
+	#var level_one_scene = load("res://level_one.tscn")
 	#var level_two_scene = load("res://level_two.tscn")
-	load_level(level_one_scene)
+	var level_three_scene = load("res://level_three.tscn")
+	load_level(level_three_scene)
 	GameStatus.one_up_gettable = true
 	screen_shown = false
 	
