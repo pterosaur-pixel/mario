@@ -195,7 +195,7 @@ script = ExtResource("3_3fg3q")
 position = Vector2(-1522, 144)
 
 [node name="SolidBrick" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AACl/wsAAAADAAAAAACq/wkAAAADAAAAAACu/wMAAAADAAAAAAC9/wgAAAADAAAAAAC1/wsAAAADAAAAAADU/wsAAAADAAAAAADY/wQAAAADAAAAAADc/wsAAAADAAAAAAAaAAoAAAADAAAAAAAfAAkAAAADAAAAAAAkAAUAAAADAAAAAAApAAcAAAADAAAAAAA7AAsAAAADAAAAAAABAAQAAAADAAAAAAAOAAQAAAADAAAAAAA=")
+tile_map_data = PackedByteArray("AACl/wsAAAADAAAAAACq/wkAAAADAAAAAACu/wMAAAADAAAAAAC9/wgAAAADAAAAAAC1/wsAAAADAAAAAADU/wsAAAADAAAAAADY/wQAAAADAAAAAAAaAAoAAAADAAAAAAAfAAkAAAADAAAAAAAkAAUAAAADAAAAAAApAAcAAAADAAAAAAA7AAsAAAADAAAAAAABAAQAAAADAAAAAAAOAAQAAAADAAAAAADd/wsAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_2oc7u")
 
 [node name="FallCollider" parent="." instance=ExtResource("5_ubq6h")]
@@ -220,7 +220,7 @@ position = Vector2(-696, 184)
 rotation = -6.28319
 
 [node name="FireballArm4" parent="." instance=ExtResource("8_vl3d6")]
-position = Vector2(-568, 184)
+position = Vector2(-552, 184)
 rotation = -6.28319
 rotation_type = 1
 
@@ -228,7 +228,6 @@ rotation_type = 1
 position = Vector2(-632, 72)
 rotation = -6.28319
 rotation_type = 1
-arm_length = 1
 
 [node name="FireballArm6" parent="." instance=ExtResource("8_vl3d6")]
 position = Vector2(-1064, 136)
@@ -244,6 +243,31 @@ position = Vector2(503, 153)
 rotation = 3.14159
 rotation_type = 1
 
+[node name="FireballArm9" parent="." instance=ExtResource("8_vl3d6")]
+position = Vector2(664, 120)
+rotation = 3.14159
+rotation_type = 1
+
 [connection signal="camera_stop" from="." to="Camera2D" method="_on_level_four_camera_stop"]
 [connection signal="start_game" from="." to="Mario" method="_on_level_one_start_game"]
+[connection signal="camera_stop" from="Mario" to="." method="_on_mario_camera_stop"]
+[connection signal="game_over" from="Mario" to="." method="_on_mario_game_over"]
 [connection signal="body_entered" from="FallCollider" to="." method="_on_fall_collider_body_entered"]
+[connection signal="mario_invincible" from="FireballArm" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm2" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm2" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm3" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm3" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm4" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm4" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm5" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm5" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm6" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm6" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm7" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm7" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm8" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm8" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="FireballArm9" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="FireballArm9" to="Mario" method="_on_mushroom_mushroom_killed_mario"]

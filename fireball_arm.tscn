@@ -7,11 +7,11 @@
 atlas = ExtResource("1_21s8o")
 region = Rect2(180, 270, 8, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_21s8o"]
-size = Vector2(88, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgir0"]
 size = Vector2(64, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21s8o"]
+size = Vector2(88, 8)
 
 [node name="FireballArm" type="CharacterBody2D"]
 collision_layer = 2097152
@@ -61,10 +61,16 @@ texture = SubResource("AtlasTexture_tjn4e")
 position = Vector2(80, 0)
 texture = SubResource("AtlasTexture_tjn4e")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2097152
+collision_mask = 2097152
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(28, 0)
+shape = SubResource("RectangleShape2D_vgir0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(40, 0)
 shape = SubResource("RectangleShape2D_21s8o")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(28, 0)
-shape = SubResource("RectangleShape2D_vgir0")
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
