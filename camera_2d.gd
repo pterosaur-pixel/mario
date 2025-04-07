@@ -39,3 +39,7 @@ func _on_level_three_camera_move_two() -> void:
 		global_position.x += 2
 		await get_tree().create_timer(0.033).timeout
 	move_mario_to_pipe.emit()
+
+
+func _on_level_four_camera_stop() -> void:
+	pass # Replace with function body.
