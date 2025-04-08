@@ -1,5 +1,6 @@
 extends CharacterBody2D
 var can_kill_mario = true
+var needs_to_move = true
 signal mushroom_killed_mario
 signal mario_invincible
 func _ready() -> void:
@@ -9,6 +10,7 @@ func _ready() -> void:
 	
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if can_kill_mario and not GameStatus.mario_invincible:
+		needs_to_move = false
 		can_kill_mario = false
 		set_physics_process(false)
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled", true)
@@ -32,13 +34,13 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	print(anim_name)
-	if anim_name == "bowser-walking":
+	if anim_name == "bowser-walking" and needs_to_move:
 		print('hi')
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled", true)
 		$Area2D/CollisionPolygon2D2.call_deferred("set_disabled", false)
 		$AnimationPlayer.play("bowser-walking_2")
 		$Sprite2D.flip_h = true
-	else:
+	elif needs_to_move:
 		print('hello bowser')
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled", false)
 		$Area2D/CollisionPolygon2D2.call_deferred("set_disabled", true)

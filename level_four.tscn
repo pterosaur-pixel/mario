@@ -806,7 +806,7 @@ position = Vector2(-1422, 127)
 script = ExtResource("3_3fg3q")
 
 [node name="Mario" parent="." instance=ExtResource("4_ubq6h")]
-position = Vector2(1040, 144)
+position = Vector2(-1506, 118)
 collision_layer = 6834959
 collision_mask = 6834959
 
@@ -818,7 +818,6 @@ tile_set = SubResource("TileSet_2oc7u")
 position = Vector2(-882, 3)
 
 [node name="IntermissionScreen" parent="." instance=ExtResource("7_vl3d6")]
-visible = false
 position = Vector2(-1421, 128)
 
 [node name="FireballArm" parent="." instance=ExtResource("8_vl3d6")]
