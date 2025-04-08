@@ -65,3 +65,7 @@ func _on_main_start_l_1() -> void:
 func _on_mario_start_playing_regular_music() -> void:
 	#$AudioStreamPlayer2.play()
 	pass
+
+
+func _on_mushroom_mario_invincible() -> void:
+	pass # Replace with function body.

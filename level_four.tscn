@@ -807,6 +807,8 @@ script = ExtResource("3_3fg3q")
 
 [node name="Mario" parent="." instance=ExtResource("4_ubq6h")]
 position = Vector2(1040, 144)
+collision_layer = 6834959
+collision_mask = 6834959
 
 [node name="SolidBrick" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AACl/wsAAAADAAAAAACq/wkAAAADAAAAAACu/wMAAAADAAAAAAC9/wgAAAADAAAAAAC1/wsAAAADAAAAAADU/wsAAAADAAAAAADY/wQAAAADAAAAAAAaAAoAAAADAAAAAAAfAAkAAAADAAAAAAAkAAUAAAADAAAAAAApAAcAAAADAAAAAAA7AAsAAAADAAAAAAABAAQAAAADAAAAAAAOAAQAAAADAAAAAADd/wsAAAADAAAAAAA=")
@@ -888,3 +890,5 @@ position = Vector2(1334, 176)
 [connection signal="mushroom_killed_mario" from="FireballArm8" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
 [connection signal="mario_invincible" from="FireballArm9" to="Mario" method="_on_mushroom_mario_invincible"]
 [connection signal="mushroom_killed_mario" from="FireballArm9" to="Mario" method="_on_mushroom_mushroom_killed_mario"]
+[connection signal="mario_invincible" from="Bowser" to="Mario" method="_on_mushroom_mario_invincible"]
+[connection signal="mushroom_killed_mario" from="Bowser" to="Mario" method="_on_mushroom_mushroom_killed_mario"]

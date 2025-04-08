@@ -282,6 +282,7 @@ script = ExtResource("1_hkmv0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_c5qsr")
+flip_h = true
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -296,6 +297,9 @@ collision_mask = 4194304
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-63, -12, -62, -5, -45, 14, -32, 13, -39, -7, -51, -16)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-46, -16, -33, -9, -53, 15, -63, 15, -59, -4)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
