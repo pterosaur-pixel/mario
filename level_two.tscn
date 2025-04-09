@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bftuafhnhaa40"]
+[gd_scene load_steps=32 format=4 uid="uid://bftuafhnhaa40"]
 
 [ext_resource type="Texture2D" uid="uid://dk4aetw77m605" path="res://assets/underground - ground and stone.png" id="1_7v2bu"]
 [ext_resource type="Script" uid="uid://bxlyfulwrln1t" path="res://level_two.gd" id="1_m7216"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://d1tngnw551ucx" path="res://fall_collider.tscn" id="17_f8h4k"]
 [ext_resource type="PackedScene" uid="uid://dcnop00ckkafi" path="res://floating_platform.tscn" id="18_klqtm"]
 [ext_resource type="PackedScene" uid="uid://3xl5f121yni7" path="res://venus_flytrap.tscn" id="19_ytroq"]
+[ext_resource type="Script" uid="uid://b1y65kcelh1tc" path="res://rigid_body_2d.gd" id="20_5ibcp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cnkpv"]
 texture = ExtResource("1_7v2bu")
@@ -180,6 +181,9 @@ sources/0 = SubResource("TileSetAtlasSource_72vtx")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klqtm"]
 size = Vector2(32, 21)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6crm"]
+size = Vector2(54, 251.5)
+
 [node name="LevelTwo" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_m7216")
@@ -324,6 +328,18 @@ position = Vector2(224, 119)
 
 [node name="VenusFlytrap3" parent="." instance=ExtResource("19_ytroq")]
 position = Vector2(847, 181)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+process_mode = 3
+position = Vector2(-1017, 93)
+collision_layer = 512
+collision_mask = 512
+gravity_scale = 0.0
+script = ExtResource("20_5ibcp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-122, 29)
+shape = SubResource("RectangleShape2D_m6crm")
 
 [connection signal="camera_stop" from="." to="L2Camera" method="_on_level_two_camera_stop"]
 [connection signal="fall_collider_entered" from="." to="Mario" method="_on_level_two_fall_collider_entered"]
