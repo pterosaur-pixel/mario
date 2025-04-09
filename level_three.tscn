@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dxiu6kk8wp3et"]
+[gd_scene load_steps=33 format=4 uid="uid://dxiu6kk8wp3et"]
 
 [ext_resource type="Texture2D" uid="uid://dbg2sitf2j3d7" path="res://assets/overworld - water and sky.png" id="1_v3was"]
 [ext_resource type="Script" uid="uid://c4br4386e1eiy" path="res://level_three.gd" id="1_vce38"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d1tngnw551ucx" path="res://fall_collider.tscn" id="12_gyaej"]
 [ext_resource type="PackedScene" uid="uid://cuwbp6b57kfwg" path="res://flagpole_flag.tscn" id="13_co3iu"]
 [ext_resource type="Script" uid="uid://b1y65kcelh1tc" path="res://rigid_body_2d.gd" id="14_yr1pg"]
+[ext_resource type="AudioStream" uid="uid://b1o3fqg88gtyt" path="res://assets/audio/smb_stage_clear.wav" id="15_tbcfa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efu6t"]
 texture = ExtResource("1_v3was")
@@ -183,6 +184,7 @@ size = Vector2(9, 13)
 size = Vector2(54, 251.5)
 
 [node name="LevelThree" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_vce38")
 
 [node name="BackgroundSky" type="TileMapLayer" parent="."]
@@ -299,7 +301,7 @@ position = Vector2(3086, 56)
 position = Vector2(2129, 76)
 
 [node name="MarioStart1" type="Marker2D" parent="."]
-position = Vector2(3031, 165)
+position = Vector2(125, 64)
 
 [node name="RigidBody2D5" type="RigidBody2D" parent="."]
 process_mode = 3
@@ -312,6 +314,10 @@ script = ExtResource("14_yr1pg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D5"]
 position = Vector2(-120, 10)
 shape = SubResource("RectangleShape2D_tbcfa")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_tbcfa")
 
 [connection signal="camera_move_two" from="." to="Camera2D" method="_on_level_three_camera_move_two"]
 [connection signal="camera_stop" from="." to="Camera2D" method="_on_level_three_camera_stop"]
@@ -344,3 +350,4 @@ shape = SubResource("RectangleShape2D_tbcfa")
 [connection signal="mario_grabbed_pole" from="FlagpoleFlag" to="." method="_on_flagpole_flag_mario_grabbed_pole"]
 [connection signal="mario_grabbed_pole" from="FlagpoleFlag" to="Mario" method="_on_flagpole_flag_mario_grabbed_pole"]
 [connection signal="start_stage_clear_music" from="FlagpoleFlag" to="." method="_on_flagpole_flag_start_stage_clear_music"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

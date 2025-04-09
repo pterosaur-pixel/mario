@@ -58,6 +58,7 @@ func _on_start_game():
 var current_level = null
 var additional_level = null
 func load_level(scene):
+	print('loading...')
 	if current_level != null:
 		current_level.queue_free()
 	current_level = scene.instantiate()

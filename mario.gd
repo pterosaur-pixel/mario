@@ -287,6 +287,7 @@ func _on_level_two_mushroom_killed_mario_l_2() -> void:
 	mario_dead_mushroom()
 	
 func mario_dead_mushroom():
+	velocity.x = 0
 	$AudioStreamPlayer.play()
 	set_physics_process(false)
 	set_z_index(3)

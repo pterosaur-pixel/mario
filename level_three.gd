@@ -130,7 +130,7 @@ func _on_mario_mario_in_castle() -> void:
 	
 	print("fireworks: ", FireworksEarned.fireworks_earned)
 	await get_tree().create_timer(1).timeout
-	$/root/Main.load_level_four()
+	
 	
 func make_fireworks(place):
 	var fireworks = fireworks_scene.instantiate()
@@ -139,11 +139,12 @@ func make_fireworks(place):
 
 
 func _on_flagpole_flag_start_stage_clear_music() -> void:
-	pass
-	#$AudioStreamPlayer.play()
+	#pass
+	$AudioStreamPlayer.play()
 
 
 func _on_audio_stream_player_finished() -> void:
+	print('Audio finished please consider buying again!')
 	if number_of_fireworks == 1:
 		print('fireworking')
 		make_fireworks(Vector2(1250, 50))
@@ -172,7 +173,8 @@ func _on_audio_stream_player_finished() -> void:
 		await get_tree().create_timer(0.7).timeout
 		
 	camera_move_two.emit()
-
+	get_tree().paused = false
+	$/root/Main.load_level_four()
 
 
 
@@ -215,28 +217,10 @@ func _on_main_start_l_1() -> void:
 
 func _on_mario_start_playing_regular_music() -> void:
 	pass
-	#$AudioStreamPlayer2.play()
+	$AudioStreamPlayer2.play()
 
 
-func _on_camera_2d_move_mario_to_pipe() -> void:
-	$Mario.show()
-	if PowerupStatus.powerup_status == 0:
-		$Mario/AnimationPlayer.play("mario-little-running")
-	if PowerupStatus.powerup_status == 1:
-		$Mario/AnimationPlayer.play("mario-running")
-	if PowerupStatus.powerup_status >= 2:
-		$Mario/AnimationPlayer.play("mario-powerup-running")
-	for i in range(0, 55):
-		$Mario.global_position.x += 2
-		await get_tree().create_timer(0.033).timeout
-	$Mario.set_z_index(-1)
-	$Mario/AudioStreamPlayer2.play()
-	$Mario.global_position.y -= 3
-	for i in range(0, 20):
-		$Mario.global_position.x += 1
-		await get_tree().create_timer(0.033).timeout
-	$Mario.hide()
-	Stage.stage = 2
-	GameStatus.theme = 'underground'
-	get_tree().paused = false
-	$/root/Main.load_world_one_stage_two()
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	pass # Replace with function body.
