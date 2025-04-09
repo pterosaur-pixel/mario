@@ -129,6 +129,8 @@ func _on_mario_mario_in_castle() -> void:
 	timer_countdown.emit()
 	
 	print("fireworks: ", FireworksEarned.fireworks_earned)
+	await get_tree().create_timer(1).timeout
+	$/root/Main.load_level_four()
 	
 func make_fireworks(place):
 	var fireworks = fireworks_scene.instantiate()

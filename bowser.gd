@@ -9,6 +9,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("bowser-walking_2")
 	
 func _on_area_2d_body_entered(_body: Node2D) -> void:
+	print('MARIO DEAD')
 	if can_kill_mario and not GameStatus.mario_invincible:
 		needs_to_move = false
 		can_kill_mario = false

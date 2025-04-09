@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://d1tngnw551ucx" path="res://fall_collider.tscn" id="17_f8h4k"]
 [ext_resource type="PackedScene" uid="uid://dcnop00ckkafi" path="res://floating_platform.tscn" id="18_klqtm"]
 [ext_resource type="PackedScene" uid="uid://3xl5f121yni7" path="res://venus_flytrap.tscn" id="19_ytroq"]
-[ext_resource type="Script" uid="uid://b1y65kcelh1tc" path="res://rigid_body_2d.gd" id="20_5ibcp"]
+[ext_resource type="Script" uid="uid://cds45w8iuxesv" path="res://rigid_body_2d_level_two.gd" id="20_5ibcp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cnkpv"]
 texture = ExtResource("1_7v2bu")
