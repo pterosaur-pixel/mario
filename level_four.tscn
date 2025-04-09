@@ -774,7 +774,7 @@ position = Vector2(-1422, 127)
 script = ExtResource("3_3fg3q")
 
 [node name="Mario" parent="." instance=ExtResource("4_ubq6h")]
-position = Vector2(-1506, 118)
+position = Vector2(1115, 118)
 collision_layer = 6834959
 collision_mask = 6834959
 
