@@ -44,6 +44,26 @@ func _ready() -> void:
 	set_physics_process(true)
 	set_z_index(0)
 func _physics_process(delta: float) -> void:
+	if GameStatus.fire_killed_mario:
+		GameStatus.fire_killed_mario = false
+		mario_dead_mushroom()
+	if GameStatus.mario_invincible_bowser:
+		print('gsmib')
+		#set_collision_layer_value(1, false)
+		#set_collision_layer_value(2, false)
+		#set_collision_layer_value(23, false)
+		#set_collision_mask_value(1, false)
+		#set_collision_mask_value(2, false)
+		#set_collision_mask_value(23, false)
+		make_mario_invincible()
+		#set_collision_layer_value(1, true)
+		#set_collision_layer_value(2, true)
+		#set_collision_layer_value(23, true)
+		#set_collision_mask_value(1, true)
+		#set_collision_mask_value(2, true)
+		#set_collision_mask_value(23, true)
+		GameStatus.mario_invincible_bowser = false
+		
 	MarioGlobalPosition.mario_global_position_x = global_position.x
 	$Sprite2D.show()
 	if not last_pu == PowerupStatus.powerup_status:
@@ -287,6 +307,7 @@ func _on_level_two_mushroom_killed_mario_l_2() -> void:
 	mario_dead_mushroom()
 	
 func mario_dead_mushroom():
+	print('mario_dead_mushroom')
 	velocity.x = 0
 	$AudioStreamPlayer.play()
 	set_physics_process(false)
@@ -318,3 +339,20 @@ func _on_level_three_mario_should_jumpl_1() -> void:
 
 func _on_mushroom_mushroom_killed_mario() -> void:
 	mario_dead_mushroom()
+func make_mario_invincible():
+	set_collision_layer_value(1, false)
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(23, false)
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(2, false)
+	set_collision_mask_value(23, false)
+	invincible = 1
+	await get_tree().create_timer(2).timeout
+	invincible = 0
+	$Sprite2D.show()
+	set_collision_layer_value(1, true)
+	set_collision_layer_value(2, true)
+	set_collision_layer_value(23, true)
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(2, true)
+	set_collision_mask_value(23, true)

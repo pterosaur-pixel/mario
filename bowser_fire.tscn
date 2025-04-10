@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7qsccc18pryg"]
+[gd_scene load_steps=8 format=3 uid="uid://c7qsccc18pryg"]
 
 [ext_resource type="Script" uid="uid://cu1ic1phgqdsq" path="res://bowser_fire.gd" id="1_rbjec"]
 [ext_resource type="Texture2D" uid="uid://kgll4edbswbm" path="res://assets/enemies and bosses.png" id="2_lyrjv"]
@@ -117,7 +117,13 @@ _data = {
 &"fire": SubResource("Animation_lrhsk")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rbjec"]
+radius = 5.0
+height = 22.0
+
 [node name="BowserFire" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_rbjec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -128,3 +134,12 @@ vframes = 2
 libraries = {
 &"": SubResource("AnimationLibrary_hrfbk")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rbjec")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -11,10 +11,9 @@ func _ready() -> void:
 	
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	print('MARIO DEAD')
-	if can_kill_mario and not GameStatus.mario_invincible:
+	if can_kill_mario and not GameStatus.mario_invincible and not GameStatus.mario_invincible_bowser:
 		needs_to_move = false
 		can_kill_mario = false
-		set_physics_process(false)
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled", true)
 		$Area2D/CollisionPolygon2D2.call_deferred("set_disabled", true)
 
@@ -26,8 +25,8 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 			
 		else:
 			PowerupStatus.powerup_status = 0
-			mario_invincible.emit()
-			set_physics_process(true)
+			GameStatus.mario_invincible_bowser = true
+			needs_to_move = true
 			$Area2D/CollisionPolygon2D.call_deferred("set_disabled", false)
 			$Area2D/CollisionPolygon2D2.call_deferred("set_disabled", false)
 		await get_tree().create_timer(1).timeout
