@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://c6ewspdohio5v"]
+[gd_scene load_steps=22 format=4 uid="uid://c6ewspdohio5v"]
 
 [ext_resource type="Script" uid="uid://d0tq28bhvgd4r" path="res://level_four.gd" id="1_2oc7u"]
 [ext_resource type="Texture2D" uid="uid://dvth676ky5vi3" path="res://assets/castle - ground and stone.png" id="1_52e0x"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ifsmsk410jt2" path="res://fireball_arm.tscn" id="8_vl3d6"]
 [ext_resource type="PackedScene" uid="uid://cbxoi6a5v7p8c" path="res://bowser.tscn" id="10_2vrrk"]
 [ext_resource type="Script" uid="uid://b1y65kcelh1tc" path="res://rigid_body_2d.gd" id="11_d2kkd"]
+[ext_resource type="PackedScene" uid="uid://jv7j8cvwpu16" path="res://axe.tscn" id="12_5076j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3fg3q"]
 texture = ExtResource("1_52e0x")
@@ -779,7 +780,7 @@ collision_layer = 6834959
 collision_mask = 6834959
 
 [node name="SolidBrick" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AACl/wsAAAADAAAAAACq/wkAAAADAAAAAACu/wMAAAADAAAAAAC9/wgAAAADAAAAAAC1/wsAAAADAAAAAADU/wsAAAADAAAAAADY/wQAAAADAAAAAAAaAAoAAAADAAAAAAAfAAkAAAADAAAAAAAkAAUAAAADAAAAAAApAAcAAAADAAAAAAA7AAsAAAADAAAAAAABAAQAAAADAAAAAAAOAAQAAAADAAAAAADd/wsAAAADAAAAAAA=")
+tile_map_data = PackedByteArray("AACl/wsAAAADAAAAAACq/wkAAAADAAAAAACu/wMAAAADAAAAAAC9/wgAAAADAAAAAAC1/wsAAAADAAAAAADU/wsAAAADAAAAAADY/wQAAAADAAAAAAAaAAoAAAADAAAAAAAfAAkAAAADAAAAAAAkAAUAAAADAAAAAAApAAcAAAADAAAAAAA7AAsAAAADAAAAAAABAAQAAAADAAAAAAAOAAQAAAADAAAAAADd/wsAAAADAAAAAABYAAsAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_2oc7u")
 
 [node name="FallCollider" parent="." instance=ExtResource("5_ubq6h")]
@@ -845,6 +846,9 @@ script = ExtResource("11_d2kkd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(-120, 10)
 shape = SubResource("RectangleShape2D_5076j")
+
+[node name="Axe" parent="." instance=ExtResource("12_5076j")]
+position = Vector2(1416, 168)
 
 [connection signal="camera_stop" from="." to="Camera2D" method="_on_level_four_camera_stop"]
 [connection signal="start_game" from="." to="Mario" method="_on_level_one_start_game"]

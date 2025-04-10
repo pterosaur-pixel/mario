@@ -39,11 +39,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		print('hi')
 		$Area2D/CollisionPolygon2D.call_deferred("set_disabled", true)
 		$Area2D/CollisionPolygon2D2.call_deferred("set_disabled", false)
-		#for i in range(0, randf_range(1, 3)):
-		var fire = fire_scene.instantiate()
-		add_child(fire)
-		
-		await get_tree().create_timer(0.5).timeout
+		var fire_y = global_position.y + randf_range(-20, 10)
+		for i in range(0, randf_range(1, 3)):
+			var fire = fire_scene.instantiate()
+			add_child(fire)
+			fire.global_position.y = fire_y
+			await get_tree().create_timer(0.6).timeout
 		$AnimationPlayer.play("bowser-walking_2")
 		$Sprite2D.flip_h = true
 	elif needs_to_move:

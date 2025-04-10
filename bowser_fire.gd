@@ -5,7 +5,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("fire")
 	global_position.x -= 140
 	x = global_position.x - 200
-	global_position.y += randf_range(-20, 10)
+	#global_position.y += randf_range(-20, 10)
 	
 	
 func _process(delta: float) -> void:

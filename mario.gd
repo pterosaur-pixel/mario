@@ -48,20 +48,7 @@ func _physics_process(delta: float) -> void:
 		GameStatus.fire_killed_mario = false
 		mario_dead_mushroom()
 	if GameStatus.mario_invincible_bowser:
-		print('gsmib')
-		#set_collision_layer_value(1, false)
-		#set_collision_layer_value(2, false)
-		#set_collision_layer_value(23, false)
-		#set_collision_mask_value(1, false)
-		#set_collision_mask_value(2, false)
-		#set_collision_mask_value(23, false)
 		make_mario_invincible()
-		#set_collision_layer_value(1, true)
-		#set_collision_layer_value(2, true)
-		#set_collision_layer_value(23, true)
-		#set_collision_mask_value(1, true)
-		#set_collision_mask_value(2, true)
-		#set_collision_mask_value(23, true)
 		GameStatus.mario_invincible_bowser = false
 		
 	MarioGlobalPosition.mario_global_position_x = global_position.x
@@ -116,7 +103,6 @@ func _physics_process(delta: float) -> void:
 	if not direction2 == direction:
 		if not direction == 0:
 			direction2 = direction
-			print('cd', direction2)
 	
 	if direction and is_on_floor():
 		#$Camera2D.global_position.y = $Camera2D.y
@@ -307,11 +293,11 @@ func _on_level_two_mushroom_killed_mario_l_2() -> void:
 	mario_dead_mushroom()
 	
 func mario_dead_mushroom():
-	print('mario_dead_mushroom')
 	velocity.x = 0
 	$AudioStreamPlayer.play()
 	set_physics_process(false)
 	set_z_index(3)
+	await get_tree().create_timer(0.033).timeout
 	$AnimationPlayer.play("mario-dead")		
 	$CollisionPolygon2D.call_deferred("set_disabled", true)
 	$CollisionPolygon2D2.call_deferred("set_disabled", true)
@@ -320,7 +306,6 @@ func mario_dead_mushroom():
 	for i in range(0, 10):
 		move_and_slide()
 		await get_tree().create_timer(0.06).timeout
-	
 	velocity.y = 600
 	for i in range(0, 20):
 		move_and_slide()
@@ -328,14 +313,8 @@ func mario_dead_mushroom():
 	print('emitting game over signal from mario.')
 	game_over.emit()
 
-
 func _on_level_two_start_game() -> void:
 	set_physics_process(true)
-
-
-func _on_level_three_mario_should_jumpl_1() -> void:
-	pass # Replace with function body.
-
 
 func _on_mushroom_mushroom_killed_mario() -> void:
 	mario_dead_mushroom()
