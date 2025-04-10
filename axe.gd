@@ -5,4 +5,5 @@ func _ready() -> void:
 
 func _on_axe_area_2d_body_entered(body: Node2D) -> void:
 	GameStatus.beat_world_one = true
-	get_tree().paused = true
+	#get_tree().paused = true
+	queue_free()

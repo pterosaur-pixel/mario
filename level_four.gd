@@ -21,7 +21,13 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	if TimeLeft.time_left <= 90 and not mario_underground and not already_started:
+	if GameStatus.beat_world_one:
+		#get_tree().paused = true
+		await get_tree().create_timer(1).timeout
+		$ThankYouLabel.show()
+		await get_tree().create_timer(1.5).timeout
+		$AnotherCastleLabel.show()
+	if TimeLeft.time_left <= 90 and not mario_underground and not already_started and not GameStatus.beat_world_one:
 		#$AudioStreamPlayer2.stop()
 		#$AudioStreamPlayer4.play()
 		already_started = true

@@ -14,6 +14,8 @@ var screen_size
 var crouch = false
 var invincible = 0
 var first_trigger = true
+var input_allowed = true
+var started_world_over = false
 @onready var  last_pu = PowerupStatus.powerup_status
 
 #var last_pu = PowerupStatus.powerup_status
@@ -44,6 +46,15 @@ func _ready() -> void:
 	set_physics_process(true)
 	set_z_index(0)
 func _physics_process(delta: float) -> void:
+	if GameStatus.beat_world_one:
+		#started_world_over = true
+		if PowerupStatus.powerup_status == 0:
+			mario_end_world_animation("little-")
+		if PowerupStatus.powerup_status == 1:
+			mario_end_world_animation("")
+		if PowerupStatus.powerup_status >= 2:
+			mario_end_world_animation("powerup-")
+				
 	if GameStatus.fire_killed_mario:
 		GameStatus.fire_killed_mario = false
 		mario_dead_mushroom()
@@ -74,10 +85,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 		
-	if Input.is_action_just_pressed("move_up") and is_on_floor():
+	if Input.is_action_just_pressed("move_up") and is_on_floor() and input_allowed:
 		$AudioStreamPlayer3.play(0.1)
 		velocity.y = JUMP_VELOCITY
-	if Input.is_action_pressed("move_down") and last_pu >= 1 and can_change_colliders:
+	if Input.is_action_pressed("move_down") and last_pu >= 1 and can_change_colliders and input_allowed:
 		crouch = true
 		$CollisionPolygon2D2.call_deferred("set_disabled", true)
 		$CollisionPolygon2D3.call_deferred("set_disabled", false)
@@ -89,7 +100,7 @@ func _physics_process(delta: float) -> void:
 		$CollisionPolygon2D.call_deferred("set_disabled", false)
 		$CollisionPolygon2D2.call_deferred("set_disabled", true)
 		
-	if Input.is_action_just_pressed("shoot_fireball") and PowerupStatus.powerup_status >= 2:
+	if Input.is_action_just_pressed("shoot_fireball") and PowerupStatus.powerup_status >= 2 and input_allowed:
 		if FireballsOnScreen.fireballs_on_screen <= 2:
 			var fireball = fireball_scene.instantiate()
 			add_child(fireball)
@@ -100,6 +111,8 @@ func _physics_process(delta: float) -> void:
 	
 		
 	var direction := Input.get_axis("move_left", "move_right")
+	if not input_allowed:
+		direction = 0
 	if not direction2 == direction:
 		if not direction == 0:
 			direction2 = direction
@@ -111,7 +124,7 @@ func _physics_process(delta: float) -> void:
 			$Sprite2D.flip_h = true
 		if direction > 0:
 			$Sprite2D.flip_h = false
-		if Input.is_action_pressed("extra_speed"):
+		if Input.is_action_pressed("extra_speed") and input_allowed:
 			velocity.x = direction * SPEED * 2
 		
 	elif direction:
@@ -148,27 +161,27 @@ func _physics_process(delta: float) -> void:
 	
 	
 func update_animations(direction, last):
-	if direction and is_on_floor() and last == 0:
+	if direction and is_on_floor() and last == 0 and input_allowed:
 		$AnimationPlayer.play("mario-little-running")
-	elif not is_on_floor() and last == 0:
+	elif not is_on_floor() and last == 0 and input_allowed:
 		$AnimationPlayer.play("mario-little-jump")	
-	elif last == 0:
+	elif last == 0 and input_allowed:
 		$AnimationPlayer.play("mario-little-idle")
-	elif crouch and last == 1:
+	elif crouch and last == 1 and input_allowed:
 		$AnimationPlayer.play("mario-crouch")
-	elif direction and is_on_floor() and last == 1:
+	elif direction and is_on_floor() and last == 1 and input_allowed:
 		$AnimationPlayer.play("mario-running")
-	elif not is_on_floor() and last == 1:
+	elif not is_on_floor() and last == 1 and input_allowed:
 		$AnimationPlayer.play("mario-jump")
-	elif last == 1:
+	elif last == 1 and input_allowed:
 		$AnimationPlayer.play("mario-idle")
-	elif crouch and last >= 2:
+	elif crouch and last >= 2 and input_allowed:
 		$AnimationPlayer.play("mario-powerup-crouch")
-	elif direction and is_on_floor() and last >= 2:
+	elif direction and is_on_floor() and last >= 2 and input_allowed:
 		$AnimationPlayer.play("mario-powerup-running")
-	elif not is_on_floor() and last >= 2:
+	elif not is_on_floor() and last >= 2 and input_allowed:
 		$AnimationPlayer.play("mario-powerup-jump")
-	elif last >= 2:
+	elif last >= 2 and input_allowed:
 		$AnimationPlayer.play("mario-powerup-idle")
 
 func _on_level_one_fall_collider_entered() -> void:
@@ -335,3 +348,20 @@ func make_mario_invincible():
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(2, true)
 	set_collision_mask_value(23, true)
+
+func mario_end_world_animation(size):
+	input_allowed = false
+	#set_physics_process(false)
+	#await get_tree().create_timer(1).timeout
+	#set_physics_process(true)
+	velocity.x = 40
+	velocity.y = 20
+	$AnimationPlayer.play("mario-"+size+"running")
+	#while global_position.x < 1650:
+	move_and_slide()
+	await get_tree().create_timer(0.033).timeout
+	if global_position.x > 1650:
+		$AnimationPlayer.play("mario-"+size+"idle")
+		velocity.x = 0
+		started_world_over = true
+	

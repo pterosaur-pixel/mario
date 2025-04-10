@@ -42,4 +42,7 @@ func _on_level_three_camera_move_two() -> void:
 
 
 func _on_level_four_camera_stop() -> void:
-	pass # Replace with function body.
+	set_physics_process(false)
+	for i in range(0, 30):
+		global_position.x += 5
+		await get_tree().create_timer(0.033).timeout

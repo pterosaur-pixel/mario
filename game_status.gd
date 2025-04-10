@@ -7,4 +7,4 @@ var one_up_gettable = true
 var got_checkpoint = false
 var fire_killed_mario = false
 var mario_invincible_bowser = false
-var beat_world_one = true
+var beat_world_one = false
