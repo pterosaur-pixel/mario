@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b73gmeflwcday"]
+[gd_scene format=3 uid="uid://b73gmeflwcday"]
 
 [ext_resource type="Script" uid="uid://wobjpwkcckga" path="res://node_2d.gd" id="1_0hol4"]
 [ext_resource type="Script" uid="uid://dt5ucp7saaxv2" path="res://sub_viewport_container.gd" id="4_kdubu"]
@@ -32,7 +32,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.35, 0.6),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
+"transitions": PackedFloat32Array(1000000, 1000000, 1000000),
 "update": 0,
 "values": [Rect2(3, 19, 10, 14), Rect2(20, 19, 10, 14), Rect2(37, 19, 10, 14)]
 }
@@ -130,15 +130,15 @@ _data = {
 &"RESET": SubResource("Animation_ta5nu")
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=2014181971]
 script = ExtResource("1_0hol4")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=665084153]
 offset_right = 255.0
 offset_bottom = 240.0
 script = ExtResource("4_kdubu")
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=377255529]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
@@ -146,16 +146,16 @@ audio_listener_enable_3d = true
 size = Vector2i(255, 240)
 render_target_update_mode = 4
 
-[node name="IntermissionScreen" parent="." instance=ExtResource("7_ta5nu")]
+[node name="IntermissionScreen" parent="." unique_id=527629440 instance=ExtResource("7_ta5nu")]
 visible = false
 position = Vector2(128, 120)
 script = ExtResource("8_flf07")
 
-[node name="HUD" type="Node2D" parent="."]
+[node name="HUD" type="Node2D" parent="." unique_id=674277272]
 z_index = 6
 script = ExtResource("6_4d7sh")
 
-[node name="GameTime" type="Label" parent="HUD"]
+[node name="GameTime" type="Label" parent="HUD" unique_id=377421748]
 process_mode = 3
 offset_left = 208.0
 offset_top = 18.0
@@ -166,20 +166,20 @@ theme_override_fonts/font = ExtResource("6_d21ai")
 text = "300"
 script = ExtResource("6_kdubu")
 
-[node name="Timer" type="Timer" parent="HUD/GameTime"]
+[node name="Timer" type="Timer" parent="HUD/GameTime" unique_id=801546561]
 process_mode = 1
 wait_time = 0.5
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD/GameTime"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD/GameTime" unique_id=1421165108]
 stream = ExtResource("11_nr8wp")
 volume_db = -5.0
 pitch_scale = 0.77
 
-[node name="TimeoutScreen" parent="HUD/GameTime" instance=ExtResource("16_ta5nu")]
+[node name="TimeoutScreen" parent="HUD/GameTime" unique_id=2009054445 instance=ExtResource("16_ta5nu")]
 visible = false
 position = Vector2(-208, -18)
 
-[node name="TimeLabel" type="Label" parent="HUD"]
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=1434670214]
 offset_left = 199.0
 offset_top = 6.0
 offset_right = 239.0
@@ -187,7 +187,7 @@ offset_bottom = 17.0
 theme = ExtResource("6_rj586")
 text = "TIME"
 
-[node name="ScoreCount" type="Label" parent="HUD"]
+[node name="ScoreCount" type="Label" parent="HUD" unique_id=2082777667]
 process_mode = 3
 offset_left = 13.0
 offset_top = 15.0
@@ -197,7 +197,7 @@ theme = ExtResource("6_rj586")
 text = "000000"
 script = ExtResource("11_hqns4")
 
-[node name="MarioLabel" type="Label" parent="HUD"]
+[node name="MarioLabel" type="Label" parent="HUD" unique_id=126619399]
 offset_left = 13.0
 offset_top = 3.0
 offset_right = 63.0
@@ -205,7 +205,7 @@ offset_bottom = 26.0
 theme = ExtResource("6_rj586")
 text = "MARIO"
 
-[node name="CoinCountLabel" type="Label" parent="HUD"]
+[node name="CoinCountLabel" type="Label" parent="HUD" unique_id=2134363987]
 offset_left = 107.0
 offset_top = 14.0
 offset_right = 129.0
@@ -214,11 +214,11 @@ theme = ExtResource("6_rj586")
 text = "00"
 script = ExtResource("12_x0ka3")
 
-[node name="Sprite2D" type="Sprite2D" parent="HUD"]
+[node name="Sprite2D" type="Sprite2D" parent="HUD" unique_id=752069772]
 position = Vector2(87, 18)
 texture = SubResource("AtlasTexture_nr8wp")
 
-[node name="XLabel" type="Label" parent="HUD"]
+[node name="XLabel" type="Label" parent="HUD" unique_id=2142917539]
 offset_left = 96.0
 offset_top = 16.0
 offset_right = 103.0
@@ -227,12 +227,10 @@ theme = ExtResource("6_rj586")
 theme_override_font_sizes/font_size = 6
 text = "X"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
-libraries = {
-&"": SubResource("AnimationLibrary_flf07")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD" unique_id=1846432141]
+libraries/ = SubResource("AnimationLibrary_flf07")
 
-[node name="WorldLabel" type="Label" parent="HUD"]
+[node name="WorldLabel" type="Label" parent="HUD" unique_id=389191143]
 offset_left = 135.0
 offset_top = 6.0
 offset_right = 185.0
@@ -241,7 +239,7 @@ theme = ExtResource("6_rj586")
 text = "WORLD"
 horizontal_alignment = 1
 
-[node name="World" type="Label" parent="HUD"]
+[node name="World" type="Label" parent="HUD" unique_id=1523879540]
 offset_left = 141.0
 offset_top = 18.0
 offset_right = 152.0
@@ -250,7 +248,7 @@ theme = ExtResource("6_rj586")
 text = "1"
 script = ExtResource("13_d2bti")
 
-[node name="dash" type="Label" parent="HUD"]
+[node name="dash" type="Label" parent="HUD" unique_id=202393216]
 offset_left = 154.0
 offset_top = 17.0
 offset_right = 166.0
@@ -258,7 +256,7 @@ offset_bottom = 30.0
 theme = ExtResource("6_rj586")
 text = "-"
 
-[node name="Stage" type="Label" parent="HUD"]
+[node name="Stage" type="Label" parent="HUD" unique_id=764416358]
 offset_left = 169.0
 offset_top = 18.0
 offset_right = 184.0
@@ -268,7 +266,7 @@ text = "1
 "
 script = ExtResource("14_d2bti")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=918984587]
 stream = ExtResource("13_nr8wp")
 
 [connection signal="start_timer" from="." to="HUD/GameTime" method="_on_main_start_timer"]
