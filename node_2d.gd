@@ -50,8 +50,8 @@ func _on_start_game():
 	#var level_two_scene = load("res://level_two.tscn")
 	var level_three_scene = load("res://level_three.tscn")
 	var level_four_scene = load("res://level_four.tscn")
-	PowerupStatus.powerup_status = 2
-	load_level(level_four_scene)
+	PowerupStatus.powerup_status = 0
+	load_level(level_one_scene)
 	GameStatus.one_up_gettable = true
 	screen_shown = false
 	
